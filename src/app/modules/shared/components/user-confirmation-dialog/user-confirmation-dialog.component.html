@@ -1,0 +1,31 @@
+<div class="user-confirmation-dialog">
+    <div mat-dialog-title>
+        <div class="dialog-header mx-6 mt-3 font-body">
+            <div class="title-text ">
+                <div class="text" *ngIf="data.title">{{ data.title }}</div>
+            </div>
+            <button *ngIf="data.cancelButton" mat-icon-button class="cancel-button" (click)="onCancel($event)">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+    <mat-dialog-content>
+        <div class="content-text" [ngClass]="{'no-bottom-padding': isNoBottomPadding}" *ngIf="data.content">
+            <div class="content" [innerHTML]="data.content">
+            </div>
+        </div>
+        <div class="input-text-div" *ngIf="showInputText">
+            <input matInput [(ngModel)]="inputTextValue" type="text" name="input-text" id="input-text"
+                [placeholder]="data.inputPlaceholderText" onfocus="this.removeAttribute('readonly')"
+                class="w-full px-3 py-2 border border-gray-200 rounded-md text-t8 focus:outline-none">
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <div class="dialog-footer">
+            <ng-container *ngFor="let buttonData of data.footerButtons">
+                <button class="footer-button"
+                    (click)="onFooterbuttonClick($event, buttonData)">{{buttonData.text}}</button>
+            </ng-container>
+        </div>
+    </mat-dialog-actions>
+</div>

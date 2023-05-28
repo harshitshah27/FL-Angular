@@ -1,0 +1,29 @@
+.create-ride-wrapper {
+
+    .header-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 32px;
+        .title {
+            font-weight: bold;
+        }
+        .action-buttons {
+            .mat-button {
+                margin: 0 8px;
+                background-color: #06038D;
+                border-radius: 5px;
+                color: #fff;
+                font-weight: normal;
+                height: 48px;
+            }
+            .cancel-btn {
+                background-color: #EFEFF0;
+                color: #000;
+            }
+        }
+    }
+    .form-container {
+        background-color: #DADDE1;
+    }
+}

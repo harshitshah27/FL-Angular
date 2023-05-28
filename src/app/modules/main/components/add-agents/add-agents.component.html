@@ -1,0 +1,55 @@
+<div class="add-agents-container flex flex-col justify-center rounded-3xl ">
+    <div
+        class="header text-t6 px-8 flex justify-between items-center rounded-t-2xl w-full bg-primary-main text-white h-16">
+        <div class="username flex items-center">
+            <p class="username-label font-semibold">{{headerTitle}}</p>
+        </div>
+        <mat-icon (click)="closeDialog()" class="font-extrabold">close</mat-icon>
+    </div>
+    <form class="add-edit-agent-form flex flex-col justify-items-start gap-y-6 pb-6 p-8" (submit)="saveAgent($event)"
+        name="addEditAgentForm" [formGroup]="addEditAgentForm">
+        <div class="user-input-field flex  flex-wrap justify-between gap-y-3">
+            <div class="text-gray-main flex flex-col">
+                <label class="font-semibold text-t8" for="name">Name<span class="text-red-600">*</span></label>
+                <input matInput formControlName="name" maxlength="100"
+                    class="font-light text-t8 w-80 p-3 border rounded-lg border-gray-200 focus:outline-non"
+                    [ngClass]="{'border-red-700' : !addEditAgentForm.controls['name'].valid && addEditAgentForm.controls['name'].touched}"
+                    type="text" name="name" id="name" placeholder="Please enter the name" required>
+                <div class="pt-1 text-xs text-red-700 error"
+                    *ngIf="!addEditAgentForm.controls['name'].valid && addEditAgentForm.controls['name'].touched">
+                    Name is required
+                </div>
+            </div>
+            <div class="text-gray-main flex flex-col">
+                <label class="font-semibold text-t8" for="email">Email Address<span
+                        class="text-red-600">*</span></label>
+                <input matInput formControlName="emailAddress" maxlength="100"
+                    class="font-light text-t8 w-80 p-3 border-gray-200 focus:outline-non border rounded-lg" type="text"
+                    name="email" id="email"
+                    [ngClass]="{'border-red-700' : !addEditAgentForm.controls['emailAddress'].valid && addEditAgentForm.controls['emailAddress'].touched}"
+                    placeholder="Please enter the Email ID" required>
+                <div class="pt-1 text-xs text-red-700 error"
+                    *ngIf="!addEditAgentForm.controls['emailAddress'].valid && addEditAgentForm.controls['emailAddress'].touched">
+                    Email Address is required
+                </div>
+            </div>
+            <div class="text-gray-main flex flex-col">
+                <label class="font-semibold text-t8" for="contact-number">Contact number<span
+                        class="text-red-600">*</span></label>
+                <input matInput formControlName="contactNumber" maxlength="14" minlength="10"
+                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                    class="font-light text-t8 w-80 p-3 border rounded-lg border-gray-200 focus:outline-non"
+                    [ngClass]="{'border-red-700' : !addEditAgentForm.controls['contactNumber'].valid && addEditAgentForm.controls['contactNumber'].touched}"
+                    type="text" name="contact-number" id="contact-number" placeholder="Please enter the contact number"
+                    required>
+                <div class="pt-1 text-xs text-red-700 error"
+                    *ngIf="!addEditAgentForm.controls['contactNumber'].valid && addEditAgentForm.controls['contactNumber'].touched">
+                    Contact number is required
+                </div>
+            </div>
+        </div>
+        <button class="text-t7 w-fit bg-primary-main disabled:opacity-60 text-white font-bold py-1 px-5 rounded-md"
+            [disabled]='(!this.addEditAgentForm.valid || !this.addEditAgentForm.touched) && !isEdit' type="submit">{{
+            isEdit ? 'Update' : 'Create'}}</button>
+    </form>
+</div>

@@ -1,0 +1,37 @@
+.dialog-title {
+    display: flex;
+    justify-content: space-between;
+
+    .left-area {
+        display: flex;
+        align-items: center;
+        
+        .mat-dialog-title {
+            margin: 0 0 0 12px;
+            font-size: 20px;
+        }
+        mat-icon {
+            color: #06038D;
+        }
+    }
+    button {
+        display: flex;
+        align-items: center;
+    }
+
+}
+.mat-dialog-content {
+    margin: 12px 0;
+    font-size: 14px;
+}
+.mat-dialog-actions {
+    justify-content: flex-end;
+    .cancel-btn {
+        background-color: #EFEFF0;
+        color: #000;
+    }
+    .save-btn {
+        background-color: #06038D;
+        color: #fff;
+    }
+}

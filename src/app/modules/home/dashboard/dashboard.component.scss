@@ -1,0 +1,40 @@
+.dashboard-wrapper {
+
+    .title {
+        font-size: 20px;
+        padding: 32px;
+    }
+
+    .filter-wrapper {
+        padding: 0 32px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 32px;
+
+        .left-filters {
+            .status-dropdown {
+                margin: 0 15px;
+            }
+    
+            .reset-icon {
+                border-radius: 8px;
+                box-shadow: none;
+            }
+        }
+
+        .create-ride-btn {
+            
+        }
+    }
+
+    .mat-table {
+        .mat-header-cell {
+            font-weight: bold;
+            font-size: 13px;
+        }
+        .mat-basic-chip {
+            pointer-events: none;
+        }
+    }
+
+}

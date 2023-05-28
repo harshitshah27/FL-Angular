@@ -1,0 +1,78 @@
+<div class="dashboard-wrapper">
+    <div class="title">RIDES</div>
+    <div class="filter-wrapper">
+        <div class="left-filters">
+            <mat-form-field>
+                <mat-icon matPrefix>search</mat-icon>
+                <input matInput type="search" placeholder="Search by Ride Name" [(ngModel)]="searchTerm" />
+            </mat-form-field>
+            <mat-form-field class="status-dropdown">
+                <mat-label>Status</mat-label>
+                <mat-select [formControl]="status">
+                <mat-option *ngFor="let option of statusOptionList" [value]="option.id">{{option.value}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button mat-mini-fab color="primary" class="reset-icon">
+                <mat-icon>cached</mat-icon>
+            </button>
+        </div>
+        <button mat-flat-button color="primary" class="create-ride-btn">
+            <mat-icon>add</mat-icon>
+            Create Ride
+        </button>
+    </div>
+
+    <table #table mat-table [dataSource]="dataSource" class="w-full" matSort>
+
+        <!-- Ride Name Column -->
+        <ng-container matColumnDef="rideName">
+            <th mat-header-cell *matHeaderCellDef> Ride Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Number of Buses Column -->
+        <ng-container matColumnDef="noOfBuses">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Number of Buses </th>
+            <td mat-cell *matCellDef="let element"> {{element.noOfBuses}} </td>
+        </ng-container>
+
+        <!-- Number of Riders Column -->
+        <ng-container matColumnDef="noOfRiders">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Number of Riders </th>
+            <td mat-cell *matCellDef="let element"> {{element.noOfRiders}} </td>
+        </ng-container>
+
+        <!-- Details Column -->
+        <ng-container matColumnDef="details">
+            <th mat-header-cell *matHeaderCellDef> Details </th>
+            <td mat-cell *matCellDef="let element"> {{element.details}} </td>
+        </ng-container>
+
+        <!-- Status column -->
+        <ng-container  matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Status</th>
+            <td mat-cell *matCellDef="let element">
+                <mat-basic-chip [selectable]="false">Completed</mat-basic-chip>
+            </td>
+        </ng-container>
+
+        <!-- Action column -->
+        <ng-container  matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-button (click)="openDialog()">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [length]="20"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              [showFirstLastButtons] = true
+              aria-label="Select page">
+</mat-paginator>
+</div>

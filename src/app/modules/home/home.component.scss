@@ -1,0 +1,53 @@
+.content {
+    display: flex;
+
+    .sidenav-container {
+        width: 110px;
+        border-right: 2px solid #eee;
+    }
+
+    .content-container {
+        background-color: #F8F8F8;
+        padding: 32px 40px;
+        margin-left: 110px;
+
+        .header {
+            font-size: 25px;
+            font-weight: bold;
+            font: normal normal bold 25px/34px Open Sans;
+            margin-bottom: 32px;
+        }
+
+        .ride-progress {
+            background-color: #FFF9C7;
+            padding: 24px 48px;
+            margin-bottom: 32px;
+            border-radius: 32px;
+            display: flex;
+            justify-content: space-between;
+
+            .left-progress {
+                .bold-text {
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+                .info-text {
+                    font-size: 12px;
+                }
+                mat-progress-bar {
+                    height: 8px;
+                    border-radius: 4px;
+                }
+            }
+
+            img {
+                height: 100px;
+                width: 100px;
+            }
+        }
+
+        .page-wrapper {
+            background-color: #fff;
+        }
+    }
+}

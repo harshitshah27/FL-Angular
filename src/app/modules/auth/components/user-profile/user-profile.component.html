@@ -1,0 +1,39 @@
+<div class="user-profile-dialog">
+    <div
+        class="header px-8 grid items-center grid-cols-[3rem_1fr_2rem] rounded-t-2xl bg-primary-main text-white h-16 text-t6">
+        <div class="user-profile-image relative w-10">
+            <input type="file" name="profile-picture" id="profile-picture" class="inputfile hidden"
+                accept="image/png, image/jpeg" (change)="handleFileInput($event)" />
+            <label for="profile-picture">
+                <img class="w-10 rounded-full" *ngIf="profileUrl" [src]="profileUrl" alt="logo">
+                <div class="w-10 h-10 rounded-full mr-1 flex items-center justify-center text-[#6C75D6] bg-[#D5D9FF]"
+                    *ngIf="!(profileUrl)">
+                    {{userImageText}}
+                </div>
+                <mat-icon class="absolute -top-2/4 -left-2/4 -translate-x-2/4 -translate-y-2/4">edit</mat-icon>
+            </label>
+        </div>
+        <div class="username flex items-center">
+            <p class="username-value pl-1 font-light text-t6">{{ username }}</p>
+        </div>
+        <mat-icon (click)="closeDialog()" class="font-extrabold">close</mat-icon>
+    </div>
+    <div class="content tracking-normal text-gray-main grid grid-cols-1 gap-y-4 text-t8 px-8 py-4">
+        <div class="field flex gap-1">
+            <p class="label font-semibold">Email Address : </p>
+            <p class="value">{{ emailAddress }}</p>
+        </div>
+        <div class="field flex gap-1">
+            <p class="label font-semibold">Last Login : </p>
+            <p class="value">{{ lastLogin | date:'dd/MMM/yyyy hh:mm a'}}</p>
+        </div>
+        <div *ngIf="!isAdmin" class="field flex gap-1">
+            <p class="label font-semibold">Contact Number :</p>
+            <p class="value">{{ contactNumber }}</p>
+        </div>
+        <!-- <div *ngIf="!isAdmin" class="field flex gap-1">
+            <p class="label font-semibold">Total Interactions :</p>
+            <p class="value">{{ totalInteractions }}</p>
+        </div> -->
+    </div>
+</div>

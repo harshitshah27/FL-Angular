@@ -1,0 +1,24 @@
+.user-profile-dialog {
+  .header {
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0px;
+    color: #ffffff;
+    .user-profile-image {
+      mat-icon {
+        visibility: hidden;
+      }
+      &:hover {
+        background-color: rgb(249 250 251);
+        opacity: 0.8;
+        mat-icon {
+          visibility: visible;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+  }
+}

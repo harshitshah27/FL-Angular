@@ -1,0 +1,36 @@
+<div class="view-agent-detail-dialog">
+    <div
+        class="header px-8 grid items-center grid-cols-[1fr_1fr_2rem] rounded-t-2xl bg-primary-main text-white h-16 text-t6">
+        <div class="username flex items-center">
+            <p class="username-label font-semibold"> User name: </p>
+            <p class="username-value pl-1 font-light">{{ username }}</p>
+        </div>
+        <div class="pl-4 status flex items-center">
+            <p class="status-label  font-semibold"> Status: </p>
+            <p class="status-value pl-1 font-light">{{ status ? 'Active' : 'Not Active' }} </p>
+        </div>
+        <mat-icon (click)="closeDialog()" class="font-extrabold">close</mat-icon>
+    </div>
+    <div class="content tracking-normal text-gray-main grid grid-cols-2 gap-y-4 text-t8 px-8 py-4">
+        <div class="field flex gap-1">
+            <p class="label font-semibold">Email Address : </p>
+            <p class="value">{{ emailAddress }}</p>
+        </div>
+        <div class="field flex gap-1">
+            <p class="label font-semibold">Last Login : </p>
+            <p class="value">{{ lastLogin | date: 'dd-LLL-yy hh:mm aaaaa\'m\'' }}</p>
+        </div>
+        <div class="field flex gap-1">
+            <p class="label font-semibold">Name :</p>
+            <p class="value">{{ name }}</p>
+        </div>
+        <div class="field flex gap-1">
+            <p class="label font-semibold">Contact Number :</p>
+            <p class="value">{{ contactNumber }}</p>
+        </div>
+        <!-- <div class="field flex gap-1">
+            <p class="label font-semibold">Total Interactions :</p>
+            <p class="value">{{ totalInteractions }}</p>
+        </div> -->
+    </div>
+</div>

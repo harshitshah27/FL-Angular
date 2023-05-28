@@ -1,0 +1,22 @@
+.blink {
+  background-color: #d9ead3;
+  animation: blink 1.5s linear;
+}
+
+@keyframes blink {
+  0% {
+    background-color: #ffffff;
+  }
+  100% {
+    background-color: #d9ead3;
+  }
+}
+
+.min-w {
+  min-width: 14px
+}
+
+// .recent-activity::-webkit-scrollbar {
+//   width: 0;
+//   background: transparent;
+// }

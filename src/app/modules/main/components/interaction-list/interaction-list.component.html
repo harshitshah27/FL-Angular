@@ -1,0 +1,152 @@
+<div class="flex w-full h-[calc(100vh-70px)] overflow-hidden">
+    <div class="sticky top-0 left-0 flex flex-col pt-3 overflow-hidden border border-zinc-200"
+        [ngClass]="{'w-6': !filterExpanded, 'w-56': filterExpanded}">
+        <div>
+            <button *ngIf="!filterExpanded" (click)="expanded()" class="flex items-center justify-center w-6 h-6 px-3">
+                <mat-icon>chevron_right</mat-icon>
+            </button>
+            <div *ngIf="filterExpanded" class="flex justify-between px-3">
+                <p>Filters</p>
+                <div class="flex items-center">
+                    <button (click)="resetFilter()" class="flex items-center justify-center w-6 h-6">
+                        <mat-icon style="font-size: 18px; line-height: 24px;">refresh</mat-icon>
+                    </button>
+                    <button (click)="expanded()" class="flex items-center justify-center w-6 h-6" matTooltip="Collapse/Expand">
+                        <mat-icon>chevron_left</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="w-full px-3 my-3" *ngIf="filterExpanded">
+                <mat-form-field class="text-t7 font-body filter-input" *ngIf="isAdmin" appearance="outline" >
+                    <!-- <mat-label>Agent</mat-label> -->
+                    <mat-select (selectionChange)="filterByAgent()" [(value)]="selectedAgent" placeholder="Agent">
+                        <mat-option *ngFor="let item of agentList" [value]="item.value">{{item.text}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <div class="date-filter text-t7">
+                    <!-- <p>Date Range:</p> -->
+                    <p class="p-1 pl-3 my-1 rounded-md cursor-pointer"
+                        [ngClass]="{'font-bold bg-zinc-200': selectedTime === time?.start}"
+                        (click)="applyTimeFilter(time)" *ngFor="let time of timeFilterList">
+                        <span *ngIf="time?.start !== 0">Over {{time?.start}} hours</span>
+                        <span *ngIf="time?.start === 0">Today</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <p *ngIf="filterExpanded" class="px-3 mt-3">Recent Activity</p>
+        <div class="flex-1 h-full overflow-auto" infiniteScroll [infiniteScrollDistance]="3"
+            [infiniteScrollThrottle]="500" [scrollWindow]="false" (scrolled)="onScroll()">
+            <div *ngIf="filterExpanded" class="pl-1 overflow-y-auto recent-activity">
+                <div *ngFor="let item of recentActivity"
+                    class="py-2 pl-2 text-t8 leading-4 mb-2 border mr-1.5 bg-white border-transparent border-b-zinc-200 first:mt-1 last:border-b-0">
+                    <div class="flex">
+                        <p *ngIf="item?.type === 2" class="min-w mt-2 h-3.5 bg-red-500 rounded-sm "></p>
+                        <p *ngIf="item?.type === 3" class="min-w mt-2 h-3.5 bg-green-500 rounded-sm"></p>
+                        <div class="flex flex-col items-start ml-2">
+                            <p class="">{{item?.messageText}}</p>
+                            <p class="pt-2 text-xs text-[#7E7E7E]">{{getFormattedDate(item?.createdAt)}}</p>
+                        </div>
+
+                    </div>
+                </div>
+                <p class="text-center" *ngIf="recentActivity.length != totalRecentActivity">Loading...</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-col flex-1 mt-6 overflow-auto add-interactions-container">
+        <div class="flex justify-between filter-download mr-9">
+            <div class="mx-8 bg-white text-t7 w-fit">
+                <mat-button-toggle-group [(ngModel)]="selectedFilter" (change)="selectionFilterChange($event)"
+                    name="filter" aria-label="Interaction filter by status">
+                    <mat-button-toggle accesskey="a" [value]="0">All</mat-button-toggle>
+                    <mat-button-toggle accesskey="n" [value]="1">
+                        <p class="flex items-center">
+                            <span class="w-3.5 h-3.5 bg-yellow-500 mr-1 rounded-sm"></span>New
+                        </p>
+                    </mat-button-toggle>
+                    <mat-button-toggle accesskey="o" [value]="2">
+                        <p class="flex items-center">
+                            <span class="w-3.5 h-3.5 bg-red-500 mr-1 rounded-sm"></span>Open
+                        </p>
+                    </mat-button-toggle>
+                    <mat-button-toggle accesskey="p" [value]="3">
+                        <p class="flex items-center">
+                            <span class="w-3.5 h-3.5 bg-blue-500 mr-1 rounded-sm"></span>Pending
+                        </p>
+                    </mat-button-toggle>
+                    <mat-button-toggle accesskey="s" [value]="4">
+                        <p class="flex items-center">
+                            <span class="w-3.5 h-3.5 bg-green-500 mr-1 rounded-sm"></span>Solved
+                        </p>
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+            <button (click)="downloadExcel()" [disabled]="selectedFilter === 1"
+                class="flex items-center bg-[#222FB9] rounded-lg p-1 text-white px-3 text-t7 disabled:opacity-60">
+                <p>Download</p>
+            </button>
+        </div>
+
+        <div class="m-8 shadow-lg border-y rounded-3xl border-zinc-200">
+            <table datatable [dtTrigger]="dtTrigger" [dtOptions]="dtOptions"
+                class="text-left bg-white row-border hover w-100 rounded-3xl">
+                <thead class="bg-zinc-200">
+                    <tr>
+                        <th class="pl-3"># ID</th>
+                        <th *ngIf="isAdmin" >Agent ID</th>
+                        <th *ngIf="isAdmin">Agent Name</th>
+                        <th>Customer</th>
+                        <th>Contact</th>
+                        <th class="w-40">Updated</th>
+                        <th class="w-40">Created</th>
+                        <!-- <th>Actions</th> -->
+                    </tr>
+                </thead>
+                <tbody *ngIf="interactions?.length != 0">
+                    <tr class="cursor-pointer" (click)="redirectToInteraction(item)"
+                        [ngClass]="{'blink': isDateLessThan24Hours(item?.createdAt) && (item?.status === 1) }"
+                        *ngFor="let item of interactions; let i = index">
+                        <td class="pl-5" ><span class="flex items-center justify-start">
+                                <p *ngIf="item?.status === 1" class="w-3.5 h-3.5  bg-yellow-500 mr-2 rounded-sm"></p>
+                                <p *ngIf="item?.status === 2" class="w-3.5 h-3.5  bg-red-500 mr-2 rounded-sm"></p>
+                                <p *ngIf="item?.status === 3" class="w-3.5 h-3.5  bg-blue-500 mr-2 rounded-sm"></p>
+                                <p *ngIf="item?.status === 4" class="w-3.5 h-3.5  bg-green-500 mr-2 rounded-sm"></p>
+                                #{{item?.interactionId}}
+                            </span>
+                        </td>
+                        <td *ngIf="isAdmin">
+                            <p>{{item?.userID?.userID ? item?.userID?.userID :'-'}}</p>
+                        </td>
+                        <td *ngIf="isAdmin">
+                            <p>{{item?.userID?.name ? item?.userID?.name : '-'}}</p>
+                        </td>
+                        <td>
+                            <p>{{item?.customerName ? item?.customerName : '-'}}</p>
+                        </td>
+                        <td><span class="">{{item?.contactNo}}</span></td>
+                        <td><span class="w-40">{{getFormattedDate(item?.updatedAt)}}</span>
+                        </td>
+                        <td><span class="w-40">{{getFormattedDate(item?.createdAt)}}</span>
+                        </td>
+                        <!-- <td><span class="">
+                                <button (click)="redirectToInteraction(item)"
+                                    class="px-3 py-1 border rounded-md text-primary-main text-t8 border-primary-main">
+                                    {{ isAdmin ? 'Details' : item?.status === 1 ? 'Accept' : 'View' }}
+                                </button>
+                            </span>
+                        </td> -->
+                    </tr>
+                </tbody>
+                <tbody *ngIf="interactions?.length == 0">
+                    <tr class="text-center">
+                        <td colspan="7" class="no-data-available">No record found.</td>
+                    </tr>
+                <tbody>
+            </table>
+        </div>
+    </div>
+</div>

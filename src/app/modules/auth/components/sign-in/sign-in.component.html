@@ -1,0 +1,46 @@
+<div class="container flex flex-col items-center justify-center h-full">
+	<div class="py-8 px-14 bg-white rounded shadow-xl w-fit login-card">
+		<div class="title font-bold text-primary-main text-t5 flex justify-center items-center gap-2">
+			<mat-icon>confirmation_number</mat-icon>
+			<h1 class="">
+				Helo Conversations
+			</h1>
+		</div>
+		<p class="text-center text-t7 my-2 text-gray-700 tracking-wide"> Sign in your account</p>
+		<form (submit)="onClickSignIn()" name="loginForm" [formGroup]="loginForm">
+			<div>
+				<div class="text-t8 text-gray-main font-semibold tracking-wide mb-1">Email</div>
+				<input formControlName="email" matInput autofocus 
+					class="w-full text-t8 py-2 border rounded-md px-3 border-gray-200 focus:outline-none" type="email"
+					[ngClass]="{'border-red-700' : !loginForm.controls['email'].valid && loginForm.controls['email'].touched}"
+					required>
+			</div>
+			<div class="my-2">
+				<div class="text-t8 text-gray-main font-semibold tracking-wide mb-1">Password</div>
+				<div class="flex border rounded-md px-3 border-gray-200 items-center"
+					[ngClass]="{'border-red-700' : !loginForm.controls['password'].valid && loginForm.controls['password'].touched}">
+					<input formControlName="password" matInput
+						class="w-full text-t8 py-2 border-none focus:outline-none" [type]=" hide ? 'password' : 'text'"
+						required>
+					<button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+						[attr.aria-label]="'Hide Password'" [attr.aria-pressed]="hide" class="text-gray-300 ">
+						<mat-icon class="text-t7">
+							{{hide ? 'visibility' : 'visibility_off'}}
+						</mat-icon>
+					</button>
+				</div>
+			</div>
+			<div class="flex justify-between items-center mt-5 text-gray-main text-t7">
+				<a href="/forgot-password" class="text-t7 font-display font-semibold hover:text-gray-800 cursor-pointer">
+					Forgot Password?
+				</a>
+			</div>
+			<div class="mt-5">
+				<button class="bg-primary-main text-gray-100 p-2 w-full text-t7 rounded-md tracking-wide font-normal font-display 
+					focus:outline-none focus:shadow-outline hover:bg-primary-main shadow-lg">
+					Sign me in
+				</button>
+			</div>
+		</form>
+	</div>
+</div>

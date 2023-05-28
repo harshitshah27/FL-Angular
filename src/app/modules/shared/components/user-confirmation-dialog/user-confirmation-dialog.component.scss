@@ -1,0 +1,40 @@
+.user-confirmation-dialog {
+  min-width: 300px;
+  max-width: 500px;
+  .mat-dialog-title {
+    margin: 0;
+  }
+  .mat-dialog-content {
+    margin: 10px 24px;
+    padding: 0;
+    .content-text {
+      padding: 8px 0;
+      max-width: 100%;
+      word-break: break-word;
+      &.no-bottom-padding {
+        padding-bottom: 0px;
+      }
+    }
+  }
+  .mat-dialog-actions {
+    margin-bottom: 0;
+    .dialog-footer {
+      display: flex;
+      justify-content: center;
+      flex: 1;
+      .footer-button {
+        background-color: white;
+        color: #222fb9;
+        font-size: 14px;
+        border: 1px solid #222fb9;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.5rem;
+        &:not(:first-child) {
+          margin-left: 24px;
+          background-color: #222fb9;
+          color: white;
+        }
+      }
+    }
+  }
+}

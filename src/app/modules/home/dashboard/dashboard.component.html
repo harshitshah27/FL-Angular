@@ -9,7 +9,8 @@
             <mat-form-field class="status-dropdown">
                 <mat-label>Status</mat-label>
                 <mat-select [formControl]="status">
-                <mat-option *ngFor="let option of statusOptionList" [value]="option.id">{{option.value}}</mat-option>
+                    <mat-option *ngFor="let option of statusOptionList"
+                        [value]="option.id">{{option.value}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <button mat-mini-fab color="primary" class="reset-icon">
@@ -26,38 +27,40 @@
 
         <!-- Ride Name Column -->
         <ng-container matColumnDef="rideName">
-            <th mat-header-cell *matHeaderCellDef> Ride Name </th>
+            <th mat-header-cell *matHeaderCellDef>Ride Name</th>
             <td mat-cell *matCellDef="let element"> {{element.name}} </td>
         </ng-container>
 
         <!-- Number of Buses Column -->
         <ng-container matColumnDef="noOfBuses">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Number of Buses </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Number of Buses</th>
             <td mat-cell *matCellDef="let element"> {{element.noOfBuses}} </td>
         </ng-container>
 
         <!-- Number of Riders Column -->
         <ng-container matColumnDef="noOfRiders">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Number of Riders </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Number of Riders</th>
             <td mat-cell *matCellDef="let element"> {{element.noOfRiders}} </td>
         </ng-container>
 
         <!-- Details Column -->
         <ng-container matColumnDef="details">
-            <th mat-header-cell *matHeaderCellDef> Details </th>
+            <th mat-header-cell *matHeaderCellDef>Details</th>
             <td mat-cell *matCellDef="let element"> {{element.details}} </td>
         </ng-container>
 
         <!-- Status column -->
-        <ng-container  matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Status</th>
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
             <td mat-cell *matCellDef="let element">
-                <mat-basic-chip [selectable]="false">Completed</mat-basic-chip>
+                <div *ngIf="element.status == 1" class="completed-state">Completed</div>
+                <div *ngIf="element.status == 2" class="draft-state">Draft</div>
+                <div *ngIf="element.status == 3" class="ongoing-state">On going</div>
             </td>
         </ng-container>
 
         <!-- Action column -->
-        <ng-container  matColumnDef="action">
+        <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef> Action </th>
             <td mat-cell *matCellDef="let element">
                 <button mat-button (click)="openDialog()">
@@ -69,10 +72,6 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <mat-paginator [length]="20"
-              [pageSize]="10"
-              [pageSizeOptions]="[5, 10, 25, 100]"
-              [showFirstLastButtons] = true
-              aria-label="Select page">
-</mat-paginator>
+    <mat-paginator [pageSize]="6" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons aria-label="Select page">
+    </mat-paginator>
 </div>

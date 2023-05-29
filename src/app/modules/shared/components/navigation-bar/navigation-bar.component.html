@@ -1,6 +1,5 @@
 <div class="navbar-container">
-  <button>
-    <img class="logo">
-    <span>Dashboard</span>
+  <button class="w-full" *ngFor="let item of navigationList" (click)="handleNavigation(item)" [ngClass]="{'selected': selectedTabId == item.id}">
+    <img class="logo" alt="{{item.imgAltText}}" src="{{item.imgSrc}}">
   </button>
 </div>

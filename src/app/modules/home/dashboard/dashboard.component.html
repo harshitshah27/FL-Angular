@@ -2,11 +2,11 @@
     <div class="title">RIDES</div>
     <div class="filter-wrapper">
         <div class="left-filters">
-            <mat-form-field>
+            <mat-form-field appearance="outline">
                 <mat-icon matPrefix>search</mat-icon>
                 <input matInput type="search" placeholder="Search by Ride Name" [(ngModel)]="searchTerm" />
             </mat-form-field>
-            <mat-form-field class="status-dropdown">
+            <mat-form-field appearance="outline" class="status-dropdown">
                 <mat-label>Status</mat-label>
                 <mat-select [formControl]="status">
                     <mat-option *ngFor="let option of statusOptionList"

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,10 +8,21 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) {
-    console.log(this.route);
+  isCreatingRideInProgress = false;
+  mainHeaderText = "";
+  isDashboard = true;
+
+  constructor(private route: ActivatedRoute,
+    private router: Router) {
+    // console.log(this.route);
     this.route.url.subscribe(params => {
-      console.log(params);
+      let currentPath = this.router.url;
+      if (currentPath == "/user/dashboard") {
+        this.isDashboard = true;
+        this.mainHeaderText = "DASHBOARD";
+      } else {
+        this.isDashboard = false;
+      }
       // do something
     });
   }

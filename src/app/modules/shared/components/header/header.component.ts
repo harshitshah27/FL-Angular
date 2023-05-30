@@ -13,7 +13,7 @@ import { NavigationService } from 'src/app/services/navigation.service';
 export class HeaderComponent implements OnInit {
 
   navigationList: any[] = [];
-  name: string | undefined;
+  name: string | undefined = "Test user";
   currentUser: any;
   userImageText: string = 'Da';
   isAdmin: boolean = true;

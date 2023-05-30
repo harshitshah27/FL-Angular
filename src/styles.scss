@@ -232,3 +232,15 @@ div::-webkit-scrollbar-thumb {
 .mat-form-field-appearance-outline .mat-form-field-outline-thick {
   color: #e8e8e8 !important;
 }
+
+.confirmation-dialog{
+  min-width: 40vw;
+}
+
+.action-menu.mat-menu-panel {
+  min-width: 72px;
+
+  .mat-icon {
+    color: #06038D;
+  }
+}

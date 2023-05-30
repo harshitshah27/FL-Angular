@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationService } from 'src/app/services/navigation.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -9,26 +8,44 @@ import { Router } from '@angular/router';
 })
 export class NavigationBarComponent implements OnInit {
 
-  currentYear: number = 2021;
+  selectedTabId: number = 1;
+
+  navigationList: any[] = [
+    {
+      id: 1,
+      title: "Dashboard",
+      imgSrc: "",
+      imgAltText: "Das",
+      route: "/user/dashboard"
+    },
+    {
+      id: 2,
+      title: "Create ride",
+      imgSrc: "",
+      imgAltText: "abc",
+      route: "/user/create-ride"
+    }
+  ];
 
   constructor(
-    private navigationService: NavigationService,
-    private route: Router,
-  ) { }
-
-  navigationList: any[] = [];
-
-  ngOnInit(): void {
-    this.currentYear = new Date().getFullYear();
-    this.navigationService.getNavigationList().subscribe((navigationList) => {
-      this.navigationList = navigationList;
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {
+    this.route.url.subscribe(res => {
+      this.navigationList.forEach((item) => {
+        if (this.router.url == item.route) {
+          this.selectedTabId = item.id;
+        }
+      })
     });
   }
 
-  getCurrentUrl(url: string) {
-    if (url === this.route.url.substring(0, url.length)) {
-      return true;
-    }
-    return false;
+  
+
+  ngOnInit(): void {}
+
+  handleNavigation(item:any) {
+    this.router.navigate([item.route]);
   }
+
 }

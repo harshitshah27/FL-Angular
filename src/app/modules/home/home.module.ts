@@ -16,6 +16,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSortModule } from '@angular/material/sort';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 @NgModule({
@@ -37,7 +40,10 @@ import { MatSortModule } from '@angular/material/sort';
     MatProgressBarModule,
     MatDialogModule,
     MatChipsModule,
-    MatSortModule
+    MatSortModule,
+    MatAutocompleteModule,
+    MatSlideToggleModule,
+    MatRadioModule
   ]
 })
 export class HomeModule { }

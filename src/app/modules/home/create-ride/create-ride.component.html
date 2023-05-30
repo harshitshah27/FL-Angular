@@ -20,7 +20,7 @@
             <div class="title">Name</div>
             <div class="description">Name your ride</div>
             <mat-form-field appearance="outline" class="w-full">
-                <input matInput type="text"
+                <input matInput type="text" [(ngModel)]="dataObject.name"
                     placeholder="For example: RideMumbai1_Pune1" />
             </mat-form-field>
         </div>
@@ -69,17 +69,25 @@
             </div>
             <div class="add-selection">
                 <mat-radio-group>
-                    <div>
-                        <mat-radio-button value="1">One by one
-                        </mat-radio-button>
+                    <div class="radio-options">
+                        <div class="option selected">
+                            <mat-radio-button value="1" [checked]="true">One by one
+                            </mat-radio-button>
+                            <div class="info-text">Choose this option for entering your
+                                rider's description
+                                one
+                                by one manually</div>
+                        </div>
+                        <div class="option">
+                            <mat-radio-button value="2">Upload your
+                                file</mat-radio-button>
+                            <div class="info-text">Choose this otpion for uploading an
+                                excel file with all
+                                the
+                                information needed for your riders. Data can be
+                                edited once upload</div>
+                        </div>
                     </div>
-                    <div>Choose this option for entering your rider's description one by
-                        one manually</div>
-                    <div><mat-radio-button value="2">Upload your
-                            file</mat-radio-button></div>
-                    <div>Choose this otpion for uploading an excel file with all the
-                        information needed for your riders. Data can be
-                        edited once upload</div>
                 </mat-radio-group>
             </div>
             <div class="table-container">

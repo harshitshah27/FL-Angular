@@ -4,12 +4,18 @@
         <app-navigation-bar></app-navigation-bar>
     </div>
     <div class="content-container w-full">
-        <div class="header">DASHBOARD</div>
-        <div class="ride-progress">
+        <div class="header">
+            <div class="main-header">{{mainHeaderText}}</div>
+            <div *ngIf="!isDashboard" class="breadcrumb"></div>
+        </div>
+        <div *ngIf="isCreatingRideInProgress" class="ride-progress">
             <div class="left-progress">
                 <div class="bold-text">Yay!</div>
-                <div class="info-text">Your ride is getting configured now. Once completed, you'll be able to see your ride on the top of the Rides table.</div>
-                <mat-progress-bar class="mt-6" mode="determinate" value="40"></mat-progress-bar>
+                <div class="info-text">Your ride is getting configured now. Once
+                    completed, you'll be able to see your ride on the top of the Rides
+                    table.</div>
+                <mat-progress-bar class="mt-6" mode="determinate"
+                    value="40"></mat-progress-bar>
             </div>
             <img src="">
         </div>
@@ -17,6 +23,6 @@
             <router-outlet></router-outlet>
         </div>
     </div>
-    
+
 </div>
 <app-footer></app-footer>

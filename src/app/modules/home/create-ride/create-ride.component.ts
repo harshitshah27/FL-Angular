@@ -11,6 +11,15 @@ export interface RiderObject {
   state: string;
   zip: number;
 }
+
+export interface RideObject {
+  name?: string;
+  startPoint?: string;
+  destinationPoint?: string;
+  riders?: RiderObject[];
+  noOfBuses?: string;
+  busCapacity?: number;
+}
 @Component({
   selector: 'app-create-ride',
   templateUrl: './create-ride.component.html',
@@ -28,6 +37,8 @@ export class CreateRideComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator = new MatPaginator(new MatPaginatorIntl(), ChangeDetectorRef.prototype);;
   @ViewChild("table") table: any;
+
+  dataObject: RideObject = {};
 
   constructor() { }
 

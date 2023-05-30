@@ -4,7 +4,8 @@
         <div class="left-filters">
             <mat-form-field appearance="outline">
                 <mat-icon matPrefix>search</mat-icon>
-                <input matInput type="search" placeholder="Search by Ride Name" [(ngModel)]="searchTerm" />
+                <input matInput type="search" placeholder="Search by Ride Name"
+                    [(ngModel)]="searchTerm" />
             </mat-form-field>
             <mat-form-field appearance="outline" class="status-dropdown">
                 <mat-label>Status</mat-label>
@@ -13,11 +14,14 @@
                         [value]="option.id">{{option.value}}</mat-option>
                 </mat-select>
             </mat-form-field>
-            <button mat-mini-fab color="primary" class="reset-icon">
+            <button mat-mini-fab class="reset-icon" (click)="resetFilters()"
+                [disabled]="(searchTerm.length==0) && (status.value == '')">
                 <mat-icon>cached</mat-icon>
             </button>
         </div>
-        <button mat-flat-button color="primary" class="create-ride-btn">
+        <button mat-flat-button color="primary" class="create-ride-btn"
+            [disabled]="isCreatingRideInProgress"
+            (click)="router.navigate(['/user/create-ride'])">
             <mat-icon>add</mat-icon>
             Create Ride
         </button>
@@ -63,15 +67,28 @@
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef> Action </th>
             <td mat-cell *matCellDef="let element">
-                <button mat-button (click)="openDialog()">
+                <button mat-button [matMenuTriggerFor]="actionMenu">
                     <mat-icon>more_vert</mat-icon>
                 </button>
+                <mat-menu class="mt-1 action-menu" #actionMenu="matMenu"
+                    xPosition="before">
+                    <button mat-menu-item (click)="openDialog(element, 1)">
+                        <mat-icon>content_copy</mat-icon>
+                    </button>
+                    <button mat-menu-item (click)="openDialog(element, 2)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <button mat-menu-item (click)="openDialog(element, 3)">
+                        <mat-icon>archive</mat-icon>
+                    </button>
+                </mat-menu>
             </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <mat-paginator [pageSize]="6" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons aria-label="Select page">
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"
+        showFirstLastButtons aria-label="Select page">
     </mat-paginator>
 </div>

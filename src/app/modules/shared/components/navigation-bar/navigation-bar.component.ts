@@ -14,17 +14,11 @@ export class NavigationBarComponent implements OnInit {
     {
       id: 1,
       title: "Dashboard",
-      imgSrc: "",
-      imgAltText: "Das",
+      imgSrc: "../assets/dashboard.svg",
+      imgAltText: "Dashboard",
+      imgClass: "dashboard-logo",
       route: "/user/dashboard"
     },
-    {
-      id: 2,
-      title: "Create ride",
-      imgSrc: "",
-      imgAltText: "abc",
-      route: "/user/create-ride"
-    }
   ];
 
   constructor(
@@ -40,11 +34,11 @@ export class NavigationBarComponent implements OnInit {
     });
   }
 
-  
 
-  ngOnInit(): void {}
 
-  handleNavigation(item:any) {
+  ngOnInit(): void { }
+
+  handleNavigation(item: any) {
     this.router.navigate([item.route]);
   }
 

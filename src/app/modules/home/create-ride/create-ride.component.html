@@ -2,13 +2,14 @@
     <div class="header-section">
         <div class="title">Create Ride</div>
         <div class="action-buttons">
-            <button mat-button class="btn save-draft-btn">
+            <button mat-button class="btn save-draft-btn" (click)="saveAsDraftAction()">
                 Save as draft
             </button>
-            <button mat-button class="btn cancel-btn">
+            <button mat-button class="btn cancel-btn"
+                (click)="router.navigate(['/dashboard'])">
                 Cancel
             </button>
-            <button mat-button class="btn confirm-btn">
+            <button mat-button class="btn confirm-btn" (click)="createNewRide()">
                 Confirm
             </button>
         </div>
@@ -28,15 +29,17 @@
         <!-- Pick up Details block -->
         <div class="bg-[#fff] pick-up-details block">
             <div class="title">Pick up Details</div>
-            <div class="description">You can provide Start Point or Destination
-                or both as per your requirement.</div>
+            <div class="description">
+                You can provide Start Point or Destination
+                or both as per your requirement.
+            </div>
             <div class="input-options">
                 <div class="field-wrapper">
                     <div class="label">Start Point</div>
                     <mat-form-field appearance="outline">
-                        <mat-label>Start entering your pick up point</mat-label>
                         <input type="text" aria-label="Start point" matInput
-                            [formControl]="pickupControl" [matAutocomplete]="auto">
+                            [formControl]="pickupControl" [matAutocomplete]="auto"
+                            placeholder="Start entering your pick up point">
                         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                             <mat-option *ngFor="let option of options" [value]="option">
                                 {{option}}
@@ -47,9 +50,9 @@
                 <div class="field-wrapper">
                     <div class="label">Destination</div>
                     <mat-form-field appearance="outline">
-                        <mat-label>Start entering your destination</mat-label>
                         <input type="text" aria-label="Destination" matInput
-                            [formControl]="destControl" [matAutocomplete]="auto">
+                            [formControl]="destControl" [matAutocomplete]="auto"
+                            placeholder="Start entering your destination">
                         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                             <mat-option *ngFor="let option of options" [value]="option">
                                 {{option}}
@@ -63,23 +66,26 @@
         <!-- Add Riders block -->
         <div class="bg-[#fff] add-riders block">
             <div class="title">Add Riders</div>
-            <div class="description">Please select your option for adding your Riders. In
+            <div class="description">
+                Please select your option for adding your Riders. In
                 one on one approach, you can manually fill out the form and in upload your
                 file approach, you'll see the editable form generated after uploading
             </div>
             <div class="add-selection">
-                <mat-radio-group>
+                <mat-radio-group [formControl]="radioSelection">
                     <div class="radio-options">
-                        <div class="option selected">
-                            <mat-radio-button value="1" [checked]="true">One by one
+                        <div class="option"
+                            [ngClass]="{'selected': radioSelection.value == 1}">
+                            <mat-radio-button value="1" [color]="radioColor">One by one
                             </mat-radio-button>
                             <div class="info-text">Choose this option for entering your
                                 rider's description
                                 one
                                 by one manually</div>
                         </div>
-                        <div class="option">
-                            <mat-radio-button value="2">Upload your
+                        <div class="option"
+                            [ngClass]="{'selected': radioSelection.value == 2}">
+                            <mat-radio-button value="2" [color]="radioColor">Upload your
                                 file</mat-radio-button>
                             <div class="info-text">Choose this otpion for uploading an
                                 excel file with all
@@ -92,13 +98,15 @@
             </div>
             <div class="table-container">
                 <div class="table-options">
-                    <div class="label">Start entering your values for the Riders
+                    <div class="label">
+                        Start entering your values for the Riders
                     </div>
                     <div class="right-options">
-                        <mat-label>Round Trip:</mat-label>
+                        <mat-label class="mr-2">Round Trip:</mat-label>
                         <mat-slide-toggle></mat-slide-toggle>
-                        <button mat-button
-                            class="btn clear-btn bg-[#EFEFF0]">Clear</button>
+                        <button mat-button class="btn clear-btn bg-[#EFEFF0]">
+                            Clear
+                        </button>
                     </div>
                 </div>
                 <table #table mat-table [dataSource]="dataSource" class="w-full">
@@ -106,7 +114,9 @@
                     <ng-container matColumnDef="firstName">
                         <th mat-header-cell *matHeaderCellDef>First Name</th>
                         <td mat-cell *matCellDef="let element">
-                            {{element.firstName}}
+                            <mat-form-field appearance="standard">
+                                <input matInput type="text" />
+                            </mat-form-field>
                         </td>
                     </ng-container>
 
@@ -155,8 +165,10 @@
                     showFirstLastButtons aria-label="Select page">
                 </mat-paginator>
             </div>
-            <button mat-button class="btn another-rider-btn bg-[#EFEFF0]">Add
-                another Rider</button>
+            <button mat-button class="btn another-rider-btn bg-[#EFEFF0]"
+                (click)="addNewRider()">
+                Add another Rider
+            </button>
         </div>
 
         <!-- Bus Details block -->

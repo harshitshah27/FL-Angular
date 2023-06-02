@@ -303,7 +303,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   changeView(view: any) {
     let startDate: any
     let endDate: any
-    switch(view) {
+    switch (view) {
       case 1:
         startDate = dayjs().startOf('day').format()
         endDate = dayjs().endOf('day').format()
@@ -324,7 +324,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         break;
     }
     console.log(startDate, endDate);
-    
+
   }
 
   ngOnDestroy() {

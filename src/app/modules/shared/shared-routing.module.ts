@@ -4,14 +4,14 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    data: {
-      shouldReuse: false
-    },
-    canActivate: [AuthGuard]
-  },
+  // {
+  //   path: 'dashboard',
+  //   component: DashboardComponent,
+  //   data: {
+  //     shouldReuse: false
+  //   },
+  //   canActivate: [AuthGuard]
+  // },
   // {
   //   path: '',
   //   pathMatch: 'full',

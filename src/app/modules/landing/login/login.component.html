@@ -1,1 +1,23 @@
-<p>login works!</p>
+<div class="login-container">
+  <div class="left-section">
+    <img src="" alt="Left Image" />
+  </div>
+  <div class="right-section">
+    <div class="logo-container">
+      <img [src]="{imageUrl}" alt="Company Logo" />
+    </div>
+    <mat-card>
+      <mat-card-content>
+        <mat-form-field>
+          <input matInput placeholder="Username" />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" placeholder="Password" />
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary">Login</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

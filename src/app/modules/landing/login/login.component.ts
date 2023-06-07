@@ -6,9 +6,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
-  imageUrl =
-    "https://www.gettyimages.ie/gi-resources/images/Homepage/Hero/UK/CMS_Creative_164657191_Kingfisher.jpg";
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

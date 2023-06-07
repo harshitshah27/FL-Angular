@@ -6,8 +6,9 @@ import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
 import { VerifyLoginComponent } from "./verify-login/verify-login.component";
 import { MatCardModule } from "@angular/material/card";
-import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatGridListModule } from "@angular/material/grid-list";
+import { MatInputModule } from "@angular/material/input";
+import { MatButtonModule } from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -20,8 +21,9 @@ import { MatGridListModule } from "@angular/material/grid-list";
     CommonModule,
     LandingRoutingModule,
     MatCardModule,
-    MatFormFieldModule,
     MatGridListModule,
+    MatInputModule,
+    MatButtonModule
   ],
 })
-export class LandingModule {}
+export class LandingModule { }

@@ -5,7 +5,8 @@
     }
     .mat-form-field {
         display: block;
-        width: 241px;
+        min-width: 241px;
+        width: 100%;
     }
     .forgot-pwd {
         font: normal normal normal 16px/22px Open Sans;
@@ -24,10 +25,33 @@
         background-color: #06038d;
         color: #fff;
         font-weight: normal;
+
+        &.mat-button-disabled {
+            opacity: 0.7;
+        }
+    }
+    .or-text {
+        position: relative;
+        color: #a7a7a7;
+        text-align: center;
+        &:before,
+        &:after {
+            position: absolute;
+            top: 51%;
+            overflow: hidden;
+            width: 50%;
+            height: 1px;
+            content: "\a0";
+            background-color: #a7a7a7;
+        }
+        &:before {
+            margin-left: -50%;
+        }
     }
     .create-account-text {
+        font: normal normal normal 14px/20px Open Sans;
+        text-align: left;
         a {
-            font: normal normal normal 16px/22px Open Sans;
             letter-spacing: 0px;
             color: #06038d;
         }

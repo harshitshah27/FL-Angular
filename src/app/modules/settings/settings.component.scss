@@ -1,0 +1,23 @@
+.settings-wrapper {
+    display: flex;
+
+    .left-menu {
+        padding: 24px 60px;
+        .title {
+            font: normal normal 600 20px/27px Open Sans;
+            letter-spacing: -1px;
+        }
+        .options-menu {
+            border-right: 2px solid lightgrey;
+            button {
+                box-sizing: content-box;
+                &.selected {
+                    border-right: 2px solid #06038d;
+                }
+            }
+        }
+    }
+    .right-content {
+        padding: 48px;
+    }
+}

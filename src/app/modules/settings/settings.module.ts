@@ -3,9 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { SettingsRoutingModule } from './settings-routing.module';
 import { SettingsComponent } from './settings.component';
-import { HomeModule } from '../home/home.module';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import { SecurityComponent } from './security/security.component';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -17,7 +20,10 @@ import { SecurityComponent } from './security/security.component';
   imports: [
     CommonModule,
     SettingsRoutingModule,
-    HomeModule
+    MatInputModule,
+    MatButtonModule,
+    FormsModule,
+    MatIconModule
   ]
 })
 export class SettingsModule { }

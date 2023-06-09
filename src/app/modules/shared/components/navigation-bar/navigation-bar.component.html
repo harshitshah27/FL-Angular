@@ -1,11 +1,7 @@
 <div class="navbar-container">
-  <button class="w-full" *ngFor="let item of navigationList"
-    (click)="handleNavigation(item)" [ngClass]="{'selected': selectedTabId == item.id}">
+  <button class="w-full flex justify-center box-content"
+    *ngFor="let item of navigationList" (click)="handleNavigation(item)"
+    [ngClass]="{'selected': selectedTabId == item.id}">
     <img class="logo {{item.imgClass}}" alt="{{item.imgAltText}}" src="{{item.imgSrc}}">
   </button>
-
-  <mat-tab-group flex="1" vertical>
-    <mat-tab label="Tab 1"></mat-tab>
-    <mat-tab label="Tab 2"></mat-tab>
-  </mat-tab-group>
 </div>

@@ -34,12 +34,12 @@ export class NavigationBarComponent implements OnInit {
     });
   }
 
-
-
   ngOnInit(): void { }
 
   handleNavigation(item: any) {
-    this.router.navigate([item.route]);
+    if (this.selectedTabId != item.id) {
+      this.router.navigate([item.route]);
+    }
   }
 
 }

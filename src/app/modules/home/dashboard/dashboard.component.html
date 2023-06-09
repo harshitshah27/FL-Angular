@@ -5,10 +5,11 @@
             <mat-form-field appearance="outline">
                 <mat-icon matPrefix>search</mat-icon>
                 <input matInput type="search" placeholder="Search by Ride Name"
-                    [(ngModel)]="searchTerm" />
+                    (keyup)="applySearchFilter($event)" />
             </mat-form-field>
             <mat-form-field appearance="outline" class="status-dropdown">
-                <mat-select [formControl]="status" placeholder="Status">
+                <mat-select [formControl]="status" placeholder="Status"
+                    (valueChange)="filterByStatus($event)">
                     <mat-option *ngFor="let option of statusOptionList"
                         [value]="option.id">{{option.value}}</mat-option>
                 </mat-select>

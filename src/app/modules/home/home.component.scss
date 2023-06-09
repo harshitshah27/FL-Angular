@@ -23,37 +23,5 @@
                 display: flex;
             }
         }
-
-        .ride-progress {
-            background-color: #fff9c7;
-            padding: 24px 48px;
-            margin-bottom: 32px;
-            border-radius: 32px;
-            display: flex;
-            justify-content: space-between;
-
-            .left-progress {
-                .bold-text {
-                    font-weight: bold;
-                    font-size: 20px;
-                }
-                .info-text {
-                    font-size: 12px;
-                }
-                mat-progress-bar {
-                    height: 8px;
-                    border-radius: 4px;
-                }
-            }
-
-            img {
-                height: 100px;
-                width: 100px;
-            }
-        }
-
-        .page-wrapper {
-            background-color: #fff;
-        }
     }
 }

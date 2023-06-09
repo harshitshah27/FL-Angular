@@ -1,94 +1,110 @@
 <div class="dashboard-wrapper">
-    <div class="title">RIDES</div>
-    <div class="filter-wrapper">
-        <div class="left-filters">
-            <mat-form-field appearance="outline">
-                <mat-icon matPrefix>search</mat-icon>
-                <input matInput type="search" placeholder="Search by Ride Name"
-                    (keyup)="applySearchFilter($event)" />
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="status-dropdown">
-                <mat-select [formControl]="status" placeholder="Status"
-                    (valueChange)="filterByStatus($event)">
-                    <mat-option *ngFor="let option of statusOptionList"
-                        [value]="option.id">{{option.value}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <button mat-mini-fab class="reset-icon" (click)="resetFilters()"
-                [disabled]="(searchTerm.length==0) && (status.value == '')">
-                <mat-icon>cached</mat-icon>
+    <div *ngIf="isCreatingRideInProgress" class="ride-progress">
+        <div class="left-progress">
+            <div class="bold-text">Yay!</div>
+            <div class="info-text">Your ride is getting configured now. Once
+                completed, you'll be able to see your ride on the top of the Rides
+                table.</div>
+            <mat-progress-bar class="mt-6" mode="determinate"
+                value="40"></mat-progress-bar>
+        </div>
+        <img src="">
+    </div>
+    <div class="dashboard-container bg-[#fff]">
+        <div class="title">RIDES</div>
+        <div class="filter-wrapper">
+            <div class="left-filters">
+                <mat-form-field appearance="outline">
+                    <mat-icon matPrefix>search</mat-icon>
+                    <input matInput type="search" placeholder="Search by Ride Name"
+                        (keyup)="applySearchFilter($event)" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="status-dropdown">
+                    <mat-select [formControl]="status" placeholder="Status"
+                        (valueChange)="filterByStatus($event)">
+                        <mat-option *ngFor="let option of statusOptionList"
+                            [value]="option.id">{{option.value}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button mat-mini-fab class="reset-icon" (click)="resetFilters()"
+                    [disabled]="(searchTerm.length==0) && (status.value == '')">
+                    <mat-icon>cached</mat-icon>
+                </button>
+            </div>
+            <button mat-flat-button color="primary"
+                class="create-ride-btn !flex items-center justify-center"
+                [disabled]="isCreatingRideInProgress"
+                (click)="router.navigate(['/dashboard/create-ride'])">
+                <mat-icon>add</mat-icon>
+                <span>Create Ride</span>
             </button>
         </div>
-        <button mat-flat-button color="primary" class="create-ride-btn"
-            [disabled]="isCreatingRideInProgress"
-            (click)="router.navigate(['/dashboard/create-ride'])">
-            <mat-icon>add</mat-icon>
-            Create Ride
-        </button>
+
+        <table #table mat-table [dataSource]="dataSource" class="w-full" matSort>
+
+            <!-- Ride Name Column -->
+            <ng-container matColumnDef="rideName">
+                <th mat-header-cell *matHeaderCellDef>Ride Name</th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <!-- Number of Buses Column -->
+            <ng-container matColumnDef="noOfBuses">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Number of Buses</th>
+                <td mat-cell *matCellDef="let element"> {{element.noOfBuses}} </td>
+            </ng-container>
+
+            <!-- Number of Riders Column -->
+            <ng-container matColumnDef="noOfRiders">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Number of Riders
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.noOfRiders}} </td>
+            </ng-container>
+
+            <!-- Details Column -->
+            <ng-container matColumnDef="details">
+                <th mat-header-cell *matHeaderCellDef>Details</th>
+                <td mat-cell *matCellDef="let element"> {{element.details}} </td>
+            </ng-container>
+
+            <!-- Status column -->
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                <td mat-cell *matCellDef="let element">
+                    <div *ngIf="element.status == 1" class="completed-state">Completed
+                    </div>
+                    <div *ngIf="element.status == 2" class="draft-state">Draft</div>
+                    <div *ngIf="element.status == 3" class="ongoing-state">On going</div>
+                </td>
+            </ng-container>
+
+            <!-- Action column -->
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-button [matMenuTriggerFor]="actionMenu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu class="mt-1 action-menu" #actionMenu="matMenu"
+                        xPosition="before">
+                        <button mat-menu-item (click)="openDialog(element, 1)">
+                            <mat-icon>content_copy</mat-icon>
+                        </button>
+                        <button mat-menu-item (click)="openDialog(element, 2)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <button mat-menu-item (click)="openDialog(element, 3)">
+                            <mat-icon>archive</mat-icon>
+                        </button>
+                    </mat-menu>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"
+            showFirstLastButtons aria-label="Select page">
+        </mat-paginator>
     </div>
-
-    <table #table mat-table [dataSource]="dataSource" class="w-full" matSort>
-
-        <!-- Ride Name Column -->
-        <ng-container matColumnDef="rideName">
-            <th mat-header-cell *matHeaderCellDef>Ride Name</th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-
-        <!-- Number of Buses Column -->
-        <ng-container matColumnDef="noOfBuses">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Number of Buses</th>
-            <td mat-cell *matCellDef="let element"> {{element.noOfBuses}} </td>
-        </ng-container>
-
-        <!-- Number of Riders Column -->
-        <ng-container matColumnDef="noOfRiders">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Number of Riders</th>
-            <td mat-cell *matCellDef="let element"> {{element.noOfRiders}} </td>
-        </ng-container>
-
-        <!-- Details Column -->
-        <ng-container matColumnDef="details">
-            <th mat-header-cell *matHeaderCellDef>Details</th>
-            <td mat-cell *matCellDef="let element"> {{element.details}} </td>
-        </ng-container>
-
-        <!-- Status column -->
-        <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-            <td mat-cell *matCellDef="let element">
-                <div *ngIf="element.status == 1" class="completed-state">Completed</div>
-                <div *ngIf="element.status == 2" class="draft-state">Draft</div>
-                <div *ngIf="element.status == 3" class="ongoing-state">On going</div>
-            </td>
-        </ng-container>
-
-        <!-- Action column -->
-        <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef> Action </th>
-            <td mat-cell *matCellDef="let element">
-                <button mat-button [matMenuTriggerFor]="actionMenu">
-                    <mat-icon>more_vert</mat-icon>
-                </button>
-                <mat-menu class="mt-1 action-menu" #actionMenu="matMenu"
-                    xPosition="before">
-                    <button mat-menu-item (click)="openDialog(element, 1)">
-                        <mat-icon>content_copy</mat-icon>
-                    </button>
-                    <button mat-menu-item (click)="openDialog(element, 2)">
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                    <button mat-menu-item (click)="openDialog(element, 3)">
-                        <mat-icon>archive</mat-icon>
-                    </button>
-                </mat-menu>
-            </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"
-        showFirstLastButtons aria-label="Select page">
-    </mat-paginator>
 </div>

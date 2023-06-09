@@ -10,7 +10,6 @@ import * as breadcrumbJson from "./enums/helper.json";
 })
 export class HomeComponent implements OnInit {
 
-  isCreatingRideInProgress = false;
   mainHeaderText = "";
   isDashboard = true;
   routeUrlSegments: any[] = [];

@@ -70,7 +70,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<RideObject>(ELEMENT_DATA);
-    console.log(typeof (this.status.value));
   }
 
   ngAfterViewInit() {

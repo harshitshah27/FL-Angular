@@ -40,14 +40,13 @@
 
             .description {
                 font: normal normal normal 12px/18px Open Sans;
-                color: #AFAFAF;
+                color: #afafaf;
                 margin: 8px 0 4px;
             }
 
             .mat-form-field {
                 font-size: 13px;
             }
-
         }
 
         .pick-up-details {
@@ -114,18 +113,41 @@
                 }
             }
 
-            .table-container {
-                .table-options {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    font: normal normal normal 14px/18px Open Sans;
+            .upload-options,
+            .table-options {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font: normal normal normal 14px/18px Open Sans;
 
+                .label {
+                    font: normal normal normal 16px/20px Open Sans;
+                }
+
+                .right-options {
+                    display: flex;
+
+                    .sample-file-btn,
                     .clear-btn {
                         margin-left: 20px;
                         height: 32px;
                         font: normal normal 600 14px/18px Open Sans;
                     }
+                }
+            }
+
+            .drag-drop-container {
+                height: 250px;
+                border: 2px dashed #ccc;
+                box-sizing: border-box;
+            }
+
+            .upload-btn {
+                text-align: center;
+                margin-top: 12px;
+
+                button {
+                    height: 36px;
                 }
             }
 

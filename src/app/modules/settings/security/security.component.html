@@ -1,0 +1,75 @@
+<div class="security-container">
+    <div class="label">
+        Choose a strong password and don't reuse it for other accounts.
+    </div>
+    <div class="description text-[#878D96]">
+        Changing your password will sign you out on your devices.</div>
+    <div class="change-password-container">
+        <div class="block form-container">
+            <div class="title">Change Password</div>
+            <form #profileForm="ngForm">
+                <mat-label>Verify Current Password</mat-label>
+                <mat-form-field appearance="outline">
+                    <input matInput required
+                        [type]="hideCurrentPassword ? 'password' : 'text'"
+                        placeholder="Please enter your current password"
+                        [(ngModel)]="currentPassword" name="currentPassword"
+                        #currentPasswordInput="ngModel" />
+                    <mat-icon matSuffix
+                        (click)="hideCurrentPassword = !hideCurrentPassword">
+                        {{hideCurrentPassword ? 'visibility_off' : 'visibility'}}
+                    </mat-icon>
+                    <mat-error
+                        *ngIf="currentPasswordInput.touched && currentPasswordInput.invalid">
+                        Please enter your current password
+                    </mat-error>
+                </mat-form-field>
+                <div class="label">Password strength:</div>
+                <div class="description text-[#434343]">
+                    Use at least 8 characters. Don’t use a password
+                    from another site, or something too obvious like your pet’s name.
+                </div>
+                <mat-label>New Password</mat-label>
+                <mat-form-field appearance="outline">
+                    <input matInput required type="password"
+                        placeholder="Please enter your new password"
+                        [(ngModel)]="newPassword" name="newPassword"
+                        #newPasswordInput="ngModel" />
+                    <mat-icon matSuffix (click)="hideNewPassword = !hideNewPassword">
+                        {{hideNewPassword ? 'visibility_off' : 'visibility'}}
+                    </mat-icon>
+                    <mat-error
+                        *ngIf="newPasswordInput.touched && newPasswordInput.invalid">
+                        Please enter your new password
+                    </mat-error>
+                </mat-form-field>
+                <mat-label>Confirm New Password</mat-label>
+                <mat-form-field appearance="outline">
+                    <input matInput required type="password"
+                        placeholder="Please re-enter your new password"
+                        [(ngModel)]="confirmPassword" name="confirmPassword"
+                        #confirmPasswordInput="ngModel" />
+                    <mat-icon matSuffix
+                        (click)="hideConfirmPassword = !hideConfirmPassword">
+                        {{hideConfirmPassword ? 'visibility_off' : 'visibility'}}
+                    </mat-icon>
+                    <mat-error
+                        *ngIf="confirmPasswordInput.touched && confirmPasswordInput.invalid">
+                        Please confirm New Password
+                    </mat-error>
+                </mat-form-field>
+
+                <button mat-button class="btn bg-[#efeff0]" type="submit">Cancel</button>
+                <button mat-button class="btn bg-[#06038D] text-[#fff]" type="submit"
+                    [disabled]="profileForm.invalid" (click)="saveChanges()">Save</button>
+            </form>
+        </div>
+        <div class="block instructions-container">
+            <div class="header bg-[#48469E] text-[#fff]">
+                The minimum password length is 8 characters and must contain at least 1
+                lowercase letter, 1 uppercase letter, 1 number and 1 special character.
+            </div>
+            <div class="password-criteria"></div>
+        </div>
+    </div>
+</div>

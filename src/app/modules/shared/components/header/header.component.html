@@ -1,14 +1,14 @@
 <header class="fixed top-0 w-full bg-white">
-  <nav class="container flex items-center justify-between w-full py-3 mx-0 center max-w-none">
+  <nav class="container flex items-center justify-between w-full mx-0 center max-w-none">
     <div class="flex items-center gap-2 left-content">
-      <img class="w-10 rounded-full" *ngIf="orgLogo" [src]="orgLogo" alt="logo">
-      <a class="font-bold no-underline cursor-pointer text-t2">
-        <span>Baderek</span>
-      </a>
+      <img class="baderek-logo" src="../../../../../assets/baderek logo.png" alt="logo"
+        (click)="onBaderekLogoClick()">
     </div>
 
-    <button type="button" [matMenuTriggerFor]="menu" class="flex items-center justify-center gap-1 w-fit">
-      <div class="w-10 h-10 rounded-full mr-1.5 flex items-center justify-center text-[#6C75D6] bg-[#D5D9FF]">
+    <button type="button" [matMenuTriggerFor]="menu"
+      class="flex items-center justify-center gap-1 w-fit">
+      <div
+        class="w-10 h-10 rounded-full mr-1.5 flex items-center justify-center text-[#6C75D6] bg-[#D5D9FF]">
         {{userImageText}}
       </div>
       <div class="text-[#1F2020]">{{name}}</div>

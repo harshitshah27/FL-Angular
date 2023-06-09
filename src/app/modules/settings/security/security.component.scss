@@ -1,0 +1,38 @@
+.security-container {
+    .change-password-container {
+        display: flex;
+        justify-content: space-between;
+        .block {
+            border: 1px solid #b9b9b9;
+        }
+        .form-container {
+            width: 50%;
+            padding: 20px 50px;
+
+            .title {
+                font: normal normal normal 20px/27px Open Sans;
+            }
+
+            .mat-form-field {
+                display: block;
+            }
+
+            .label {
+                font: normal normal normal 16px/22px Open Sans;
+            }
+
+            .description {
+                font: normal normal 300 16px/22px Open Sans;
+            }
+        }
+        .instructions-container {
+            width: 48%;
+            .header {
+                padding: 36px;
+            }
+            .password-criteria {
+                padding: 40px 50px;
+            }
+        }
+    }
+}

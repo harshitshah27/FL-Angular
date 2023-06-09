@@ -1,17 +1,10 @@
 header {
-    border-bottom: 2px solid #eee;
+    border-bottom: 1px solid #e7e7e9;
     z-index: 1;
+    height: 80px;
 
     .baderek-logo {
         height: 80px;
-        cursor: pointer;
-    }
-
-    .menu-item-title {
-        width: 8.5rem;
-        font-size: 14px;
-        line-height: 20px;
-        color: #787878;
     }
 }
 

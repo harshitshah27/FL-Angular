@@ -3,10 +3,7 @@
     text-align: center;
 
     button {
-        box-sizing: content-box;
         margin-bottom: 16px;
-        height: 32px;
-        overflow: hidden;
 
         &.selected {
             border-right: 2px solid #06038d;
@@ -17,30 +14,5 @@
             border-radius: 5px;
             padding: 6px;
         }
-    }
-
-    .mat-tab-group {
-        width: 100%;
-        flex-shrink: 0;
-        // display: flex;
-        // flex-direction: row !important;
-
-        .mat-tab-header {
-            flex-direction: column;
-        }
-
-        .mat-tab-header-pagination {
-            display: none !important;
-        }
-
-        .mat-tab-header-ink-bar {
-            background-color: red;
-            width: 4px;
-        }
-
-        // .mat-tab-labels {
-        //     display: flex;
-        //     flex-direction: column !important;
-        // }
     }
 }

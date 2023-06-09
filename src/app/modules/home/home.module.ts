@@ -19,7 +19,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatRadioModule } from '@angular/material/radio';
-
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,13 @@ import { MatRadioModule } from '@angular/material/radio';
     MatSortModule,
     MatAutocompleteModule,
     MatSlideToggleModule,
-    MatRadioModule
+    MatRadioModule,
+    MatCardModule,
+    MatGridListModule,
+    DragDropModule
+  ],
+  exports: [
+    HomeComponent
   ]
 })
 export class HomeModule { }

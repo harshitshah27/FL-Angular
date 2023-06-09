@@ -17,7 +17,7 @@ export class NavigationBarComponent implements OnInit {
       imgSrc: "../assets/dashboard.svg",
       imgAltText: "Dashboard",
       imgClass: "dashboard-logo",
-      route: "/user/dashboard"
+      route: "/dashboard"
     },
   ];
 

@@ -1,0 +1,46 @@
+<div class="account-details-container">
+    <div class="image-options">
+        <img *ngIf="userProfileImg" src="{{userProfileImg}}" />
+        <div *ngIf="!userProfileImg"
+            class="rounded-full flex items-center justify-center text-[#fff] bg-[#003B70] profile-img">
+            {{userImageText}}
+        </div>
+        <div class="action-buttons">
+            <button mat-button class="btn bg-[#06038D] text-[#fff]">Change
+                Picture</button>
+            <button mat-button class="btn bg-[#efeff0]">Delete Picture</button>
+        </div>
+    </div>
+    <div class="form-container">
+        <form #profileForm="ngForm">
+            <mat-label>First Name</mat-label>
+            <mat-form-field appearance="outline">
+                <input matInput required type="text"
+                    placeholder="Please enter your First Name" [(ngModel)]="firstName"
+                    name="firstName" #firstNameInput="ngModel" />
+                <mat-error *ngIf="firstNameInput.touched && firstNameInput.invalid">Please
+                    enter your First Name</mat-error>
+            </mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <mat-form-field appearance="outline">
+                <input matInput required type="text"
+                    placeholder="Please enter your Last Name" [(ngModel)]="lastName"
+                    name="lastName" #lastNameInput="ngModel" />
+                <mat-error *ngIf="lastNameInput.touched && lastNameInput.invalid">Please
+                    enter last Name</mat-error>
+            </mat-form-field>
+            <mat-label>Email</mat-label>
+            <mat-form-field appearance="outline">
+                <input matInput required type="text"
+                    placeholder="Please enter your Email ID" [(ngModel)]="email"
+                    name="email" #emailInput="ngModel" />
+                <mat-error *ngIf="emailInput.touched && emailInput.invalid">Please enter
+                    your Email ID</mat-error>
+            </mat-form-field>
+
+            <button mat-button class="btn bg-[#efeff0]" type="submit">Cancel</button>
+            <button mat-button class="btn bg-[#06038D] text-[#fff]" type="submit"
+                [disabled]="profileForm.invalid" (click)="saveChanges()">Save</button>
+        </form>
+    </div>
+</div>

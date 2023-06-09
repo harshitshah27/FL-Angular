@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
       this.navigationList = navigationList;
     });
     this.authService.currentLoggedInUser$.subscribe((loggedInUser) => {
-      
+
       if (loggedInUser) {
         this.name = loggedInUser.name
         this.currentUser = loggedInUser;
@@ -96,7 +96,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onClickSettings() {
-    this.router.navigate(['/settings']);
+    this.router.navigate(['/dashboard/settings']);
   }
 
   ngOnDestroy() {
@@ -114,5 +114,9 @@ export class HeaderComponent implements OnInit {
         this.userImageText = a[0][0]
       }
     }
+  }
+
+  onBaderekLogoClick() {
+    this.router.navigate(['/dashboard']);
   }
 }

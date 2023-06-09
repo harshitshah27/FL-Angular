@@ -1,0 +1,22 @@
+.account-details-container {
+    .image-options {
+        display: flex;
+        .profile-img {
+            height: 168px;
+            width: 168px;
+        }
+        .action-buttons {
+            .btn {
+                height: 56px;
+                width: 180px;
+                border-radius: 5px;
+                display: block;
+            }
+        }
+    }
+    .mat-form-field {
+        display: block;
+        min-width: 241px;
+        width: 100%;
+    }
+}

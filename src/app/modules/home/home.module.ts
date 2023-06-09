@@ -49,9 +49,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatCardModule,
     MatGridListModule,
     DragDropModule
-  ],
-  exports: [
-    HomeComponent
   ]
 })
 export class HomeModule { }

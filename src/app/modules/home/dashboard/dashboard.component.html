@@ -5,11 +5,11 @@
             <mat-form-field appearance="outline">
                 <mat-icon matPrefix>search</mat-icon>
                 <input matInput type="search" placeholder="Search by Ride Name"
-                    [(ngModel)]="searchTerm" />
+                    (keyup)="applySearchFilter($event)" />
             </mat-form-field>
             <mat-form-field appearance="outline" class="status-dropdown">
-                <mat-label>Status</mat-label>
-                <mat-select [formControl]="status">
+                <mat-select [formControl]="status" placeholder="Status"
+                    (valueChange)="filterByStatus($event)">
                     <mat-option *ngFor="let option of statusOptionList"
                         [value]="option.id">{{option.value}}</mat-option>
                 </mat-select>
@@ -21,7 +21,7 @@
         </div>
         <button mat-flat-button color="primary" class="create-ride-btn"
             [disabled]="isCreatingRideInProgress"
-            (click)="router.navigate(['/user/create-ride'])">
+            (click)="router.navigate(['/dashboard/create-ride'])">
             <mat-icon>add</mat-icon>
             Create Ride
         </button>

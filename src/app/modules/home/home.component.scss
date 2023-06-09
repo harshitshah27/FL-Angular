@@ -1,5 +1,5 @@
 .content {
-    font-family: 'Open Sans';
+    font-family: "Open Sans";
     display: flex;
     margin-top: 66px;
 
@@ -9,7 +9,7 @@
     }
 
     .content-container {
-        background-color: #F8F8F8;
+        background-color: #f8f8f8;
         padding: 32px 40px;
         margin-left: 52px;
 
@@ -18,10 +18,14 @@
             font-weight: bold;
             font: normal normal bold 25px/34px Open Sans;
             margin-bottom: 32px;
+
+            .breadcrumb {
+                display: flex;
+            }
         }
 
         .ride-progress {
-            background-color: #FFF9C7;
+            background-color: #fff9c7;
             padding: 24px 48px;
             margin-bottom: 32px;
             border-radius: 32px;

@@ -6,7 +6,12 @@
     <div class="content-container w-full">
         <div class="header">
             <div class="main-header">{{mainHeaderText}}</div>
-            <div *ngIf="!isDashboard" class="breadcrumb"></div>
+            <div *ngIf="!isDashboard" class="breadcrumb">
+                <div class="label" *ngFor="let item of routeUrlSegments">
+                    <a href="{{item.hrefLink}}">{{item.displayText}}</a>
+                    <mat-icon>arrow_right</mat-icon>
+                </div>
+            </div>
         </div>
         <div *ngIf="isCreatingRideInProgress" class="ride-progress">
             <div class="left-progress">

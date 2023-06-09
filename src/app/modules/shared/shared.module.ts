@@ -15,7 +15,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { NoAuthGuard } from 'src/app/guards/no-auth.guard';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { DataTablesModule } from 'angular-datatables';
 import { MatSelectModule } from '@angular/material/select';
 import { TotalCardComponent } from './components/total-card/total-card.component';
@@ -23,10 +23,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UserConfirmationDialogComponent } from './components/user-confirmation-dialog/user-confirmation-dialog.component';
 import { CommonDialogComponent } from './components/common-dialog/common-dialog.component';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
-  declarations: [ 
+  declarations: [
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
@@ -35,7 +36,7 @@ import {MatButtonModule} from '@angular/material/button';
     TotalCardComponent,
     UserConfirmationDialogComponent,
     CommonDialogComponent,
-    
+
   ],
   imports: [
     CommonModule,
@@ -51,11 +52,11 @@ import {MatButtonModule} from '@angular/material/button';
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatButtonModule
-    
+    MatButtonModule,
+    MatTabsModule
   ],
   exports: [
-    LayoutComponent, 
+    LayoutComponent,
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,

@@ -133,4 +133,17 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.status.setValue('');
   }
 
+  filterByStatus(filterValue: any) {
+    this.dataSource.filterPredicate = (data: RideObject, filter: string) => {
+      return data.status == filterValue;
+    };
+    this.dataSource.filter = filterValue.toString();
+  }
+
+  applySearchFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+
 }

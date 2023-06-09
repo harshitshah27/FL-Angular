@@ -15,7 +15,7 @@ const routes: Routes = [
     loadChildren: () => import('./modules/landing/landing.module').then(m => m.LandingModule)
   },
   {
-    path: 'user',
+    path: 'dashboard',
     component: HomeComponent,
     loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
   }
@@ -26,13 +26,13 @@ const routes: Routes = [
 //     {
 //       initialNavigation: 'enabled'
 //     }),
-    
+
 
 //   ],
-  
+
 //   bootstrap: [AppComponent,],
 //   exports: [RouterModule],
- 
+
 // })
 
 @NgModule({

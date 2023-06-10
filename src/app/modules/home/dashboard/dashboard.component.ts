@@ -8,6 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackbarMsgComponent } from '../../shared/components/snackbar-msg/snackbar-msg.component';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 export interface RideObject {
   name: string;
@@ -68,7 +69,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   constructor(private dialog: MatDialog,
     public router: Router,
-    private _snackBar: MatSnackBar) { }
+    private snackBarService: SnackbarService) { }
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<RideObject>(ELEMENT_DATA);
@@ -153,8 +154,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   openSnackBar() {
-    this._snackBar.openFromComponent(SnackbarMsgComponent, {
-      duration: 3 * 1000,
-    });
+    const config = {
+      barColor: "success",
+      iconName: "check_circle",
+      message: "Ride created successfully"
+    }
+    this.snackBarService.openSnackBar(config);
   }
+
 }

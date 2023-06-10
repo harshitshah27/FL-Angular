@@ -1,23 +1,11 @@
-import { DatePipe } from '@angular/common';
+
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, ThemePalette } from '@angular/material/core';
+import { ThemePalette } from '@angular/material/core';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 
-// Define the date format
-export const MY_DATE_FORMATS = {
-  parse: {
-    dateInput: 'DD/MM/YYYY',
-  },
-  display: {
-    dateInput: 'DD/MM/YYYY',
-    monthYearLabel: 'MMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY',
-  },
-};
 export interface RiderObject {
   firstName: string;
   lastName: string;
@@ -31,6 +19,8 @@ export interface RideObject {
   name?: string;
   startPoint?: string;
   destinationPoint?: string;
+  selectedDate?: string;
+  selectedTime?: string;
   riders?: RiderObject[];
   noOfBuses?: string;
   busCapacity?: number;
@@ -39,11 +29,6 @@ export interface RideObject {
   selector: 'app-create-ride',
   templateUrl: './create-ride.component.html',
   styleUrls: ['./create-ride.component.scss'],
-  // providers: [
-  //   // Use Moment.js adapter and define the date formats
-  //   { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
-  //   { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
-  // ],
 })
 export class CreateRideComponent implements OnInit, AfterViewInit {
 
@@ -67,8 +52,7 @@ export class CreateRideComponent implements OnInit, AfterViewInit {
   selectedTime: string = "";
   selectedDate: Date = new Date();
 
-  constructor(public router: Router,
-    private datePipe: DatePipe) { }
+  constructor(public router: Router,) { }
 
   ngOnInit(): void {
     this.radioSelection.setValue('1');

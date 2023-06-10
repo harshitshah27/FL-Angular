@@ -21,6 +21,10 @@ export interface RideObject {
   destinationPoint?: string;
   selectedDate?: string;
   selectedTime?: string;
+  roundTripStartPoint?: string;
+  roundTripDestinationPoint?: string;
+  roundTripSelectedDate?: string;
+  roundTripSelectedTime?: string;
   riders?: RiderObject[];
   noOfBuses?: string;
   busCapacity?: number;
@@ -35,7 +39,10 @@ export class CreateRideComponent implements OnInit, AfterViewInit {
   options: string[] = ["a", "b"];
   pickupControl = new FormControl();
   destControl = new FormControl();
+  roundTripPickupControl = new FormControl();
+  roundTripDestControl = new FormControl();
   radioSelection = new FormControl();
+  pickupRoundtripToggleValue: boolean = false;
 
   displayedColumns: String[] = ['firstName', 'lastName', 'streetAddress', 'city', 'state', 'zip'];
 
@@ -65,6 +72,8 @@ export class CreateRideComponent implements OnInit, AfterViewInit {
   saveAsDraftAction(): void {
     this.dataObject.startPoint = this.pickupControl.value;
     this.dataObject.destinationPoint = this.destControl.value;
+    this.dataObject.roundTripStartPoint = this.roundTripPickupControl.value;
+    this.dataObject.roundTripDestinationPoint = this.roundTripDestControl.value;
     this.dataObject.riders = this.dataSource.data;
     console.log(this.dataObject);
   }
@@ -83,6 +92,10 @@ export class CreateRideComponent implements OnInit, AfterViewInit {
       zip: 1111
     });
     this.dataSource = new MatTableDataSource(this.ridersArray);
+  }
+
+  togglePickupRoundTripDetails(event: any) {
+    this.pickupRoundtripToggleValue = event.source.checked;
   }
 
 }

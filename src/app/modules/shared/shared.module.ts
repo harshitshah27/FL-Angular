@@ -25,6 +25,8 @@ import { UserConfirmationDialogComponent } from './components/user-confirmation-
 import { CommonDialogComponent } from './components/common-dialog/common-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackbarMsgComponent } from './components/snackbar-msg/snackbar-msg.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     TotalCardComponent,
     UserConfirmationDialogComponent,
     CommonDialogComponent,
+    SnackbarMsgComponent,
 
   ],
   imports: [
@@ -53,7 +56,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     ReactiveFormsModule,
     MatDialogModule,
     MatButtonModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSnackBarModule
   ],
   exports: [
     LayoutComponent,

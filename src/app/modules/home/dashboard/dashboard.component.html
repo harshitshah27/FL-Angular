@@ -17,7 +17,7 @@
                 <mat-form-field appearance="outline">
                     <mat-icon matPrefix>search</mat-icon>
                     <input matInput type="search" placeholder="Search by Ride Name"
-                        (keyup)="applySearchFilter($event)" />
+                        (keyup)="applySearchFilter($event)" [(ngModel)]="searchTerm" />
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="status-dropdown">
                     <mat-select [formControl]="status" placeholder="Status"
@@ -42,6 +42,15 @@
 
         <table #table mat-table [dataSource]="dataSource" class="w-full" matSort>
 
+            <!-- Arrow Column -->
+            <ng-container matColumnDef="arrow">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-icon class="text-[#0A0A0A]"
+                        (click)="openSnackBar()">chevron_right</mat-icon>
+                </td>
+            </ng-container>
+
             <!-- Ride Name Column -->
             <ng-container matColumnDef="rideName">
                 <th mat-header-cell *matHeaderCellDef>Ride Name</th>
@@ -61,20 +70,22 @@
                 <td mat-cell *matCellDef="let element"> {{element.noOfRiders}} </td>
             </ng-container>
 
-            <!-- Details Column -->
-            <ng-container matColumnDef="details">
-                <th mat-header-cell *matHeaderCellDef>Details</th>
-                <td mat-cell *matCellDef="let element"> {{element.details}} </td>
-            </ng-container>
-
             <!-- Status column -->
             <ng-container matColumnDef="status">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
                 <td mat-cell *matCellDef="let element">
-                    <div *ngIf="element.status == 1" class="completed-state">Completed
+                    <div *ngIf="element.status == 1"
+                        class="w-5/6 rounded-full py-1 px-4 text-[#0FB86F] text-center completed-state">
+                        Completed
                     </div>
-                    <div *ngIf="element.status == 2" class="draft-state">Draft</div>
-                    <div *ngIf="element.status == 3" class="ongoing-state">On going</div>
+                    <div *ngIf="element.status == 2"
+                        class="w-5/6 rounded-full py-1 px-4 text-[#F29900] text-center draft-state">
+                        Draft
+                    </div>
+                    <div *ngIf="element.status == 3"
+                        class="w-5/6 rounded-full py-1 px-4 text-[#0FB86F] text-center ongoing-state">
+                        On going
+                    </div>
                 </td>
             </ng-container>
 
@@ -82,7 +93,7 @@
             <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef> Action </th>
                 <td mat-cell *matCellDef="let element">
-                    <button mat-button [matMenuTriggerFor]="actionMenu">
+                    <button mat-button [matMenuTriggerFor]="actionMenu" class="!px-0">
                         <mat-icon>more_vert</mat-icon>
                     </button>
                     <mat-menu class="mt-1 action-menu" #actionMenu="matMenu"

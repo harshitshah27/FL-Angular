@@ -90,8 +90,23 @@
                 color: #0a0a0a;
                 font: normal normal normal 12px/20px Open Sans;
             }
-            .mat-basic-chip {
-                pointer-events: none;
+            .mat-column-status {
+                .completed-state {
+                    background-color: rgba(29, 225, 105, 0.07);
+                    max-width: 130px;
+                }
+                .draft-state {
+                    background-color: rgba(251, 222, 172, 0.35);
+                    max-width: 130px;
+                }
+                .ongoing-state {
+                    background-color: rgba(251, 222, 172, 0.35);
+                    max-width: 130px;
+                }
+            }
+            .mat-column-action {
+                min-width: 64px !important;
+                max-width: 64px !important;
             }
         }
     }

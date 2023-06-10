@@ -6,12 +6,13 @@ import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackbarMsgComponent } from '../../shared/components/snackbar-msg/snackbar-msg.component';
 
 export interface RideObject {
   name: string;
   noOfRiders: number;
   noOfBuses: number;
-  details: string;
   status: number;
 }
 
@@ -22,16 +23,16 @@ enum ActionType {
 }
 
 const ELEMENT_DATA: RideObject[] = [
-  { status: 1, noOfRiders: 1, name: 'Hydrogen', noOfBuses: 1.0079, details: 'H' },
-  { status: 2, noOfRiders: 2, name: 'Helium', noOfBuses: 4.0026, details: 'He' },
-  { status: 3, noOfRiders: 3, name: 'Lithium', noOfBuses: 6.941, details: 'Li' },
-  { status: 1, noOfRiders: 4, name: 'Beryllium', noOfBuses: 9.0122, details: 'Be' },
-  { status: 3, noOfRiders: 5, name: 'Boron', noOfBuses: 10.811, details: 'B' },
-  { status: 1, noOfRiders: 6, name: 'Carbon', noOfBuses: 12.0107, details: 'C' },
-  { status: 2, noOfRiders: 7, name: 'Nitrogen', noOfBuses: 14.0067, details: 'N' },
-  { status: 1, noOfRiders: 8, name: 'Oxygen', noOfBuses: 15.9994, details: 'O' },
-  { status: 1, noOfRiders: 9, name: 'Fluorine', noOfBuses: 18.9984, details: 'F' },
-  { status: 2, noOfRiders: 10, name: 'Neon', noOfBuses: 20.1797, details: 'Ne' },
+  { status: 1, noOfRiders: 1, name: 'Hydrogen', noOfBuses: 1.0079 },
+  { status: 2, noOfRiders: 2, name: 'Helium', noOfBuses: 4.0026 },
+  { status: 3, noOfRiders: 3, name: 'Lithium', noOfBuses: 6.941 },
+  { status: 1, noOfRiders: 4, name: 'Beryllium', noOfBuses: 9.0122 },
+  { status: 3, noOfRiders: 5, name: 'Boron', noOfBuses: 10.811 },
+  { status: 1, noOfRiders: 6, name: 'Carbon', noOfBuses: 12.0107 },
+  { status: 2, noOfRiders: 7, name: 'Nitrogen', noOfBuses: 14.0067 },
+  { status: 1, noOfRiders: 8, name: 'Oxygen', noOfBuses: 15.9994 },
+  { status: 1, noOfRiders: 9, name: 'Fluorine', noOfBuses: 18.9984 },
+  { status: 2, noOfRiders: 10, name: 'Neon', noOfBuses: 20.1797 },
 ];
 
 @Component({
@@ -41,7 +42,7 @@ const ELEMENT_DATA: RideObject[] = [
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: String[] = ['rideName', 'noOfBuses', 'noOfRiders', 'details', 'status', 'action'];
+  displayedColumns: String[] = ['arrow', 'rideName', 'noOfBuses', 'noOfRiders', 'status', 'action'];
   searchTerm = "";
   status = new FormControl('');
   isCreatingRideInProgress = false;
@@ -66,7 +67,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   @ViewChild("table") table: any;
 
   constructor(private dialog: MatDialog,
-    public router: Router) { }
+    public router: Router,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<RideObject>(ELEMENT_DATA);
@@ -130,6 +132,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   resetFilters() {
     this.searchTerm = '';
     this.status.setValue('');
+    this.filterByStatus('');
+    this.applySearchFilter();
   }
 
   filterByStatus(filterValue: any) {
@@ -139,10 +143,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.dataSource.filter = filterValue.toString();
   }
 
-  applySearchFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
+  applySearchFilter(event?: Event) {
+    const filterValue = event ? (event.target as HTMLInputElement).value : '';
+    console.log("filtervalue => " + filterValue);
+    this.dataSource.filterPredicate = (data: RideObject, filterValue: string) => {
+      return data.name == filterValue;
+    };
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-
+  openSnackBar() {
+    this._snackBar.openFromComponent(SnackbarMsgComponent, {
+      duration: 3 * 1000,
+    });
+  }
 }

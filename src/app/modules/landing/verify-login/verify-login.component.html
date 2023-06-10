@@ -1,1 +1,62 @@
-<p>verify-login works!</p>
+<div class="login-form-wrapper">
+  <div class="header">Verify</div>
+  <div class="sub-container">
+    <h6>
+      Please enter the code we sent on your Email ID <br />
+      muk******09@gmail.com
+    </h6>
+  </div>
+  <form (submit)="doLogin()" #loginForm="ngForm">
+    <mat-grid-list cols="6" style="width: 100%">
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <input matInput type="text" maxlength="1" />
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <input matInput type="text" maxlength="1" />
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <input matInput type="text" maxlength="1" />
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <input matInput type="text" maxlength="1" />
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <input matInput type="text" maxlength="1" />
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <input matInput type="text" maxlength="1" />
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list cols="5">
+      <mat-grid-tile>
+        <button
+          mat-button
+          class="btn primary-btn"
+          type="submit"
+          [disabled]="loginForm.invalid"
+        >
+          Verify
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-button class="btn secondary-btn" type="button">Back</button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+
+  <div class="create-account-text">
+    Haven't received your code yet ? <a href="/login">Resend Code</a>
+  </div>
+</div>

@@ -1,20 +1,30 @@
 <div class="create-ride-wrapper bg-[#fff]">
     <div class="header-section">
-        <div class="title">Create Ride</div>
+        <div *ngIf="!isPreview" class="title">Create Ride</div>
+        <div *ngIf="isPreview" class="title">Preview your entries</div>
         <div class="action-buttons">
             <button mat-button class="btn save-draft-btn" (click)="saveAsDraftAction()">
                 Save as draft
             </button>
-            <button mat-button class="btn cancel-btn"
+            <button *ngIf="!isPreview" mat-button class="btn cancel-btn"
                 (click)="router.navigate(['/dashboard'])">
                 Cancel
             </button>
-            <button mat-button class="btn confirm-btn" (click)="createNewRide()">
+            <button *ngIf="!isPreview" mat-button class="btn confirm-btn"
+                (click)="showPreview()">
                 Confirm
+            </button>
+            <button *ngIf="isPreview" mat-button class="btn cancel-btn"
+                (click)="isPreview = !isPreview">
+                Back
+            </button>
+            <button *ngIf="isPreview" mat-button class="btn confirm-btn"
+                (click)="createNewRide()">
+                Create your Ride
             </button>
         </div>
     </div>
-    <div class="form-container bg-[#DADDE1]">
+    <div *ngIf="!isPreview" class="form-container bg-[#DADDE1]">
 
         <!-- Ride Name block -->
         <div class="bg-[#fff] name block">
@@ -282,5 +292,64 @@
             </mat-slide-toggle>
             <div class="optional-chip rounded-full">Optional</div>
         </div>
+    </div>
+    <div *ngIf="isPreview" class="preview-details">
+        <div class="label">Ride Name and Pick up details</div>
+        <table class="w-full mt-2">
+            <colgroup>
+                <col style="width: 33.3333%" />
+                <col style="width: 33.3333%" />
+                <col style="width: 33.3333%" />
+            </colgroup>
+            <tr>
+                <th>Ride Name</th>
+                <th>Starting Point</th>
+                <th>Destination</th>
+            </tr>
+            <tr>
+                <td>{{dataObject.name}}</td>
+                <td>Ride Name</td>
+                <td>Ride Name</td>
+            </tr>
+        </table>
+        <mat-divider class="!mt-2 !mb-6"></mat-divider>
+        <div class="label">Riders Details and Bus Details</div>
+        <table class="w-full mt-2">
+            <colgroup>
+                <col style="width: 33.3333%" />
+                <col style="width: 33.3333%" />
+                <col style="width: 33.3333%" />
+            </colgroup>
+            <tr>
+                <th>Riders Count</th>
+                <th>Number of Buses</th>
+                <th>Minimum Capacity</th>
+            </tr>
+            <tr>
+                <td>{{dataObject.name}}</td>
+                <td>Ride Name</td>
+                <td>Ride Name</td>
+            </tr>
+        </table>
+        <mat-divider class="!mt-2 !mb-6"></mat-divider>
+        <div class="label">Advanced Settings</div>
+        <table class="w-full mt-2">
+            <colgroup>
+                <col style="width: 33.3333%" />
+                <col style="width: 33.3333%" />
+                <col style="width: 33.3333%" />
+            </colgroup>
+            <tr>
+                <th>Maximum Stops</th>
+                <th>Optimize</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>{{dataObject.name}}</td>
+                <td>Ride Name</td>
+                <td></td>
+            </tr>
+        </table>
+        <mat-divider class="!mt-2 !mb-6"></mat-divider>
     </div>
 </div>

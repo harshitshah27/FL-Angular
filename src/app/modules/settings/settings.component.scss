@@ -21,6 +21,19 @@
             }
             .options-menu {
                 border-right: 2px solid lightgrey;
+                margin-top: 45px;
+                div {
+                    margin-top: 5px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 40px;
+                    &.selected {
+                        background: #EEEEFF 0% 0% no-repeat padding-box;
+                        border-radius: 28px;
+                        opacity: 1;
+                    }
+                }
                 button {
                     box-sizing: content-box;
                     &.selected {

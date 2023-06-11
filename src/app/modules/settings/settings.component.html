@@ -6,11 +6,13 @@
         <div class="left-menu">
             <div class="title">Settings</div>
             <div class="options-menu">
-                <button class="w-full" *ngFor="let item of navigationList"
-                    (click)="handleNavigation(item)"
-                    [ngClass]="{'selected': selectedTabId == item.id}">
-                    {{item.title}}
-                </button>
+            <div *ngFor="let item of navigationList" [ngClass]="{'selected': selectedTabId == item.id}">
+                    <button class="w-full" 
+                        (click)="handleNavigation(item)"
+                        [ngClass]="{'selected': selectedTabId == item.id}">
+                        {{item.title}}
+                    </button>
+                </div>
             </div>
         </div>
         <div class="right-content">

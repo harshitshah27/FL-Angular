@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class NavigationBarComponent implements OnInit {
 
-  selectedTabId: number = 1;
+  selectedTabId: number = -1;
 
   navigationList: any[] = [
     {
@@ -17,7 +17,7 @@ export class NavigationBarComponent implements OnInit {
       imgSrc: "../assets/dashboard.svg",
       imgAltText: "Dashboard",
       imgClass: "dashboard-logo",
-      route: "/dashboard"
+      route: "dashboard"
     },
   ];
 
@@ -25,13 +25,6 @@ export class NavigationBarComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
   ) {
-    this.route.url.subscribe(res => {
-      this.navigationList.forEach((item) => {
-        if (this.router.url == item.route) {
-          this.selectedTabId = item.id;
-        }
-      })
-    });
   }
 
   ngOnInit(): void { }

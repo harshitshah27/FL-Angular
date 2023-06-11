@@ -1,22 +1,14 @@
-<app-header></app-header>
-<div class="content">
-    <div class="sidenav-container fixed h-full">
-        <app-navigation-bar></app-navigation-bar>
-    </div>
-    <div class="content-container w-full">
-        <div class="header">
-            <div class="main-header">{{mainHeaderText}}</div>
-            <div *ngIf="!isDashboard" class="breadcrumb">
-                <div class="label" *ngFor="let item of routeUrlSegments">
-                    <a href="{{item.hrefLink}}">{{item.displayText}}</a>
-                    <mat-icon>arrow_right</mat-icon>
-                </div>
+<div class="content-container w-full bg-[#f8f8f8]">
+    <div class="header">
+        <div class="main-header">{{mainHeaderText}}</div>
+        <div *ngIf="!isDashboard" class="breadcrumb">
+            <div class="label" *ngFor="let item of routeUrlSegments">
+                <a href="{{item.hrefLink}}">{{item.displayText}}</a>
+                <mat-icon>arrow_right</mat-icon>
             </div>
         </div>
-        <div class="page-wrapper">
-            <router-outlet></router-outlet>
-        </div>
     </div>
-
+    <div class="page-wrapper">
+        <router-outlet></router-outlet>
+    </div>
 </div>
-<app-footer></app-footer>

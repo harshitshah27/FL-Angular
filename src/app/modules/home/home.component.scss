@@ -1,27 +1,15 @@
-.content {
-    font-family: "Open Sans";
-    display: flex;
-    margin-top: 66px;
+.content-container {
+    padding: 32px 40px;
+    margin-left: 52px;
 
-    .sidenav-container {
-        width: 52px;
-        border-right: 2px solid #eee;
-    }
+    .header {
+        font-size: 25px;
+        font-weight: bold;
+        font: normal normal bold 25px/34px Open Sans;
+        margin-bottom: 32px;
 
-    .content-container {
-        background-color: #f8f8f8;
-        padding: 32px 40px;
-        margin-left: 52px;
-
-        .header {
-            font-size: 25px;
-            font-weight: bold;
-            font: normal normal bold 25px/34px Open Sans;
-            margin-bottom: 32px;
-
-            .breadcrumb {
-                display: flex;
-            }
+        .breadcrumb {
+            display: flex;
         }
     }
 }

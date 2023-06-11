@@ -1,0 +1,14 @@
+.content {
+    font-family: "Open Sans";
+    display: flex;
+    margin-top: 80px;
+
+    .sidenav-container {
+        width: 52px;
+        border-right: 2px solid #eee;
+    }
+
+    .right-content {
+        width: calc(100% - 52px);
+    }
+}

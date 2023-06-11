@@ -17,6 +17,7 @@ export class AppComponent {
   isLoggedIn$!: Observable<boolean>;
   token: string | any;
   socketInterval: any;
+  isLoggedIn: boolean = true;
   constructor(
     private authService: AuthService,
     private apiCallService: ApiCallService,
@@ -37,5 +38,5 @@ export class AppComponent {
     })
   }
 
- 
+
 }

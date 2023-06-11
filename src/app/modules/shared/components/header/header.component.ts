@@ -40,11 +40,11 @@ export class HeaderComponent implements OnInit {
   }
 
   openAccountDetails() {
-    this.router.navigate(['/dashboard/settings/account-details']);
+    this.router.navigate(['/settings/account-details']);
   }
 
   onClickSecurity() {
-    this.router.navigate(['/dashboard/settings/security']);
+    this.router.navigate(['/settings/security']);
   }
 
   ngOnDestroy() {

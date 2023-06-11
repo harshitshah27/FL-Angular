@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 export class NavigationService {
 
   navigationListSubject: BehaviorSubject<any> = new BehaviorSubject({});
+  routerUrlSubject: BehaviorSubject<any> = new BehaviorSubject({});
 
   constructor() { }
 
@@ -16,5 +17,13 @@ export class NavigationService {
 
   getNavigationList() {
     return this.navigationListSubject.asObservable();
+  }
+
+  setRouterUrl(routerUrl: string) {
+    this.routerUrlSubject.next(routerUrl);
+  }
+
+  getRouterUrl() {
+    return this.routerUrlSubject.asObservable();
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { NavigationService } from 'src/app/services/navigation.service';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -22,12 +23,23 @@ export class NavigationBarComponent implements OnInit {
   ];
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
+    private navigationService: NavigationService,
   ) {
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.navigationService.getRouterUrl().subscribe(res => {
+      let routerUrl = res.toString();
+      let urlSegments = routerUrl.split('/').filter((x: string) => x.length > 0);
+      this.selectedTabId = -1;
+      this.navigationList.forEach((item) => {
+        if (urlSegments[0] == item.route) {
+          this.selectedTabId = item.id;
+        }
+      })
+    });
+  }
 
   handleNavigation(item: any) {
     if (this.selectedTabId != item.id) {

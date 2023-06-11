@@ -1,9 +1,11 @@
 <div class="content-container w-full bg-[#f8f8f8]">
-    <div class="header">
+    <div class="header flex">
         <div class="main-header">{{mainHeaderText}}</div>
-        <div *ngIf="!isDashboard" class="breadcrumb">
-            <div class="label" *ngFor="let item of routeUrlSegments">
-                <a href="{{item.hrefLink}}">{{item.displayText}}</a>
+        <div *ngIf="showBreadCrumb" class="breadcrumb flex ml-6">
+            <div class="label flex items-center"
+                *ngFor="let item of routeUrlSegments, let last=last">
+                <a *ngIf="!last" href="{{item.hrefLink}}">{{item.displayText}}</a>
+                <div *ngIf="last">{{item.displayText}}</div>
                 <mat-icon>arrow_right</mat-icon>
             </div>
         </div>

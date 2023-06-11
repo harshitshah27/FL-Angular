@@ -1,24 +1,24 @@
-export enum BreadCrumbMappingEnum {
-    DASHBOARD = "dashboard",
-    CREATE_RIDE = "create-ride"
-}
+export const breadcrumbData: BreadcrumbObjectType[] = [
+    {
+        path: "dashboard",
+        hrefLink: "dashboard",
+        displayText: "Dashboard",
+        mainHeaderText: "DASHBOARD",
+        showBreadCrumb: false
+    },
+    {
+        path: "create-ride",
+        hrefLink: "dashboard/create-ride",
+        displayText: "Create Ride",
+        mainHeaderText: "RIDES",
+        showBreadCrumb: true
+    }
+];
 
-// export class BreadCrumbObject {
-//     dataArray = [
-//         {
-//             name: BreadCrumbMappingEnum.DASHBOARD,
-//             val: {
-//                 path: BreadCrumbMappingEnum.DASHBOARD,
-//                 hrefLink: "",
-//                 displayText: "Dashboard"
-//             }
-//         },
-//         {
-//             name: BreadCrumbMappingEnum.CREATE_RIDE,
-//             val: {
-//                 path: BreadCrumbMappingEnum.CREATE_RIDE,
-//                 hrefLink: "",
-//                 displayText: "Dashboard"
-//             }
-//         }];
-// }
+export interface BreadcrumbObjectType {
+    path: string;
+    hrefLink: string;
+    displayText: string;
+    mainHeaderText: string;
+    showBreadCrumb: boolean;
+}

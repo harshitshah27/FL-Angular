@@ -4,12 +4,17 @@
 
     .header {
         font-size: 25px;
-        font-weight: bold;
         font: normal normal bold 25px/34px Open Sans;
         margin-bottom: 32px;
 
         .breadcrumb {
-            display: flex;
+            font: normal normal normal 16px/22px Open Sans;
+            .label:last-child {
+                color: #06038d;
+                .mat-icon {
+                    display: none;
+                }
+            }
         }
     }
 }

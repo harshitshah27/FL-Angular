@@ -1,6 +1,6 @@
-<div class="login-form-wrapper">
+<div class="register-form-wrapper">
   <div class="header">Sign Up</div>
-  <form (submit)="doLogin()" #signUpForm="ngForm">
+  <form (submit)="SignUp()" #signUpForm="ngForm">
     <mat-grid-list cols="2" rowHeight="2:1" gutterSize="15px">
       <mat-label>First Name</mat-label>
       <mat-form-field appearance="outline">
@@ -68,7 +68,7 @@
     Continue with Google
   </button>
 
-  <div class="create-account-text">
+  <div class="back-to-login">
     Already have an account ? <a href="/login">Login</a>
   </div>
 </div>

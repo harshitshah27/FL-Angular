@@ -7,14 +7,12 @@ import { Component } from "@angular/core";
 })
 export class ForgotPasswordComponent {
   email: string = "";
-  password: string = "";
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  doLogin() {
+  ForgetPassword() {
     console.log(this.email);
-    console.log(this.password);
   }
 }

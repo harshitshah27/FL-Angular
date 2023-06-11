@@ -15,9 +15,18 @@
             .info-text {
                 font-size: 12px;
             }
-            mat-progress-bar {
+            .ride-progress-bar {
                 height: 8px;
                 border-radius: 4px;
+            }
+            .progress-indicator {
+                margin: -8px;
+                margin-left: -12px;
+            }
+            .progress-percentage {
+                font-size: 10px;
+                margin-top: 5px;
+                margin-left: -8px;
             }
         }
 

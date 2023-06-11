@@ -6,8 +6,6 @@ import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { SnackbarMsgComponent } from '../../shared/components/snackbar-msg/snackbar-msg.component';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 
 export interface RideObject {
@@ -46,12 +44,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   displayedColumns: String[] = ['arrow', 'rideName', 'noOfBuses', 'noOfRiders', 'status', 'action'];
   searchTerm = "";
   status = new FormControl('');
-  isCreatingRideInProgress = false;
+  isCreatingRideInProgress = true;
   statusOptionList = [
     {
       id: 1,
       value: 'Completed'
-    }, {
+    },
+    {
       id: 2,
       value: 'Draft'
     },
@@ -60,6 +59,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       value: 'On going'
     }
   ];
+
+  rideProgressValue: number = 75;
 
   dataSource = new MatTableDataSource<RideObject>();
 

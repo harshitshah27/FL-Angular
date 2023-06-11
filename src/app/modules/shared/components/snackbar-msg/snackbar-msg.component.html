@@ -1,0 +1,7 @@
+<div class="snackbar-wrapper flex items-center">
+    <div class="color-bar {{data?.barColor}}"></div>
+    <mat-icon
+        class="ml-4 mr-2 icon-color {{data?.barColor}} ">{{data?.iconName}}</mat-icon>
+    <div class="msg">{{data?.message}}</div>
+    <mat-icon class="close-icon" (click)="closeSnackBar()">close</mat-icon>
+</div>

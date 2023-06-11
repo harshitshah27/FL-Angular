@@ -1,0 +1,27 @@
+.snackbar-wrapper {
+    .icon-color {
+        &.success {
+            color: #20ae59;
+        }
+    }
+
+    .color-bar {
+        width: 5px;
+        height: 48px;
+        &.success {
+            background-color: #20ae59;
+        }
+    }
+
+    .msg {
+        font: normal normal normal 16px/21px Open Sans;
+    }
+
+    .close-icon {
+        position: absolute;
+        top: 4px;
+        right: -2px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+}

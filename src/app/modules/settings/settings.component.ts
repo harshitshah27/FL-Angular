@@ -1,5 +1,6 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NavigationService } from 'src/app/services/navigation.service';
 
 @Component({
   selector: 'app-settings',
@@ -12,12 +13,12 @@ export class SettingsComponent implements OnInit {
     {
       id: 1,
       title: "Account Details",
-      route: "/dashboard/settings/account-details"
+      route: "/settings/account-details"
     },
     {
       id: 2,
       title: "Security",
-      route: "/dashboard/settings/security"
+      route: "/settings/security"
     },
   ];
 
@@ -25,10 +26,13 @@ export class SettingsComponent implements OnInit {
 
   constructor(private router: Router,
     private route: ActivatedRoute,
+    private navigationService: NavigationService
   ) {
     this.route.url.subscribe(res => {
+      let currentPath = this.router.url;
+      this.navigationService.setRouterUrl(currentPath);
       this.navigationList.forEach((item) => {
-        if (this.router.url == item.route) {
+        if (currentPath == item.route) {
           this.selectedTabId = item.id;
         }
       })

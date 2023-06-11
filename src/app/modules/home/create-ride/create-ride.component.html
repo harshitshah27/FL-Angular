@@ -1,4 +1,4 @@
-<div class="create-ride-wrapper">
+<div class="create-ride-wrapper bg-[#fff]">
     <div class="header-section">
         <div class="title">Create Ride</div>
         <div class="action-buttons">
@@ -29,14 +29,19 @@
 
         <!-- Pick up Details block -->
         <div class="bg-[#fff] pick-up-details block">
-            <div class="title">Pick up Details</div>
+            <div class="title">
+                Pick up Details
+                <mat-label class="mr-2 ml-4 round-trip">Round Trip:</mat-label>
+                <mat-slide-toggle
+                    (change)="togglePickupRoundTripDetails($event)"></mat-slide-toggle>
+            </div>
             <div class="description">
                 You can provide Start Point or Destination
                 or both as per your requirement.
             </div>
             <div class="input-options">
-                <div class="field-wrapper">
-                    <div class="label">Start Point</div>
+                <div class="field-wrapper location-field">
+                    <div class="label">Central Start Point</div>
                     <mat-form-field appearance="outline">
                         <input type="text" aria-label="Start point" matInput
                             [formControl]="pickupControl" [matAutocomplete]="auto"
@@ -48,7 +53,7 @@
                         </mat-autocomplete>
                     </mat-form-field>
                 </div>
-                <div class="field-wrapper">
+                <div class="field-wrapper location-field">
                     <div class="label">Destination</div>
                     <mat-form-field appearance="outline">
                         <input type="text" aria-label="Destination" matInput
@@ -59,6 +64,71 @@
                                 {{option}}
                             </mat-option>
                         </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+                <div class="field-wrapper date-field">
+                    <div class="label">Schedule</div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>DD/MM/YYYY</mat-label>
+                        <input matInput [matDatepicker]="picker"
+                            [(ngModel)]="dataObject.selectedDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="field-wrapper time-field">
+                    <div class="label"></div>
+                    <mat-form-field appearance="outline">
+                        <input matInput type="time" placeholder="Select time"
+                            [(ngModel)]="dataObject.selectedTime">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div *ngIf="pickupRoundtripToggleValue" class="round-trip-input-options">
+                <div class="field-wrapper location-field">
+                    <div class="label">Central Start Point</div>
+                    <mat-form-field appearance="outline">
+                        <input type="text" aria-label="Start point" matInput
+                            [formControl]="roundTripPickupControl"
+                            [matAutocomplete]="auto"
+                            placeholder="Start entering your pick up point">
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of options" [value]="option">
+                                {{option}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+                <div class="field-wrapper location-field">
+                    <div class="label">Destination</div>
+                    <mat-form-field appearance="outline">
+                        <input type="text" aria-label="Destination" matInput
+                            [formControl]="roundTripDestControl" [matAutocomplete]="auto"
+                            placeholder="Start entering your destination">
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of options" [value]="option">
+                                {{option}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+                <div class="field-wrapper date-field">
+                    <div class="label">Schedule</div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>DD/MM/YYYY</mat-label>
+                        <input matInput [matDatepicker]="picker"
+                            [(ngModel)]="dataObject.roundTripSelectedDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="field-wrapper time-field">
+                    <div class="label"></div>
+                    <mat-form-field appearance="outline">
+                        <input matInput type="time" placeholder="Select time"
+                            [(ngModel)]="dataObject.roundTripSelectedTime">
                     </mat-form-field>
                 </div>
             </div>
@@ -74,23 +144,20 @@
             </div>
             <div class="add-selection">
                 <mat-radio-group [formControl]="radioSelection">
-                    <div class="radio-options">
-                        <div class="option"
+                    <div class="radio-options flex">
+                        <div class="option mr-4"
                             [ngClass]="{'selected': radioSelection.value == 1}">
                             <mat-radio-button value="1" [color]="radioColor">One by one
                             </mat-radio-button>
                             <div class="info-text">Choose this option for entering your
-                                rider's description
-                                one
-                                by one manually</div>
+                                rider's description one by one manually</div>
                         </div>
                         <div class="option"
                             [ngClass]="{'selected': radioSelection.value == 2}">
                             <mat-radio-button value="2" [color]="radioColor">Upload your
                                 file</mat-radio-button>
                             <div class="info-text">Choose this otpion for uploading an
-                                excel file with all
-                                the
+                                excel file with all the
                                 information needed for your riders. Data can be
                                 edited once upload</div>
                         </div>
@@ -99,13 +166,11 @@
             </div>
             <ng-container *ngIf="radioSelection.value == 1">
                 <div class="table-container">
-                    <div class="table-options">
+                    <div class="table-options flex items-center justify-between">
                         <div class="label">
                             Start entering your values for the Riders
                         </div>
                         <div class="right-options">
-                            <mat-label class="mr-2">Round Trip:</mat-label>
-                            <mat-slide-toggle></mat-slide-toggle>
                             <button mat-button class="btn clear-btn bg-[#EFEFF0]">
                                 Clear
                             </button>
@@ -173,7 +238,7 @@
                 </button>
             </ng-container>
             <ng-container *ngIf="radioSelection.value == 2">
-                <div class="upload-options">
+                <div class="upload-options flex items-center justify-between">
                     <div class="label">
                         Upload
                         <div class="description">
@@ -181,7 +246,7 @@
                             csv. You can always download the sample file.
                         </div>
                     </div>
-                    <div class="right-options">
+                    <div class="right-options flex">
                         <button matTooltip="Info about the action">
                             <mat-icon class="text-[#AFAFAF]">info</mat-icon>
                         </button>
@@ -215,7 +280,7 @@
             <mat-slide-toggle>
                 Advanced Settings
             </mat-slide-toggle>
-            <div class="optional-chip">Optional</div>
+            <div class="optional-chip rounded-full">Optional</div>
         </div>
     </div>
 </div>

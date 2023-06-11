@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { NavigationService } from 'src/app/services/navigation.service';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -8,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class NavigationBarComponent implements OnInit {
 
-  selectedTabId: number = 1;
+  selectedTabId: number = -1;
 
   navigationList: any[] = [
     {
@@ -17,24 +18,28 @@ export class NavigationBarComponent implements OnInit {
       imgSrc: "../assets/dashboard.svg",
       imgAltText: "Dashboard",
       imgClass: "dashboard-logo",
-      route: "/dashboard"
+      route: "dashboard"
     },
   ];
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
+    private navigationService: NavigationService,
   ) {
-    this.route.url.subscribe(res => {
+  }
+
+  ngOnInit(): void {
+    this.navigationService.getRouterUrl().subscribe(res => {
+      let routerUrl = res.toString();
+      let urlSegments = routerUrl.split('/').filter((x: string) => x.length > 0);
+      this.selectedTabId = -1;
       this.navigationList.forEach((item) => {
-        if (this.router.url == item.route) {
+        if (urlSegments[0] == item.route) {
           this.selectedTabId = item.id;
         }
       })
     });
   }
-
-  ngOnInit(): void { }
 
   handleNavigation(item: any) {
     if (this.selectedTabId != item.id) {

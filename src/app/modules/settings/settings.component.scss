@@ -1,25 +1,37 @@
-.settings-wrapper {
-    display: flex;
+.content-container {
+    padding: 32px 40px;
+    margin-left: 52px;
 
-    .left-menu {
-        width: 30%;
-        padding: 24px 60px;
-        .title {
-            font: normal normal 600 20px/27px Open Sans;
-            letter-spacing: -1px;
-        }
-        .options-menu {
-            border-right: 2px solid lightgrey;
-            button {
-                box-sizing: content-box;
-                &.selected {
-                    border-right: 2px solid #06038d;
+    .header {
+        font-size: 25px;
+        font-weight: bold;
+        font: normal normal bold 25px/34px Open Sans;
+        margin-bottom: 32px;
+    }
+
+    .settings-wrapper {
+        display: flex;
+
+        .left-menu {
+            width: 30%;
+            padding: 24px 60px;
+            .title {
+                font: normal normal 600 20px/27px Open Sans;
+                letter-spacing: -1px;
+            }
+            .options-menu {
+                border-right: 2px solid lightgrey;
+                button {
+                    box-sizing: content-box;
+                    &.selected {
+                        border-right: 2px solid #06038d;
+                    }
                 }
             }
         }
-    }
-    .right-content {
-        width: 70%;
-        padding: 48px;
+        .right-content {
+            width: 70%;
+            padding: 48px;
+        }
     }
 }

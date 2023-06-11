@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BreadCrumbMappingEnum } from './enums/breadcrumbMappingEnum';
 import * as breadcrumbJson from "./enums/helper.json";
+import { NavigationService } from 'src/app/services/navigation.service';
 
 @Component({
   selector: 'app-home',
@@ -10,16 +11,17 @@ import * as breadcrumbJson from "./enums/helper.json";
 })
 export class HomeComponent implements OnInit {
 
-  isCreatingRideInProgress = false;
   mainHeaderText = "";
   isDashboard = true;
   routeUrlSegments: any[] = [];
 
   constructor(private route: ActivatedRoute,
-    private router: Router) {
-    // console.log(this.route);
+    private router: Router,
+    private navigationService: NavigationService,) {
+
     this.route.url.subscribe(params => {
       let currentPath = this.router.url;
+      this.navigationService.setRouterUrl(currentPath);
       let urlSegments = this.router.url.split('/').filter(x => x.length > 0);
       let preparedPath = "";
       urlSegments.forEach(path => {

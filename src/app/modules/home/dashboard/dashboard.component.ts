@@ -15,6 +15,13 @@ export interface RideObject {
   status: number;
 }
 
+enum RideStatus {
+  PROCESSING = "Processing",
+  COMPLETED = "Completed",
+  ARCHIEVED = "Archieved",
+  DRAFTED = "Drafted"
+}
+
 enum ActionType {
   DUPLICATE = 1,
   DELETE = 2,
@@ -29,8 +36,8 @@ const ELEMENT_DATA: RideObject[] = [
   { status: 3, noOfRiders: 5, name: 'Boron', noOfBuses: 10.811 },
   { status: 1, noOfRiders: 6, name: 'Carbon', noOfBuses: 12.0107 },
   { status: 2, noOfRiders: 7, name: 'Nitrogen', noOfBuses: 14.0067 },
-  { status: 1, noOfRiders: 8, name: 'Oxygen', noOfBuses: 15.9994 },
-  { status: 1, noOfRiders: 9, name: 'Fluorine', noOfBuses: 18.9984 },
+  { status: 4, noOfRiders: 8, name: 'Oxygen', noOfBuses: 15.9994 },
+  { status: 4, noOfRiders: 9, name: 'Fluorine', noOfBuses: 18.9984 },
   { status: 2, noOfRiders: 10, name: 'Neon', noOfBuses: 20.1797 },
 ];
 
@@ -41,6 +48,7 @@ const ELEMENT_DATA: RideObject[] = [
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
 
+  RideStatus = RideStatus;
   displayedColumns: String[] = ['arrow', 'rideName', 'noOfBuses', 'noOfRiders', 'status', 'action'];
   searchTerm = "";
   status = new FormControl('');
@@ -48,15 +56,19 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   statusOptionList = [
     {
       id: 1,
-      value: 'Completed'
+      value: RideStatus.PROCESSING
     },
     {
       id: 2,
-      value: 'Draft'
+      value: RideStatus.COMPLETED
     },
     {
       id: 3,
-      value: 'On going'
+      value: RideStatus.ARCHIEVED
+    },
+    {
+      id: 3,
+      value: RideStatus.DRAFTED
     }
   ];
 
@@ -134,24 +146,21 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   resetFilters() {
     this.searchTerm = '';
     this.status.setValue('');
-    this.filterByStatus('');
-    this.applySearchFilter();
   }
 
-  filterByStatus(filterValue: any) {
-    this.dataSource.filterPredicate = (data: RideObject, filter: string) => {
-      return data.status == filterValue;
-    };
-    this.dataSource.filter = filterValue.toString();
-  }
+  applyFilter() {
+    // setTimeout(() => {
+    this.dataSource.filter = JSON.stringify({ a: this.searchTerm, b: this.status.value });
+    this.dataSource.filterPredicate = (data, filter) => {
+      const searchInput = JSON.parse(filter).a;
+      const selectedStatus = JSON.parse(filter).b;
 
-  applySearchFilter(event?: Event) {
-    const filterValue = event ? (event.target as HTMLInputElement).value : '';
-    console.log("filtervalue => " + filterValue);
-    this.dataSource.filterPredicate = (data: RideObject, filterValue: string) => {
-      return data.name == filterValue;
+      const matchesSearch = data.name.toLowerCase().includes(searchInput);
+      const matchesStatus = Number(selectedStatus) > 0 ? data.status === selectedStatus : true;
+
+      return matchesSearch && matchesStatus;
     };
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    // }, 0);
   }
 
   openSnackBar() {

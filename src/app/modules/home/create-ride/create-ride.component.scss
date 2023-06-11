@@ -6,7 +6,7 @@
         padding: 32px;
 
         .title {
-            font-weight: bold;
+            font: normal normal bold 30px/41px Open Sans;
         }
 
         .action-buttons {
@@ -178,6 +178,32 @@
                 padding: 1px 6px;
                 font-size: 12px;
                 margin-left: 12px;
+            }
+        }
+    }
+
+    .preview-details {
+        padding: 32px 40px;
+
+        .label {
+            font: normal normal 600 20px/26px Open Sans;
+            color: #545454;
+        }
+
+        table {
+            tr {
+                text-align: left;
+            }
+            th {
+                background-color: #f4f4fb;
+                font: normal normal 600 14px/20px Open Sans;
+                color: #0a0a0a;
+                padding: 12px;
+            }
+            td {
+                padding: 12px;
+                font: normal normal normal 12px/18px Open Sans;
+                color: #545454;
             }
         }
     }

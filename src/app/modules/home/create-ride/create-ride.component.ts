@@ -59,6 +59,8 @@ export class CreateRideComponent implements OnInit, AfterViewInit {
   selectedTime: string = "";
   selectedDate: Date = new Date();
 
+  isPreview: boolean = false;
+
   constructor(public router: Router,) { }
 
   ngOnInit(): void {
@@ -96,6 +98,10 @@ export class CreateRideComponent implements OnInit, AfterViewInit {
 
   togglePickupRoundTripDetails(event: any) {
     this.pickupRoundtripToggleValue = event.source.checked;
+  }
+
+  showPreview() {
+    this.isPreview = !this.isPreview;
   }
 
 }

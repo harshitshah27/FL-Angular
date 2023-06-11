@@ -24,6 +24,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker'
     DragDropModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatDividerModule
   ]
 })
 export class HomeModule { }

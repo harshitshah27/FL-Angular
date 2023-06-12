@@ -12,6 +12,13 @@ export const breadcrumbData: BreadcrumbObjectType[] = [
         displayText: "Create Ride",
         mainHeaderText: "RIDES",
         showBreadCrumb: true
+    },
+    {
+        path: "map",
+        hrefLink: "dashboard/map",
+        displayText: "Maps",
+        mainHeaderText: "MAPS",
+        showBreadCrumb: true
     }
 ];
 

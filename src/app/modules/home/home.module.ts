@@ -25,12 +25,14 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatDividerModule } from '@angular/material/divider';
+import { MapViewComponent } from './map-view/map-view.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     DashboardComponent,
-    CreateRideComponent
+    CreateRideComponent,
+    MapViewComponent
   ],
   imports: [
     CommonModule,

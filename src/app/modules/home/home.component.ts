@@ -22,7 +22,12 @@ export class HomeComponent implements OnInit {
       this.navigationService.setRouterUrl(currentPath);
       let urlSegments = this.router.url.split('/').filter(x => x.length > 0);
       urlSegments.forEach(path => {
+        path = path.split('?')[0];
+        console.log(path);
+
         let routeObj: BreadcrumbObjectType | undefined = breadcrumbData.find(item => item.path === path);
+        console.log(routeObj);
+
         if (routeObj) {
           this.mainHeaderText = routeObj.mainHeaderText;
           this.showBreadCrumb = routeObj.showBreadCrumb;

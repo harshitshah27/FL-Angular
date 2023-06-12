@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   displayedColumns: String[] = ['arrow', 'rideName', 'noOfBuses', 'noOfRiders', 'status', 'action'];
   searchTerm = "";
   status = new FormControl('');
-  isCreatingRideInProgress = true;
+  isCreatingRideInProgress = false;
   statusOptionList = [
     {
       id: 1,
@@ -67,7 +67,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       value: RideStatus.ARCHIEVED
     },
     {
-      id: 3,
+      id: 4,
       value: RideStatus.DRAFTED
     }
   ];
@@ -160,6 +160,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
       return matchesSearch && matchesStatus;
     };
+    this.dataSource.filter = JSON.stringify({ a: this.searchTerm, b: this.status.value });
     // }, 0);
   }
 

@@ -1,30 +1,29 @@
-import { Component } from '@angular/core';
-import { fromEvent, Observable, retry } from 'rxjs';
-import { AuthService } from './services/auth.service';
-import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { SocketMessageType } from './enums/socket-message-type';
-import { environment } from 'src/environments/environment';
-import { InteractionListRerenderService } from './services/interaction-list-rerender.service';
-import { ApiCallService } from './services/api-call.service';
+import { Component } from "@angular/core";
+import { fromEvent, Observable, retry } from "rxjs";
+import { AuthService } from "./services/auth.service";
+import { webSocket, WebSocketSubject } from "rxjs/webSocket";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { SocketMessageType } from "./enums/socket-message-type";
+import { environment } from "src/environments/environment";
+import { InteractionListRerenderService } from "./services/interaction-list-rerender.service";
+import { ApiCallService } from "./services/api-call.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
   isLoggedIn$!: Observable<boolean>;
   token: string | any;
   socketInterval: any;
-  isLoggedIn: boolean = true;
+  isLoggedIn: boolean = false;
   constructor(
     private authService: AuthService,
     private apiCallService: ApiCallService,
     private snackBar: MatSnackBar,
     private interactionListRerenderService: InteractionListRerenderService
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     // this.isLoggedIn$ = this.authService.isLoggedIn$;
@@ -35,8 +34,6 @@ export class AppComponent {
         // this.authService.getCurrentUser();
         // this.connectWebSocket();
       }
-    })
+    });
   }
-
-
 }

@@ -34,7 +34,7 @@
                     <input matInput required [type]="hideNewPassword ? 'password' : 'text'"
                         placeholder="Please enter your new password"
                         [(ngModel)]="newPassword" name="newPassword"
-                        (change)="passwordOnChange($event)"
+                        (keyup)="passwordOnChange($event)"
                         #newPasswordInput="ngModel" />
                     <mat-icon matSuffix (click)="hideNewPassword = !hideNewPassword" class="visibility-color">
                         {{hideNewPassword ? 'visibility_off' : 'visibility'}}

@@ -37,7 +37,9 @@
                 button {
                     box-sizing: content-box;
                     &.selected {
-                        border-right: 2px solid #06038d;
+                        color: #06038d;
+                        margin-right: -2px;
+                        border-right: 3px solid #06038d;
                     }
                 }
             }

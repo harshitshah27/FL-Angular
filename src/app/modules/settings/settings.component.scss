@@ -13,7 +13,7 @@
         display: flex;
 
         .left-menu {
-            width: 30%;
+            width: 25%;
             padding: 24px 60px;
             .title {
                 font: normal normal 600 20px/27px Open Sans;
@@ -28,24 +28,26 @@
                     justify-content: center;
                     align-items: center;
                     height: 40px;
+                    padding-right: 15px;
                     &.selected {
-                        background: #EEEEFF 0% 0% no-repeat padding-box;
-                        border-radius: 28px;
-                        opacity: 1;
+                        margin-right: -2px;
+                        border-right: 3px solid #06038d;
                     }
                 }
                 button {
                     box-sizing: content-box;
                     &.selected {
+                        background: #EEEEFF 0% 0% no-repeat padding-box;
+                        border-radius: 28px;
+                        opacity: 1;
                         color: #06038d;
-                        margin-right: -2px;
-                        border-right: 3px solid #06038d;
+                        height: 100%;
                     }
                 }
             }
         }
         .right-content {
-            width: 70%;
+            width: 75%;
             padding: 48px;
         }
     }

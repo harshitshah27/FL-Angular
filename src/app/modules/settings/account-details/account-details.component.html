@@ -1,20 +1,21 @@
 <div class="account-details-container">
     <div class="image-options">
-        <img *ngIf="userProfileImg" src="{{userProfileImg}}" />
+        <img *ngIf="userProfileImg" class="rounded-full profile-img" src="{{userProfileImg}}" />
         <div *ngIf="!userProfileImg"
             class="rounded-full flex items-center justify-center text-[#fff] bg-[#003B70] profile-img">
             {{userImageText}}
         </div>
-        <div class="action-buttons">
-            <button mat-button class="btn bg-[#06038D] text-[#fff]">Change
+        <div class="action-buttons ml-8 mt-4">
+            <button mat-button class="btn btn-sm bg-[#06038D] text-[#fff]" (click)="selectFile()">Change
                 Picture</button>
-            <button mat-button class="btn bg-[#efeff0]">Delete Picture</button>
+            <input type="file" class="hidden" #fileInput (change)="handleFileInput($event)">
+            <button mat-button class="btn btn-sm bg-[#efeff0] !mt-2" (click)="userProfileImg = ''">Delete Picture</button>
         </div>
     </div>
-    <div class="form-container">
+    <div class="form-container mt-4">
         <form #profileForm="ngForm">
             <mat-label>First Name</mat-label>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="form-field">
                 <input matInput required type="text"
                     placeholder="Please enter your First Name" [(ngModel)]="firstName"
                     name="firstName" #firstNameInput="ngModel" />
@@ -22,7 +23,7 @@
                     enter your First Name</mat-error>
             </mat-form-field>
             <mat-label>Last Name</mat-label>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="form-field">
                 <input matInput required type="text"
                     placeholder="Please enter your Last Name" [(ngModel)]="lastName"
                     name="lastName" #lastNameInput="ngModel" />
@@ -30,17 +31,18 @@
                     enter last Name</mat-error>
             </mat-form-field>
             <mat-label>Email</mat-label>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="form-field">
                 <input matInput required type="text"
                     placeholder="Please enter your Email ID" [(ngModel)]="email"
                     name="email" #emailInput="ngModel" />
                 <mat-error *ngIf="emailInput.touched && emailInput.invalid">Please enter
                     your Email ID</mat-error>
             </mat-form-field>
-
-            <button mat-button class="btn bg-[#efeff0]" type="submit">Cancel</button>
-            <button mat-button class="btn bg-[#06038D] text-[#fff]" type="submit"
-                [disabled]="profileForm.invalid" (click)="saveChanges()">Save</button>
+            <div class="float-right">
+                <button mat-button class="btn bg-[#efeff0]" type="submit">Cancel</button>
+                <button mat-button class="btn bg-[#06038D] text-[#fff] !ml-2" type="submit"
+                    [disabled]="profileForm.invalid" (click)="saveChanges()">Save</button>
+            </div>
         </form>
     </div>
 </div>

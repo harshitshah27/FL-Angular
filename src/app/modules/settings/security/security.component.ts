@@ -15,9 +15,68 @@ export class SecurityComponent implements OnInit {
   hideNewPassword: boolean = true;
   hideConfirmPassword: boolean = true;
 
+  passwordCriteriaList: any[] = [
+    {
+      id: 1,
+      label: "Length of characters",
+      isFulfilled: false
+    },
+    {
+      id: 2,
+      label: "Lowercase letter",
+      isFulfilled: false
+    },
+    {
+      id: 3,
+      label: "Uppercase letter",
+      isFulfilled: false
+    },
+    {
+      id: 4,
+      label: "Number",
+      isFulfilled: false
+    },
+    {
+      id: 5,
+      label: "Special Character",
+      isFulfilled: false
+    },
+  ];
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  passwordOnChange = (event: any) => {
+    const value = event.target.value
+    this.passwordCriteriaList = [
+      {
+        id: 1,
+        label: "Length of characters",
+        isFulfilled: value.length > 8
+      },
+      {
+        id: 2,
+        label: "Lowercase letter",
+        isFulfilled: /[a-z]/.test(value)
+      },
+      {
+        id: 3,
+        label: "Uppercase letter",
+        isFulfilled: /[A-Z]/.test(value)
+      },
+      {
+        id: 4,
+        label: "Number",
+        isFulfilled: /[0-9]/.test(value)
+      },
+      {
+        id: 5,
+        label: "Special Character",
+        isFulfilled: /[!@#$%^&*(),.?\":{}|<>]/.test(value)
+      },
+    ];
   }
 
   saveChanges() {

@@ -23,6 +23,7 @@ export class SettingsComponent implements OnInit {
   ];
 
   selectedTabId = 1;
+  selectedTabName = this.navigationList[0].title;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -34,6 +35,7 @@ export class SettingsComponent implements OnInit {
       this.navigationList.forEach((item) => {
         if (currentPath == item.route) {
           this.selectedTabId = item.id;
+          this.selectedTabName = item.title;
         }
       })
     });

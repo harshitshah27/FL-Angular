@@ -7,6 +7,6 @@ import { Component, OnInit } from "@angular/core";
 })
 export class VerifyLoginComponent implements OnInit {
   constructor() {}
-  doLogin() {}
+  VerifyCode() {}
   ngOnInit(): void {}
 }

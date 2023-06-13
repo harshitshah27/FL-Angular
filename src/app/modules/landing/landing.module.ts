@@ -10,6 +10,7 @@ import { MatGridListModule } from "@angular/material/grid-list";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { FormsModule } from "@angular/forms";
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FormsModule } from "@angular/forms";
     LoginComponent,
     RegisterComponent,
     VerifyLoginComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     CommonModule,

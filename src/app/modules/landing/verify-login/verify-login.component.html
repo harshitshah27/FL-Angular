@@ -1,4 +1,4 @@
-<div class="login-form-wrapper">
+<div class="verify-form-wrapper">
   <div class="header">Verify</div>
   <div class="sub-container">
     <h6>
@@ -6,7 +6,7 @@
       muk******09@gmail.com
     </h6>
   </div>
-  <form (submit)="doLogin()" #loginForm="ngForm">
+  <form (submit)="VerifyCode()" #verifyCodeForm="ngForm">
     <mat-grid-list cols="6" style="width: 100%">
       <mat-grid-tile>
         <mat-form-field appearance="outline">
@@ -45,7 +45,7 @@
           mat-button
           class="btn primary-btn"
           type="submit"
-          [disabled]="loginForm.invalid"
+          [disabled]="verifyCodeForm.invalid"
         >
           Verify
         </button>
@@ -56,7 +56,7 @@
     </mat-grid-list>
   </form>
 
-  <div class="create-account-text">
-    Haven't received your code yet ? <a href="/login">Resend Code</a>
+  <div class="resend-code">
+    Haven't received your code yet ? <a href="#">Resend Code</a>
   </div>
 </div>

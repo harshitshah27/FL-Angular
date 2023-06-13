@@ -4,13 +4,12 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './modules/shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-import { MsalGuard, MsalInterceptor, MsalModule, MsalRedirectComponent }  from '@azure/msal-angular';
-import { InteractionType, PublicClientApplication }  from '@azure/msal-browser';
+import { MsalGuard, MsalInterceptor, MsalModule, MsalRedirectComponent } from '@azure/msal-angular';
+import { InteractionType, PublicClientApplication } from '@azure/msal-browser';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { RouteReuseStrategy } from '@angular/router';
 import { CustomRouteReuseStrategy } from './services/custom-route-reuse-strategy';
-import { MainModule } from './modules/main/main.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { NoAuthGuard } from './guards/no-auth.guard';
 import { AuthGuard } from './guards/auth.guard';
@@ -24,29 +23,28 @@ import { AuthGuard } from './guards/auth.guard';
     SharedModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MainModule,
     AuthModule,
     HttpClientModule,
-    MsalModule.forRoot( new PublicClientApplication (
+    MsalModule.forRoot(new PublicClientApplication(
       {
-        auth :{
+        auth: {
           clientId: 'd437e73b-3619-4e28-af07-692896f9822c',
           redirectUri: 'http://localhost:4200',
           authority: 'http://login.microsoftonline.com/f14e6c85-8db4-4f8f-91de-b4c481f01edb/'
         },
-        cache :{
+        cache: {
           cacheLocation: 'localStorage',
-          storeAuthStateInCookie : false,
+          storeAuthStateInCookie: false,
         }
       }
     ),
-    {
+      {
+        interactionType: InteractionType.Redirect,
+        authRequest: {
+          scopes: ['user.read']
+        }
+      }, {
       interactionType: InteractionType.Redirect,
-      authRequest: {
-        scopes: ['user.read']
-      }
-    },{
-      interactionType : InteractionType.Redirect,
       protectedResourceMap: new Map(
         [
           ['https://grapht.microsoft.com/v1.0/me', ['user.Read']]
@@ -62,10 +60,10 @@ import { AuthGuard } from './guards/auth.guard';
       provide: HTTP_INTERCEPTORS,
       useClass: MsalInterceptor,
       multi: true
-    }, MsalGuard, 
+    }, MsalGuard,
     AuthGuard,
     NoAuthGuard
   ],
-  bootstrap: [AppComponent,MsalRedirectComponent]
+  bootstrap: [AppComponent, MsalRedirectComponent]
 })
 export class AppModule { }

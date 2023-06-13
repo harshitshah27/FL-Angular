@@ -1,14 +1,15 @@
 .account-details-container {
+    width: 50%;
     .image-options {
         display: flex;
         .profile-img {
-            height: 168px;
-            width: 168px;
+            height: 130px;
+            width: 130px;
         }
         .action-buttons {
             .btn {
-                height: 56px;
-                width: 180px;
+                height: 40px;
+                width: 140px;
                 border-radius: 5px;
                 display: block;
             }

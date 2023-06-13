@@ -1,16 +1,17 @@
 <div class="content-container w-full bg-[#f8f8f8]">
     <div class="header">
-        <div class="main-header">Settings</div>
+        <div class="main-header">{{selectedTabName}}</div>
     </div>
     <div class="settings-wrapper bg-[#fff]">
         <div class="left-menu">
-            <div class="title">Settings</div>
             <div class="options-menu">
-                <button class="w-full" *ngFor="let item of navigationList"
-                    (click)="handleNavigation(item)"
+                <div *ngFor="let item of navigationList"
                     [ngClass]="{'selected': selectedTabId == item.id}">
-                    {{item.title}}
-                </button>
+                    <button class="w-full" (click)="handleNavigation(item)"
+                        [ngClass]="{'selected': selectedTabId == item.id}">
+                        {{item.title}}
+                    </button>
+                </div>
             </div>
         </div>
         <div class="right-content">

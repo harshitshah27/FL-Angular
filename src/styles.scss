@@ -11,7 +11,7 @@ body {
 }
 body {
     margin: 0;
-    font-family: Poppins, "Helvetica Neue", sans-serif;
+    font-family: Open Sans, "Helvetica Neue", sans-serif;
 }
 
 table {
@@ -173,7 +173,7 @@ div::-webkit-scrollbar-thumb {
     }
 }
 
-.filter-input .mat-form-field-infix {
+.mat-form-field-infix {
     border-top: none;
 }
 .filter-input .mat-form-field-wrapper {
@@ -181,6 +181,10 @@ div::-webkit-scrollbar-thumb {
 }
 .mat-form-field-appearance-outline .mat-select-arrow-wrapper {
     transform: none !important;
+}
+
+.change-password-container .mat-form-field-suffix {
+    top: 0.55rem !important;
 }
 
 .label {
@@ -273,4 +277,13 @@ div::-webkit-scrollbar-thumb {
     color: #000;
     box-shadow: 0px 3px 6px #00000029;
     overflow: hidden;
+}
+
+.ride-progress-bar {
+    .mat-progress-bar-buffer {
+        background-color: #fdd09b;
+    }
+    .mat-progress-bar-fill::after {
+        background-color: #f99359;
+    }
 }

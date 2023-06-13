@@ -11,7 +11,7 @@
     .primary-btn {
         width: 100%;
         height: 56px;
-        margin-top: 30px;
+        margin-top: 10px;
         background-color: #06038d;
         color: #fff;
         font-weight: normal;
@@ -29,13 +29,13 @@
             position: absolute;
             top: 51%;
             overflow: hidden;
-            width: 50%;
+            width: 48%;
             height: 1px;
             content: "\a0";
             background-color: #a7a7a7;
         }
         &:before {
-            margin-left: -50%;
+            margin-left: -48%;
         }
         
     }

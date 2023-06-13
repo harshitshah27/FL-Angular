@@ -12,6 +12,7 @@
           [(ngModel)]="email"
           name="email"
           #emailInput="ngModel"
+          class="login-input"
         />
         <mat-error *ngIf="emailInput.touched && emailInput.invalid"
           >Please enter your Email ID</mat-error

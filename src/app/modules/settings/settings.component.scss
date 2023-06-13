@@ -15,10 +15,6 @@
         .left-menu {
             width: 25%;
             padding: 24px 60px;
-            .title {
-                font: normal normal 600 20px/27px Open Sans;
-                letter-spacing: -1px;
-            }
             .options-menu {
                 border-right: 2px solid lightgrey;
                 margin-top: 45px;
@@ -37,7 +33,7 @@
                 button {
                     box-sizing: content-box;
                     &.selected {
-                        background: #EEEEFF 0% 0% no-repeat padding-box;
+                        background: #eeeeff 0% 0% no-repeat padding-box;
                         border-radius: 28px;
                         opacity: 1;
                         color: #06038d;

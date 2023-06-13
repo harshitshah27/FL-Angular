@@ -17,13 +17,13 @@ export class AppComponent {
   isLoggedIn$!: Observable<boolean>;
   token: string | any;
   socketInterval: any;
-  isLoggedIn: boolean = false;
+  isLoggedIn: boolean = true;
   constructor(
     private authService: AuthService,
     private apiCallService: ApiCallService,
     private snackBar: MatSnackBar,
     private interactionListRerenderService: InteractionListRerenderService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // this.isLoggedIn$ = this.authService.isLoggedIn$;

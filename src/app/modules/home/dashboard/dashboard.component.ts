@@ -49,7 +49,7 @@ const ELEMENT_DATA: RideObject[] = [
 export class DashboardComponent implements OnInit, AfterViewInit {
 
   RideStatus = RideStatus;
-  displayedColumns: String[] = ['arrow', 'rideName', 'noOfBuses', 'noOfRiders', 'status', 'action'];
+  displayedColumns: String[] = ['arrow', 'rideName', 'noOfBuses', 'noOfRiders', 'status-dashboard', 'action'];
   searchTerm = "";
   status = new FormControl('');
   isCreatingRideInProgress = false;

@@ -77,6 +77,13 @@
         }
 
         .mat-table {
+            .mat-row {
+                &:hover {
+                    background-color: #eeeefe;
+                    cursor: pointer;
+                }
+            }
+
             .mat-header-cell {
                 color: #000e2a;
                 font: normal normal 600 15px/24px Open Sans;

@@ -50,13 +50,13 @@
             position: absolute;
             top: 51%;
             overflow: hidden;
-            width: 50%;
+            width: 48%;
             height: 1px;
             content: "\a0";
             background-color: #a7a7a7;
         }
         &:before {
-            margin-left: -50%;
+            margin-left: -48%;
         }
         
     }

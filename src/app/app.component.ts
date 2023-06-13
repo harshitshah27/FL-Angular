@@ -1,11 +1,6 @@
 import { Component } from "@angular/core";
-import { fromEvent, Observable, retry } from "rxjs";
+import { Observable } from "rxjs";
 import { AuthService } from "./services/auth.service";
-import { webSocket, WebSocketSubject } from "rxjs/webSocket";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { SocketMessageType } from "./enums/socket-message-type";
-import { environment } from "src/environments/environment";
-import { InteractionListRerenderService } from "./services/interaction-list-rerender.service";
 import { ApiCallService } from "./services/api-call.service";
 
 @Component({
@@ -21,8 +16,6 @@ export class AppComponent {
   constructor(
     private authService: AuthService,
     private apiCallService: ApiCallService,
-    private snackBar: MatSnackBar,
-    private interactionListRerenderService: InteractionListRerenderService
   ) { }
 
   ngOnInit(): void {

@@ -23,7 +23,7 @@
     <div class="dashboard-container bg-[#fff]">
         <div class="title">RIDES</div>
         <div class="filter-wrapper flex justify-between">
-            <div class="left-filters">
+            <div class="left-filters flex">
                 <mat-form-field appearance="outline">
                     <mat-icon matPrefix>search</mat-icon>
                     <input matInput type="search" placeholder="Search by Ride Name"
@@ -58,8 +58,7 @@
             <ng-container matColumnDef="arrow">
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let element">
-                    <mat-icon class="text-[#0A0A0A]"
-                        (click)="openSnackBar()">chevron_right</mat-icon>
+                    <mat-icon class="text-[#0A0A0A]">chevron_right</mat-icon>
                 </td>
             </ng-container>
 
@@ -83,9 +82,9 @@
             </ng-container>
 
             <!-- Status column -->
-            <ng-container matColumnDef="status">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-                <td mat-cell *matCellDef="let element">
+            <ng-container matColumnDef="status-dashboard">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                <td mat-cell *matCellDef=" let element">
                     <div *ngIf="element.status == 1"
                         class="w-5/6 rounded-full py-1 px-4 text-[#0FB86F] text-center state-{{element.status}}">
                         {{RideStatus.PROCESSING}}
@@ -128,7 +127,8 @@
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                (click)="openSnackBar()"></tr>
         </table>
         <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"
             showFirstLastButtons aria-label="Select page">

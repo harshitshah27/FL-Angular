@@ -25,12 +25,14 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatDividerModule } from '@angular/material/divider';
+import { FileDragNDropDirective } from './create-ride/file-drag-n-drop.directive';
 
 @NgModule({
   declarations: [
     HomeComponent,
     DashboardComponent,
-    CreateRideComponent
+    CreateRideComponent,
+    FileDragNDropDirective
   ],
   imports: [
     CommonModule,

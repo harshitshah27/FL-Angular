@@ -1,38 +1,50 @@
 <div class="dashboard-wrapper">
-    <div *ngIf="isCreatingRideInProgress" class="ride-progress">
+    <div *ngIf="isCreatingRideInProgress"
+        class="ride-progress bg-[#fff9c7] flex justify-between">
         <div class="left-progress">
             <div class="bold-text">Yay!</div>
-            <div class="info-text">Your ride is getting configured now. Once
-                completed, you'll be able to see your ride on the top of the Rides
-                table.</div>
-            <mat-progress-bar class="mt-6" mode="determinate"
-                value="40"></mat-progress-bar>
+            <div class="info-text">
+                Your ride is getting configured now. Once completed, you'll be able to see
+                your ride on the top of the Rides table.
+            </div>
+            <div class="progress relative mt-6">
+                <mat-progress-bar class="ride-progress-bar" mode="determinate"
+                    value="{{rideProgressValue}}"></mat-progress-bar>
+                <mat-icon class="text-[#06038D] absolute progress-indicator"
+                    [style.left.%]="rideProgressValue">arrow_drop_up</mat-icon>
+                <span class="text-[#0A0A0A] absolute font-bold progress-percentage"
+                    [style.left.%]="rideProgressValue">
+                    {{rideProgressValue}}%
+                </span>
+            </div>
         </div>
-        <img src="">
+        <img src="../../../../assets/ride-in-progress.png">
     </div>
     <div class="dashboard-container bg-[#fff]">
         <div class="title">RIDES</div>
-        <div class="filter-wrapper">
-            <div class="left-filters">
+        <div class="filter-wrapper flex justify-between">
+            <div class="left-filters flex">
                 <mat-form-field appearance="outline">
                     <mat-icon matPrefix>search</mat-icon>
                     <input matInput type="search" placeholder="Search by Ride Name"
-                        (keyup)="applySearchFilter($event)" [(ngModel)]="searchTerm" />
+                        (keyup)="applyFilter()" [(ngModel)]="searchTerm" />
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="status-dropdown">
                     <mat-select [formControl]="status" placeholder="Status"
-                        (valueChange)="filterByStatus($event)">
+                        (ngModelChange)="applyFilter()">
                         <mat-option *ngFor="let option of statusOptionList"
                             [value]="option.id">{{option.value}}</mat-option>
                     </mat-select>
                 </mat-form-field>
-                <button mat-mini-fab class="reset-icon" (click)="resetFilters()"
+                <button mat-mini-fab
+                    class="reset-icon !bg-[#06038d] !text-[#fff] shadow-none"
+                    (click)="resetFilters()"
                     [disabled]="(searchTerm.length==0) && (status.value == '')">
                     <mat-icon>cached</mat-icon>
                 </button>
             </div>
-            <button mat-flat-button color="primary"
-                class="create-ride-btn !flex items-center justify-center"
+            <button mat-flat-button
+                class="create-ride-btn !flex items-center justify-center !bg-[#06038d] !text-[#fff]"
                 [disabled]="isCreatingRideInProgress"
                 (click)="router.navigate(['/dashboard/create-ride'])">
                 <mat-icon>add</mat-icon>
@@ -46,8 +58,7 @@
             <ng-container matColumnDef="arrow">
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let element">
-                    <mat-icon class="text-[#0A0A0A]"
-                        (click)="openSnackBar()">chevron_right</mat-icon>
+                    <mat-icon class="text-[#0A0A0A]">chevron_right</mat-icon>
                 </td>
             </ng-container>
 
@@ -71,20 +82,24 @@
             </ng-container>
 
             <!-- Status column -->
-            <ng-container matColumnDef="status">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-                <td mat-cell *matCellDef="let element">
+            <ng-container matColumnDef="status-dashboard">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                <td mat-cell *matCellDef=" let element">
                     <div *ngIf="element.status == 1"
-                        class="w-5/6 rounded-full py-1 px-4 text-[#0FB86F] text-center completed-state">
-                        Completed
+                        class="w-5/6 rounded-full py-1 px-4 text-[#0FB86F] text-center state-{{element.status}}">
+                        {{RideStatus.PROCESSING}}
                     </div>
                     <div *ngIf="element.status == 2"
-                        class="w-5/6 rounded-full py-1 px-4 text-[#F29900] text-center draft-state">
-                        Draft
+                        class="w-5/6 rounded-full py-1 px-4 text-[#0FB86F] text-center state-{{element.status}}">
+                        {{RideStatus.COMPLETED}}
                     </div>
                     <div *ngIf="element.status == 3"
-                        class="w-5/6 rounded-full py-1 px-4 text-[#0FB86F] text-center ongoing-state">
-                        On going
+                        class="w-5/6 rounded-full py-1 px-4 text-[#0FB86F] text-center state-{{element.status}}">
+                        {{RideStatus.ARCHIEVED}}
+                    </div>
+                    <div *ngIf="element.status == 4"
+                        class="w-5/6 rounded-full py-1 px-4 text-[#F29900] text-center state-{{element.status}}">
+                        {{RideStatus.DRAFTED}}
                     </div>
                 </td>
             </ng-container>
@@ -112,7 +127,8 @@
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                (click)="openSnackBar()"></tr>
         </table>
         <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"
             showFirstLastButtons aria-label="Select page">

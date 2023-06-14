@@ -13,24 +13,37 @@
         display: flex;
 
         .left-menu {
-            width: 30%;
+            width: 25%;
             padding: 24px 60px;
-            .title {
-                font: normal normal 600 20px/27px Open Sans;
-                letter-spacing: -1px;
-            }
             .options-menu {
                 border-right: 2px solid lightgrey;
+                margin-top: 45px;
+                div {
+                    margin-top: 5px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 40px;
+                    padding-right: 15px;
+                    &.selected {
+                        margin-right: -2px;
+                        border-right: 3px solid #06038d;
+                    }
+                }
                 button {
                     box-sizing: content-box;
                     &.selected {
-                        border-right: 2px solid #06038d;
+                        background: #eeeeff 0% 0% no-repeat padding-box;
+                        border-radius: 28px;
+                        opacity: 1;
+                        color: #06038d;
+                        height: 100%;
                     }
                 }
             }
         }
         .right-content {
-            width: 70%;
+            width: 75%;
             padding: 48px;
         }
     }

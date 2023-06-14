@@ -5,11 +5,6 @@ import { HomeComponent } from './modules/home/home.component';
 import { LandingComponent } from './modules/landing/landing.component';
 import { SettingsComponent } from './modules/settings/settings.component';
 const routes: Routes = [
-  // {
-  //   path: 'profile',
-  //   component: ProfileComponent,
-  //   canActivate:[ MsalGuard  ]
-  // },
   {
     path: '',
     component: LandingComponent,

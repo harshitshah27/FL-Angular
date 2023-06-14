@@ -1,74 +1,46 @@
 <div class="register-form-wrapper">
-  <div class="header">Sign Up</div>
+  <div class="header text-center mb-3">Sign Up</div>
   <form (submit)="SignUp()" #signUpForm="ngForm">
     <mat-grid-list cols="2" rowHeight="2:1" gutterSize="15px">
       <mat-label>First Name</mat-label>
       <mat-form-field appearance="outline">
-        <input
-          matInput
-          required
-          type="text"
-          placeholder="Please enter your First Name"
-          [(ngModel)]="firstName"
-          name="firstName"
-          #firstNameInput="ngModel"
-        />
-        <mat-error *ngIf="firstNameInput.touched && firstNameInput.invalid"
-          >Please enter your First Name</mat-error
-        >
+        <input matInput required type="text" placeholder="Please enter your First Name"
+          [(ngModel)]="firstName" name="firstName" #firstNameInput="ngModel" />
+        <mat-error *ngIf="firstNameInput.touched && firstNameInput.invalid">Please enter
+          your First Name</mat-error>
       </mat-form-field>
     </mat-grid-list>
     <mat-grid-list cols="2" rowHeight="2:1" gutterSize="15px">
       <mat-label>Last Name</mat-label>
       <mat-form-field appearance="outline">
-        <input
-          matInput
-          required
-          type="text"
-          placeholder="Please enter your First Name"
-          [(ngModel)]="firstName"
-          name="lastName"
-          #lastNameInput="ngModel"
-        />
-        <mat-error *ngIf="lastNameInput.touched && lastNameInput.invalid"
-          >Please enter your Last Name</mat-error
-        >
+        <input matInput required type="text" placeholder="Please enter your First Name"
+          [(ngModel)]="firstName" name="lastName" #lastNameInput="ngModel" />
+        <mat-error *ngIf="lastNameInput.touched && lastNameInput.invalid">Please enter
+          your Last Name</mat-error>
       </mat-form-field>
     </mat-grid-list>
     <mat-grid-list cols="2" rowHeight="2:1" gutterSize="15px">
       <mat-label>Email</mat-label>
       <mat-form-field appearance="outline">
-        <input
-          matInput
-          required
-          type="text"
-          placeholder="Please enter your Email ID"
-          [(ngModel)]="email"
-          name="email"
-          #emailInput="ngModel"
-        />
-        <mat-error *ngIf="emailInput.touched && emailInput.invalid"
-          >Please enter your Email ID</mat-error
-        >
+        <input matInput required type="text" placeholder="Please enter your Email ID"
+          [(ngModel)]="email" name="email" #emailInput="ngModel" />
+        <mat-error *ngIf="emailInput.touched && emailInput.invalid">Please enter your
+          Email ID</mat-error>
       </mat-form-field>
     </mat-grid-list>
-    <button
-      mat-button
-      class="btn primary-btn"
-      type="submit"
-      [disabled]="signUpForm.invalid"
-    >
+    <button mat-button class="btn primary-btn" type="submit"
+      [disabled]="signUpForm.invalid">
       Sign up
     </button>
   </form>
   <div class="or-container">
-    <div class="or-text">OR</div>
+    <div class="or-text"><span>OR</span></div>
   </div>
   <button type="button" class="google-sign-in-button">
     Continue with Google
   </button>
 
-  <div class="back-to-login">
-    Already have an account ? <a href="/login">Login</a>
+  <div class="back-to-login text-left">
+    Already have an account ? <a href="/login" class="text-[#06038d]">Login</a>
   </div>
 </div>

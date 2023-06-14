@@ -12,7 +12,7 @@ export class AppComponent {
   isLoggedIn$!: Observable<boolean>;
   token: string | any;
   socketInterval: any;
-  isLoggedIn: boolean = true;
+  isLoggedIn: boolean = false;
   constructor(
     private authService: AuthService,
     private apiCallService: ApiCallService,

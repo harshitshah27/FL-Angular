@@ -1,6 +1,6 @@
 <div class="verify-form-wrapper">
-  <div class="header">Verify</div>
-  <div class="sub-container">
+  <div class="header text-center">Verify</div>
+  <div class="mt-2 flex items-center justify-center w-full">
     <h6>
       Please enter the code we sent on your Email ID <br />
       muk******09@gmail.com
@@ -41,22 +41,18 @@
     </mat-grid-list>
     <mat-grid-list cols="5">
       <mat-grid-tile>
-        <button
-          mat-button
-          class="btn primary-btn"
-          type="submit"
-          [disabled]="verifyCodeForm.invalid"
-        >
+        <button mat-button class="btn primary-btn" type="submit"
+          [disabled]="verifyCodeForm.invalid">
           Verify
         </button>
       </mat-grid-tile>
       <mat-grid-tile>
-        <button mat-button class="btn secondary-btn" type="button">Back</button>
+        <button mat-button class="btn secondary-btn !ml-2" type="button">Back</button>
       </mat-grid-tile>
     </mat-grid-list>
   </form>
 
-  <div class="resend-code">
-    Haven't received your code yet ? <a href="#">Resend Code</a>
+  <div class="resend-code text-left">
+    Haven't received your code yet ? <a href="#" class="text-[#06038d]">Resend Code</a>
   </div>
 </div>

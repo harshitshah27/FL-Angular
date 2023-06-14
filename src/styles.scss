@@ -291,3 +291,24 @@ div::-webkit-scrollbar-thumb {
 .mat-column-status-dashboard .mat-sort-header-container {
     justify-content: center;
 }
+
+// Map view component CSS
+.map-view-container .action-buttons {
+    .mat-tab-header {
+        border-bottom: none;
+    }
+    .mat-tab-labels {
+        border-radius: 6px;
+        overflow: hidden;
+        .mat-tab-label {
+            background-color: #e9e9e9;
+            color: #0a0a0a;
+            opacity: 1;
+            margin: 0 1px;
+        }
+        .mat-tab-label.mat-tab-label-active {
+            background-color: #06038d;
+            color: #f8f8f8;
+        }
+    }
+}

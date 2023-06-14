@@ -1,4 +1,61 @@
-<div class="map-view-container">
-    <div class="ride-details"></div>
-    <div class="map-container"></div>
+<div class="map-view-container flex">
+    <div class="ride-details">
+        <mat-sidenav-container class="!inline">
+            <mat-sidenav #sidenav mode="side" opened>
+                <div>
+                    <div class="ride-info flex bg-[#E0F2EF]">
+                        <mat-icon>directions_bus</mat-icon>
+                        <div class="passenger-detail">
+                            <div class="title">{{rideObject.name}}</div>
+                            <div class="description">Number of passengers:
+                                {{rideObject.ridersCount}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bus-selection">
+                        <div class="title">Buses</div>
+                        <section>
+                            <ul>
+                                <li *ngFor="let bus of rideObject.bus">
+                                    <mat-checkbox [(ngModel)]="bus.viewDetails"
+                                        (ngModelChange)="viewBusDetails($event)">
+                                        {{bus.name}}
+                                    </mat-checkbox>
+                                </li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <div class="details-section">
+                    <div class="title">View Details</div>
+                    <mat-tab-group color="transparent">
+                        <ng-container *ngFor="let bus of rideObject.bus">
+                            <mat-tab *ngIf="bus.viewDetails" label="{{bus.name}}">
+                            </mat-tab>
+                        </ng-container>
+                    </mat-tab-group>
+                </div>
+            </mat-sidenav>
+            <button mat-flat-button (click)="sidenav.toggle()">
+                <mat-icon>play_arrow</mat-icon>
+            </button>
+        </mat-sidenav-container>
+    </div>
+    <div class="map-container">
+        <div class="action-buttons flex absolute">
+            <mat-tab-group color="transparent">
+                <mat-tab label="Faster Driver"> </mat-tab>
+                <mat-tab label="Shorter Walk"> </mat-tab>
+                <mat-tab label="Point to Point"> </mat-tab>
+            </mat-tab-group>
+            <button mat-flat-button
+                class="!flex items-center justify-center !bg-[#06038d] !text-[#fff] all-riders-btn">
+                <mat-icon class="mr-1">directions_walk</mat-icon>
+                <span>All Riders</span>
+            </button>
+        </div>
+        <div class="map-wrapper">
+            <img src="../../../../assets/ride-in-progress.png" />
+        </div>
+    </div>
 </div>

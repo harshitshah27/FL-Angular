@@ -175,7 +175,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   openRideMap(rideObj: RideObject) {
-    this.router.navigate(['/dashboard/map'], { queryParams: { order: rideObj.rideId } });
+    this.router.navigate(['/dashboard/map'], { queryParams: { id: rideObj.rideId } });
   }
 
 }

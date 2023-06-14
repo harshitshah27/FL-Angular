@@ -26,6 +26,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatDividerModule } from '@angular/material/divider';
 import { MapViewComponent } from './map-view/map-view.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { MapViewComponent } from './map-view/map-view.component';
     DragDropModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatDividerModule
+    MatDividerModule,
+    MatTabsModule,
+    MatCheckboxModule
   ]
 })
 export class HomeModule { }

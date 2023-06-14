@@ -299,10 +299,12 @@
                         <button matTooltip="Info about the action">
                             <mat-icon class="text-[#AFAFAF]">info</mat-icon>
                         </button>
-                        <button mat-button class=" btn sample-file-btn bg-[#EFEFF0]">
-                            <mat-icon>save_alt</mat-icon>
-                            Sample file
-                        </button>
+                        <a href="./../../../../assets/sample-file/Upload Riders Details.xlsx" download="Upload Rider Details">
+                            <button mat-button class=" btn sample-file-btn bg-[#EFEFF0]">
+                                <mat-icon>save_alt</mat-icon>
+                                Sample file
+                            </button>
+                        </a>
                     </div>
                 </div>
                 <div class="drag-drop-container" fileDragDrop (filesChangeEmiter)="onFileChange($event)">

@@ -2,7 +2,7 @@
   <div class="header text-center mb-3">Login</div>
   <form (submit)="doLogin()" #loginForm="ngForm">
     <mat-grid-list cols="2" rowHeight="2:1" gutterSize="15px">
-      <mat-label>Email</mat-label>
+      <mat-label class="font-semibold">Email</mat-label>
       <mat-form-field appearance="outline">
         <input matInput required type="text" placeholder="Please enter your Email ID"
           [(ngModel)]="email" name="email" #emailInput="ngModel" class="login-input" />
@@ -12,7 +12,7 @@
       </mat-form-field>
     </mat-grid-list>
     <mat-grid-list cols="2" rowHeight="2:1" gutterSize="15px">
-      <mat-label>Password</mat-label>
+      <mat-label class="font-semibold">Password</mat-label>
       <mat-form-field appearance="outline">
         <input matInput required type="password" placeholder="**********"
           [(ngModel)]="password" name="password" #passwordInput="ngModel" />
@@ -22,7 +22,7 @@
       </mat-form-field>
     </mat-grid-list>
     <a href="/forgot-password"
-      class="forgot-pwd flex justify-center text-[#06038d] text-right">
+      class="forgot-pwd flex justify-center text-[#06038d] text-right relative">
       Forgot password?
     </a>
     <button mat-button class="btn primary-btn !mt-2" type="submit"

@@ -6,13 +6,15 @@
         display: block;
         min-width: 241px;
         width: 100%;
+        font-size: 14px;
     }
 
     .forgot-pwd {
-        font: normal normal normal 16px/22px Open Sans;
+        font: normal normal normal 14px/20px Open Sans;
         letter-spacing: 0px;
         flex-direction: column;
-        margin-top: -12px;
+        margin-top: -20px;
+        margin-bottom: 16px;
     }
 
     .or-container {
@@ -41,9 +43,6 @@
     }
     .create-account-text {
         font: normal normal normal 14px/20px Open Sans;
-        a {
-            letter-spacing: 0px;
-        }
     }
     .google-sign-in-button {
         width: 100%;
@@ -59,7 +58,6 @@
         background-color: white;
         background-repeat: no-repeat;
         background-position: 110px 8px;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        margin: 24px 0;
     }
 }

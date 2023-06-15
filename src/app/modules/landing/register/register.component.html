@@ -2,7 +2,7 @@
   <div class="header text-center mb-3">Sign Up</div>
   <form (submit)="SignUp()" #signUpForm="ngForm">
     <mat-grid-list cols="2" rowHeight="2:1" gutterSize="15px">
-      <mat-label>First Name</mat-label>
+      <mat-label class="font-semibold">First Name</mat-label>
       <mat-form-field appearance="outline">
         <input matInput required type="text" placeholder="Please enter your First Name"
           [(ngModel)]="firstName" name="firstName" #firstNameInput="ngModel" />
@@ -11,7 +11,7 @@
       </mat-form-field>
     </mat-grid-list>
     <mat-grid-list cols="2" rowHeight="2:1" gutterSize="15px">
-      <mat-label>Last Name</mat-label>
+      <mat-label class="font-semibold">Last Name</mat-label>
       <mat-form-field appearance="outline">
         <input matInput required type="text" placeholder="Please enter your First Name"
           [(ngModel)]="firstName" name="lastName" #lastNameInput="ngModel" />
@@ -20,7 +20,7 @@
       </mat-form-field>
     </mat-grid-list>
     <mat-grid-list cols="2" rowHeight="2:1" gutterSize="15px">
-      <mat-label>Email</mat-label>
+      <mat-label class="font-semibold">Email</mat-label>
       <mat-form-field appearance="outline">
         <input matInput required type="text" placeholder="Please enter your Email ID"
           [(ngModel)]="email" name="email" #emailInput="ngModel" />

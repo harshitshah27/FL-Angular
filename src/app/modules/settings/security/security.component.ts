@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-security',
@@ -43,7 +44,7 @@ export class SecurityComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit(): void {
   }
@@ -80,9 +81,14 @@ export class SecurityComponent implements OnInit {
   }
 
   clearChanges() {
-    this.currentPassword = "";
-    this.newPassword = "";
-    this.confirmPassword = "";
+    if (this.currentPassword.length > 0 || this.newPassword.length > 0 || this.confirmPassword.length > 0) {
+      this.currentPassword = "";
+      this.newPassword = "";
+      this.confirmPassword = "";
+    } else {
+      this.router.navigate(['/dashboard']);
+    }
+
   }
 
   saveChanges() {

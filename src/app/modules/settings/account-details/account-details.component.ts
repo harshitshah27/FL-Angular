@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account-details',
@@ -8,13 +9,13 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 export class AccountDetailsComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef;
   selectedFile: File | undefined;
-  userProfileImg:  string | ArrayBuffer | null = "";
+  userProfileImg: string | ArrayBuffer | null = "";
   userImageText: string = "";
   firstName: string = "Test";
   lastName: string = "User";
   email: string = "testUser@test.com";
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit(): void {
     this.prepareCustomerImage();
@@ -46,7 +47,7 @@ export class AccountDetailsComponent implements OnInit {
 
   readFile() {
     if (this.selectedFile) {
-     const reader = new FileReader();
+      const reader = new FileReader();
       reader.onload = () => {
         this.userProfileImg = reader.result;
       };

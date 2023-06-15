@@ -65,10 +65,10 @@
                 </mat-form-field>
                 <div class="float-right flex">
                     <button mat-button class="secondary-btn bg-[#efeff0]" type="submit"
-                        color="#0A0A0A">Cancel</button>
-                    <button mat-button class="primary-btn bg-[#06038D] !ml-2"
+                        (click)="clearChanges()">Cancel</button>
+                    <button mat-button class="primary-btn bg-[#06038D] !ml-2 text-[#fff]"
                         type="submit" [disabled]="profileForm.invalid"
-                        (click)="saveChanges()" color="#fff">Save</button>
+                        (click)="saveChanges()">Save</button>
                 </div>
             </form>
         </div>

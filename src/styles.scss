@@ -173,6 +173,10 @@ div::-webkit-scrollbar-thumb {
     transform: none !important;
 }
 
+.mat-form-field-prefix {
+    top: 0.55rem !important;
+}
+
 .change-password-container .mat-form-field-suffix {
     top: 0.55rem !important;
 }
@@ -209,10 +213,12 @@ div::-webkit-scrollbar-thumb {
 
 .mat-select {
     font-size: 0.875rem !important;
+    font-family: Open Sans !important;
 }
 
 .mat-option .mat-option-text {
     font-size: 0.875rem !important;
+    font-family: Open Sans !important;
 }
 
 .mat-input-element {

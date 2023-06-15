@@ -137,20 +137,10 @@ table.dataTable {
     display: none;
 }
 
-.mat-menu-item,
-.mat-button-toggle-button,
-.mat-button-toggle-label-content {
-    font-family: Poppins, "sans-serif";
-}
-
 .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
     font-size: 0.875rem;
     line-height: 2rem;
 }
-
-// .mat-form-field-wrapper {
-//   padding-bottom: 0.5rem;
-// }
 
 body::-webkit-scrollbar,
 div::-webkit-scrollbar {
@@ -222,18 +212,16 @@ div::-webkit-scrollbar-thumb {
 }
 
 .mat-select {
-    font-family: "Poppins" !important;
     font-size: 0.875rem !important;
 }
 
 .mat-option .mat-option-text {
-    font-family: "Poppins" !important;
     font-size: 0.875rem !important;
 }
 
 .mat-input-element {
-    font-family: "Poppins" !important;
     font-size: 0.75rem !important;
+    font-family: Open Sans !important;
 }
 
 .mat-form-field-appearance-outline .mat-form-field-outline-thick {
@@ -242,6 +230,29 @@ div::-webkit-scrollbar-thumb {
 
 .confirmation-dialog {
     min-width: 40vw;
+}
+
+.primary-btn {
+    width: 100%;
+    height: 36px;
+    margin-top: 30px;
+    background-color: #06038d;
+    color: #fff !important;
+    font-weight: normal;
+    font-size: 16px;
+
+    &.mat-button-disabled {
+        opacity: 0.4;
+    }
+}
+.secondary-btn {
+    width: 100%;
+    height: 36px;
+    margin-top: 30px;
+    background-color: #efeff0;
+    color: #0a0a0a;
+    font-weight: normal;
+    font-size: 16px;
 }
 
 .action-menu.mat-menu-panel {
@@ -290,4 +301,8 @@ div::-webkit-scrollbar-thumb {
     .mat-progress-bar-fill::after {
         background-color: #f99359;
     }
+}
+
+.mat-column-status-dashboard .mat-sort-header-container {
+    justify-content: center;
 }

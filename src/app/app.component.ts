@@ -19,10 +19,10 @@ export class AppComponent {
   ) { }
 
   ngOnInit(): void {
-    // this.isLoggedIn$ = this.authService.isLoggedIn$;
     this.isLoggedIn$ = this.authService.isLoggedIn$;
+    console.log(this.isLoggedIn$)
     this.authService.isLoggedIn$.subscribe((res) => {
-      // this.isLoggedIn = res;
+      this.isLoggedIn = res;
       if (res) {
         // this.authService.getCurrentUser();
         // this.connectWebSocket();

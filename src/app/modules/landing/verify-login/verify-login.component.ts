@@ -6,7 +6,9 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./verify-login.component.scss"],
 })
 export class VerifyLoginComponent implements OnInit {
-  constructor() {}
-  VerifyCode() {}
-  ngOnInit(): void {}
+  constructor() { }
+
+  ngOnInit(): void { }
+
+  verifyCode() { }
 }

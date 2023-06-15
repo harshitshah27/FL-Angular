@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  isLoggedIn$ = new BehaviorSubject<boolean>(true);
+  isLoggedIn$ = new BehaviorSubject<boolean>(false);
   currentLoggedInUser$ = new BehaviorSubject<any>(null);
   orgData$ = new BehaviorSubject<any>(null);
 
@@ -22,7 +22,7 @@ export class AuthService {
   signOut(): void {
     this.isLoggedIn$.next(false);
   }
-  
+
   clearLocalStorage() {
     localStorage.removeItem("token");
     localStorage.removeItem("userData");

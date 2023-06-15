@@ -1,58 +1,43 @@
 <div class="login-form-wrapper">
-  <div class="header">Login</div>
+  <div class="header text-center mb-3">Login</div>
   <form (submit)="doLogin()" #loginForm="ngForm">
     <mat-grid-list cols="2" rowHeight="2:1" gutterSize="15px">
-      <mat-label>Email</mat-label>
+      <mat-label class="font-semibold">Email</mat-label>
       <mat-form-field appearance="outline">
-        <input
-          matInput
-          required
-          type="text"
-          placeholder="Please enter your Email ID"
-          [(ngModel)]="email"
-          name="email"
-          #emailInput="ngModel"
-        />
-        <mat-error *ngIf="emailInput.touched && emailInput.invalid"
-          >Please enter your Email ID</mat-error
-        >
+        <input matInput required type="text" placeholder="Please enter your Email ID"
+          [(ngModel)]="email" name="email" #emailInput="ngModel" class="login-input" />
+        <mat-error *ngIf="emailInput.touched && emailInput.invalid">
+          Please enter your Email ID
+        </mat-error>
       </mat-form-field>
     </mat-grid-list>
     <mat-grid-list cols="2" rowHeight="2:1" gutterSize="15px">
-      <mat-label>Password</mat-label>
+      <mat-label class="font-semibold">Password</mat-label>
       <mat-form-field appearance="outline">
-        <input
-          matInput
-          required
-          type="password"
-          placeholder="**********"
-          [(ngModel)]="password"
-          name="password"
-          #passwordInput="ngModel"
-        />
-        <mat-error *ngIf="passwordInput.touched && passwordInput.invalid"
-          >Please enter password</mat-error
-        >
+        <input matInput required type="password" placeholder="**********"
+          [(ngModel)]="password" name="password" #passwordInput="ngModel" />
+        <mat-error *ngIf="passwordInput.touched && passwordInput.invalid">
+          Please enter password
+        </mat-error>
       </mat-form-field>
     </mat-grid-list>
-    <a href="/forgot-password" class="forgot-pwd">Forgot password?</a>
-    <button
-      mat-button
-      class="btn primary-btn"
-      type="submit"
-      [disabled]="loginForm.invalid"
-    >
+    <a href="/forgot-password"
+      class="forgot-pwd flex justify-center text-[#06038d] text-right relative">
+      Forgot password?
+    </a>
+    <button mat-button class="btn primary-btn !mt-2" type="submit"
+      [disabled]="loginForm.invalid">
       Login
     </button>
   </form>
   <div class="or-container">
-    <div class="or-text">OR</div>
+    <div class="or-text"><span>OR</span></div>
   </div>
   <button type="button" class="google-sign-in-button">
     Continue with Google
   </button>
 
-  <div class="create-account-text">
-    Not registered yet ? <a href="/register">Create an account</a>
+  <div class="create-account-text text-left">
+    Not registered yet ? <a href="/register" class="text-[#06038d]">Create an account</a>
   </div>
 </div>

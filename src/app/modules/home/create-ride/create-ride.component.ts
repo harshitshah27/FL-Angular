@@ -55,7 +55,7 @@ export class CreateRideComponent implements OnInit, AfterViewInit {
   isUploadedFileValid: boolean = true;
   displayedColumns: String[] = DISPLAYED_COLUMNS;
   showExcelTable: boolean = false;
-  editExcelTable:boolean = false;
+  editExcelTable: boolean = false;
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator = new MatPaginator(new MatPaginatorIntl(), ChangeDetectorRef.prototype);;
@@ -112,7 +112,7 @@ export class CreateRideComponent implements OnInit, AfterViewInit {
     this.dataObject.busAdvanceDetails = event.checked
   }
 
-  onFileChange(pFileList: File[]){
+  onFileChange(pFileList: File[]) {
     this.uploadedFile = pFileList[0];
     const fileReader: FileReader = new FileReader();
 
@@ -126,17 +126,17 @@ export class CreateRideComponent implements OnInit, AfterViewInit {
 
       const jsonData: any[] = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
       jsonData[0].forEach((headerName: string) => {
-        if (!this.displayedColumns.includes(headerName.replace(" ","").toLocaleLowerCase())){
+        if (!this.displayedColumns.includes(headerName.replace(" ", "").toLocaleLowerCase())) {
           this.isUploadedFileValid = false
           this.uploadedFile = {}
         }
       })
-      if(this.isUploadedFileValid){
+      if (this.isUploadedFileValid) {
         const ridersArray: any[] = [];
         jsonData.slice(1).forEach((row: string[]) => {
-          const ridersObj: {[key: string]: string} = {};
+          const ridersObj: { [key: string]: string } = {};
           jsonData[0].forEach((headerName: string, index: number) => {
-            const headerKey = headerName.replace(" ","").toLocaleLowerCase()
+            const headerKey = headerName.replace(" ", "").toLocaleLowerCase()
             ridersObj[headerKey] = row[index];
           })
           ridersArray.push(ridersObj)
@@ -144,7 +144,7 @@ export class CreateRideComponent implements OnInit, AfterViewInit {
         this.displayedColumns.push("action")
         this.dataSource = new MatTableDataSource(ridersArray);
       }
-       // Do something with the JSON data
+      // Do something with the JSON data
     };
 
     fileReader.readAsArrayBuffer(this.uploadedFile);
@@ -173,7 +173,7 @@ export class CreateRideComponent implements OnInit, AfterViewInit {
   removeExcelUploadedRow = (index: number) => {
     const dataArray = this.dataSource.data;
     dataArray.splice(index, 1)
-    this.dataSource =  new MatTableDataSource([...dataArray])
+    this.dataSource = new MatTableDataSource([...dataArray])
   }
 
   onUploadClick = () => {
@@ -199,7 +199,7 @@ export class CreateRideComponent implements OnInit, AfterViewInit {
     this.pickupRoundtripToggleValue = event.source.checked;
   }
 
-  clearAndReupload =() => {
+  clearAndReupload = () => {
     this.showExcelTable = false;
     this.uploadedFile = {};
   }

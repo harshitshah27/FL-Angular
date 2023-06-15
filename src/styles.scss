@@ -177,7 +177,7 @@ div::-webkit-scrollbar-thumb {
     top: 0.55rem !important;
 }
 
-.change-password-container .mat-form-field-suffix {
+.mat-form-field-suffix {
     top: 0.55rem !important;
 }
 
@@ -234,6 +234,15 @@ div::-webkit-scrollbar-thumb {
     color: #e8e8e8 !important;
 }
 
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background-color: rgba(6, 3, 141, 0.54);
+}
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb,
+.mat-slide-toggle.mat-checked .mat-ripple-element {
+    background-color: #06038d;
+}
+
+// Confirmation dialog opening from dashboard
 .confirmation-dialog {
     min-width: 40vw;
 }

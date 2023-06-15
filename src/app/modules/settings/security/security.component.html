@@ -1,14 +1,14 @@
 <div class="security-container">
-    <div class="label">
+    <div class="header text-[#0A0A0A]">
         Choose a strong password and don't reuse it for other accounts.
     </div>
     <div class="description text-[#878D96] mt-3">
         Changing your password will sign you out on your devices.</div>
-    <div class="change-password-container">
+    <div class="change-password-container flex justify-between">
         <div class="block form-container">
-            <div class="title"><strong>Change Password</strong></div>
+            <div class="header">Change Password</div>
             <form #profileForm="ngForm" class="mt-5">
-                <mat-label>Verify Current Password</mat-label>
+                <mat-label class="font-semibold">Verify Current Password</mat-label>
                 <mat-form-field appearance="outline" class="mt-2">
                     <input matInput required
                         [type]="hideCurrentPassword ? 'password' : 'text'"
@@ -16,7 +16,8 @@
                         [(ngModel)]="currentPassword" name="currentPassword"
                         #currentPasswordInput="ngModel" />
                     <mat-icon matSuffix
-                        (click)="hideCurrentPassword = !hideCurrentPassword" class="visibility-color">
+                        (click)="hideCurrentPassword = !hideCurrentPassword"
+                        class="visibility-color">
                         {{hideCurrentPassword ? 'visibility_off' : 'visibility'}}
                     </mat-icon>
                     <mat-error
@@ -24,19 +25,20 @@
                         Please enter your current password
                     </mat-error>
                 </mat-form-field>
-                <div class="label mt-3" >Password strength:</div>
+                <div class="mt-3 font-semibold">Password strength:</div>
                 <div class="description text-[#434343] mt-2 mb-3">
                     Use at least 8 characters. Don’t use a password
                     from another site, or something too obvious like your pet’s name.
                 </div>
-                <mat-label class="mt-2">New Password</mat-label>
+                <mat-label class="mt-2 font-semibold">New Password</mat-label>
                 <mat-form-field appearance="outline" class="mt-2">
-                    <input matInput required [type]="hideNewPassword ? 'password' : 'text'"
+                    <input matInput required
+                        [type]="hideNewPassword ? 'password' : 'text'"
                         placeholder="Please enter your new password"
                         [(ngModel)]="newPassword" name="newPassword"
-                        (keyup)="passwordOnChange($event)"
-                        #newPasswordInput="ngModel" />
-                    <mat-icon matSuffix (click)="hideNewPassword = !hideNewPassword" class="visibility-color">
+                        (keyup)="passwordOnChange($event)" #newPasswordInput="ngModel" />
+                    <mat-icon matSuffix (click)="hideNewPassword = !hideNewPassword"
+                        class="visibility-color">
                         {{hideNewPassword ? 'visibility_off' : 'visibility'}}
                     </mat-icon>
                     <mat-error
@@ -44,14 +46,16 @@
                         Please enter your new password
                     </mat-error>
                 </mat-form-field>
-                <mat-label class="mt-3">Confirm New Password</mat-label>
+                <mat-label class="mt-3 font-semibold">Confirm New Password</mat-label>
                 <mat-form-field appearance="outline" class="mt-2">
                     <input matInput required type="password"
                         placeholder="Please re-enter your new password"
                         [(ngModel)]="confirmPassword" name="confirmPassword"
-                        #confirmPasswordInput="ngModel"  [type]="hideConfirmPassword ? 'password' : 'text'" />
+                        #confirmPasswordInput="ngModel"
+                        [type]="hideConfirmPassword ? 'password' : 'text'" />
                     <mat-icon matSuffix
-                        (click)="hideConfirmPassword = !hideConfirmPassword" class="visibility-color">
+                        (click)="hideConfirmPassword = !hideConfirmPassword"
+                        class="visibility-color">
                         {{hideConfirmPassword ? 'visibility_off' : 'visibility'}}
                     </mat-icon>
                     <mat-error
@@ -59,10 +63,12 @@
                         Please confirm New Password
                     </mat-error>
                 </mat-form-field>
-                <div class="float-right">
-                    <button mat-button class="btn bg-[#efeff0] cancel-btn" type="submit" color="#0A0A0A">Cancel</button>
-                    <button mat-button class="btn bg-[#06038D] save-btn" type="submit"
-                        [disabled]="profileForm.invalid" (click)="saveChanges()" color="#fff">Save</button>
+                <div class="float-right flex">
+                    <button mat-button class="secondary-btn bg-[#efeff0]" type="submit"
+                        color="#0A0A0A">Cancel</button>
+                    <button mat-button class="primary-btn bg-[#06038D] !ml-2"
+                        type="submit" [disabled]="profileForm.invalid"
+                        (click)="saveChanges()" color="#fff">Save</button>
                 </div>
             </form>
         </div>
@@ -73,10 +79,11 @@
             </div>
             <div class="block password-criteria">
                 <div class="flex mt-3" *ngFor="let item of passwordCriteriaList">
-                    <mat-icon matSuffix [ngClass]="item.isFulfilled ? 'password-criteria-fulfilled' : 'password-criteria-checkbox'">
+                    <mat-icon matSuffix
+                        [ngClass]="item.isFulfilled ? 'password-criteria-fulfilled' : 'password-criteria-checkbox'">
                         check_circle
                     </mat-icon>
-                    <span class="ml-5">
+                    <span class="ml-5 text-[#434343]">
                         {{item.label}}
                     </span>
                 </div>

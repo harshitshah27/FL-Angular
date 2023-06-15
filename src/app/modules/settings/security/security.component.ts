@@ -79,6 +79,12 @@ export class SecurityComponent implements OnInit {
     ];
   }
 
+  clearChanges() {
+    this.currentPassword = "";
+    this.newPassword = "";
+    this.confirmPassword = "";
+  }
+
   saveChanges() {
     console.log(this.currentPassword);
     console.log(this.newPassword);

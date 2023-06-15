@@ -25,6 +25,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatDividerModule } from '@angular/material/divider';
+import { FileDragNDropDirective } from './create-ride/file-drag-n-drop.directive';
 import { MapViewComponent } from './map-view/map-view.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -35,6 +36,7 @@ import { AllRidersComponent } from './map-view/all-riders/all-riders.component';
     HomeComponent,
     DashboardComponent,
     CreateRideComponent,
+    FileDragNDropDirective,
     MapViewComponent,
     AllRidersComponent
   ],

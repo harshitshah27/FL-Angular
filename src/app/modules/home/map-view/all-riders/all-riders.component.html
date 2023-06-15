@@ -1,0 +1,22 @@
+<div class="all-riders-container fixed top-0 right-0 bg-[#fff] h-screen">
+    <div class="float-right close-icon">
+        <mat-icon class="cursor-pointer" (click)="closeAllRidersList()">close</mat-icon>
+    </div>
+    <div class="label bg-[#DCF5E0] text-[#16CC34]">
+        ALL RIDERS
+    </div>
+    <div class="table-container">
+        <table class="w-full">
+            <tr>
+                <th class="bg-[#E7E7FC]">Sno</th>
+                <th class="bg-[#E7E7FC]">Rider</th>
+            </tr>
+            <tr *ngFor="let rider of allRidersData, let i = index">
+                <td>{{i + 1}}</td>
+                <td>
+                    <div>{{rider.name}}</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -24,6 +24,34 @@ export class MapViewComponent implements OnInit {
   opened: boolean = true;
   rideObject: RideObject = {};
   busDetails: BusInfo[] = [];
+  viewAllRiders: boolean = false;
+  allRidersData: any[] = [
+    { id: 1, name: "ABC" },
+    { id: 1, name: "ABCA BCA BCABCAB CABCABCABC" },
+    { id: 1, name: "ABC" },
+    { id: 1, name: "ABC" },
+    { id: 1, name: "ABC" },
+    { id: 1, name: "ABC" },
+    { id: 1, name: "ABC" },
+    { id: 1, name: "ABC" },
+    { id: 1, name: "ABC" },
+    { id: 1, name: "ABC" },
+    { id: 1, name: "ABC" },
+    { id: 1, name: "ABC" },
+    { id: 1, name: "ABC" },
+    { id: 1, name: "ABC" },
+    { id: 1, name: "ABC" },
+    { id: 1, name: "ABC" },
+    { id: 1, name: "ABC" },
+    { id: 1, name: "ABC" },
+    { id: 1, name: "ABC" },
+    { id: 1, name: "ABC" },
+    { id: 1, name: "ABC" },
+    { id: 1, name: "ABC" },
+    { id: 1, name: "ABC" },
+    { id: 1, name: "ABC" },
+
+  ];
 
   constructor() { }
 
@@ -55,6 +83,10 @@ export class MapViewComponent implements OnInit {
 
   viewBusDetails(event: Event) {
     console.log(event)
+  }
+
+  toggleViewAllRiders() {
+    this.viewAllRiders = !this.viewAllRiders;
   }
 
 }

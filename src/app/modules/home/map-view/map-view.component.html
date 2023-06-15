@@ -49,7 +49,8 @@
                 <mat-tab label="Point to Point"> </mat-tab>
             </mat-tab-group>
             <button mat-flat-button
-                class="!flex items-center justify-center !bg-[#06038d] !text-[#fff] all-riders-btn">
+                class="!flex items-center justify-center !bg-[#06038d] !text-[#fff] all-riders-btn"
+                (click)="toggleViewAllRiders()">
                 <mat-icon class="mr-1">directions_walk</mat-icon>
                 <span>All Riders</span>
             </button>
@@ -59,3 +60,6 @@
         </div>
     </div>
 </div>
+
+<app-all-riders *ngIf="viewAllRiders" [allRidersData]="allRidersData"
+    (closeAllRiders)="toggleViewAllRiders()"></app-all-riders>

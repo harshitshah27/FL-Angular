@@ -28,13 +28,15 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MapViewComponent } from './map-view/map-view.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { AllRidersComponent } from './map-view/all-riders/all-riders.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     DashboardComponent,
     CreateRideComponent,
-    MapViewComponent
+    MapViewComponent,
+    AllRidersComponent
   ],
   imports: [
     CommonModule,

@@ -12,6 +12,13 @@ export interface BusInfo {
   name?: string;
   busNumber?: string;
   viewDetails?: boolean;
+  stops?: BusStopsWithRiders[];
+}
+
+export interface BusStopsWithRiders {
+  stopName?: string;
+  stopLocation?: string;
+  ridersCount?: number;
 }
 
 @Component({
@@ -63,19 +70,55 @@ export class MapViewComponent implements OnInit {
         id: 1,
         name: "B1",
         busNumber: "MH02V5655",
-        viewDetails: false
+        viewDetails: false,
+        stops: [
+          {
+            stopName: "A",
+            stopLocation: "aaa",
+            ridersCount: 5
+          },
+          {
+            stopName: "AA",
+            stopLocation: "aaa",
+            ridersCount: 15
+          },
+        ]
       },
       {
         id: 2,
         name: "B2",
         busNumber: "MH02V5111",
-        viewDetails: false
+        viewDetails: false,
+        stops: [
+          {
+            stopName: "B",
+            stopLocation: "bbb",
+            ridersCount: 5
+          },
+          {
+            stopName: "BB",
+            stopLocation: "bbbb",
+            ridersCount: 15
+          },
+        ]
       },
       {
         id: 3,
         name: "B3",
         busNumber: "MH02V5000",
-        viewDetails: false
+        viewDetails: false,
+        stops: [
+          {
+            stopName: "C",
+            stopLocation: "ccc",
+            ridersCount: 5
+          },
+          {
+            stopName: "CC",
+            stopLocation: "cc",
+            ridersCount: 15
+          },
+        ]
       },
     ];
     this.rideObject.bus = this.busDetails;

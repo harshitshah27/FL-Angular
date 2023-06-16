@@ -1,16 +1,51 @@
 .map-view-container {
     .ride-details {
-        .ride-info {
-            padding: 16px;
+        .grey-padding {
+            padding-right: 24px;
+            .ride-info {
+                padding: 16px;
+            }
+            .bus-selection {
+                li {
+                    margin: 0 2px;
+                    padding: 2px;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                    &:first-child {
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
+        .details-section {
+            .bus-number,
+            .bus-copy {
+                padding: 16px;
+            }
+        }
+
+        .map-container {
+            .play-toggle-icon {
+                height: 36px;
+                width: 36px;
+                font-size: 36px;
+                transform: rotate(0deg);
+                transition: transform 1s linear;
+
+                &.clicked {
+                    transform: rotate(180deg);
+                    transition: transform 1s linear;
+                }
+            }
         }
     }
-    .map-container {
-        .action-buttons {
-            top: 24px;
-            right: 24px;
-            .all-riders-btn {
-                margin-left: 20px;
-            }
+    .action-buttons {
+        top: 24px;
+        right: 24px;
+        .all-riders-btn {
+            margin-left: 20px;
         }
     }
 }

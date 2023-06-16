@@ -1,8 +1,8 @@
 <div class="map-view-container flex">
-    <div class="ride-details">
+    <div class="ride-details w-full">
         <mat-sidenav-container class="!inline">
             <mat-sidenav #sidenav mode="side" opened>
-                <div>
+                <div class="grey-padding bg-[#f8f8f8]">
                     <div class="ride-info flex bg-[#E0F2EF]">
                         <mat-icon>directions_bus</mat-icon>
                         <div class="passenger-detail">
@@ -12,11 +12,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="bus-selection">
+                    <div class="bus-selection mt-4">
                         <div class="title">Buses</div>
                         <section>
-                            <ul>
-                                <li *ngFor="let bus of rideObject.bus">
+                            <ul class="flex">
+                                <li *ngFor="let bus of rideObject.bus"
+                                    class="bg-[#FBEAEF]">
                                     <mat-checkbox [(ngModel)]="bus.viewDetails"
                                         (ngModelChange)="viewBusDetails($event)">
                                         {{bus.name}}
@@ -31,34 +32,72 @@
                     <mat-tab-group color="transparent">
                         <ng-container *ngFor="let bus of rideObject.bus">
                             <mat-tab *ngIf="bus.viewDetails" label="{{bus.name}}">
+                                <div class="bus-number flex bg-[#FFF7E9]">
+                                    <mat-icon>directions_bus</mat-icon>
+                                    <div class="">
+                                        <div class="description">Bus Number</div>
+                                        <div class="title">MH02A1234
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bus-copy flex">
+                                    <mat-icon>directions_bus</mat-icon>
+                                    <div class="">
+                                        <div class="description">Google Maps Link</div>
+                                        <div class="title">goo.gl/maps/rFcsa1234v1 </div>
+                                    </div>
+                                    <mat-icon>copy</mat-icon>
+                                </div>
+                                <div class="stops-table-container">
+                                    <table class="w-full">
+                                        <tr>
+                                            <th class="bg-[#E7E7FC]">Stops</th>
+                                            <th class="bg-[#E7E7FC]">Number of Riders</th>
+                                        </tr>
+                                        <tr *ngFor="let stop of bus.stops, let i = index">
+                                            <td>
+                                                <div>{{stop.stopName}}</div>
+                                                <div>{{stop.stopLocation}}</div>
+                                            </td>
+                                            <td>
+                                                <div>{{stop.ridersCount}}</div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </mat-tab>
                         </ng-container>
                     </mat-tab-group>
                 </div>
             </mat-sidenav>
-            <button mat-flat-button (click)="sidenav.toggle()">
-                <mat-icon>play_arrow</mat-icon>
-            </button>
+            <mat-sidenav-content>
+                <div class="map-container flex">
+                    <button mat-flat-button (click)="sidenav.toggle()" class="bg-[#fff]">
+                        <mat-icon class="play-toggle-icon text-[#20C170]"
+                            [ngClass]="{'clicked':sidenav.opened}">play_arrow</mat-icon>
+                    </button>
+                    <div class="map-wrapper w-full">
+                        <img src="../../../../assets/ride-in-progress.png" />
+                    </div>
+                </div>
+
+            </mat-sidenav-content>
         </mat-sidenav-container>
     </div>
-    <div class="map-container">
-        <div class="action-buttons flex absolute">
-            <mat-tab-group color="transparent">
-                <mat-tab label="Faster Driver"> </mat-tab>
-                <mat-tab label="Shorter Walk"> </mat-tab>
-                <mat-tab label="Point to Point"> </mat-tab>
-            </mat-tab-group>
-            <button mat-flat-button
-                class="!flex items-center justify-center !bg-[#06038d] !text-[#fff] all-riders-btn"
-                (click)="toggleViewAllRiders()">
-                <mat-icon class="mr-1">directions_walk</mat-icon>
-                <span>All Riders</span>
-            </button>
-        </div>
-        <div class="map-wrapper">
-            <img src="../../../../assets/ride-in-progress.png" />
-        </div>
+    <div class="action-buttons flex absolute">
+        <mat-tab-group color="transparent" class="z-0">
+            <mat-tab label="Faster Driver"> </mat-tab>
+            <mat-tab label="Shorter Walk"> </mat-tab>
+            <mat-tab label="Point to Point"> </mat-tab>
+        </mat-tab-group>
+        <button mat-flat-button
+            class="!flex items-center justify-center !bg-[#06038d] !text-[#fff] all-riders-btn"
+            (click)="toggleViewAllRiders()">
+            <mat-icon class="mr-1">directions_walk</mat-icon>
+            <span>All Riders</span>
+        </button>
     </div>
+
 </div>
 
 <app-all-riders *ngIf="viewAllRiders" [allRidersData]="allRidersData"

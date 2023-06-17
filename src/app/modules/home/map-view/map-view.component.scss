@@ -1,14 +1,25 @@
 .map-view-container {
     .ride-details {
+        .info-box {
+            .title {
+                font: normal normal bold 32px/42px Open Sans;
+            }
+            .description {
+                font: normal normal normal 14px/20px Open Sans;
+            }
+        }
         .grey-padding {
             padding-right: 24px;
             .ride-info {
                 padding: 16px;
             }
             .bus-selection {
+                .title {
+                    font: normal normal 600 14px/20px Open Sans;
+                }
                 li {
                     margin: 0 2px;
-                    padding: 2px;
+                    padding: 2px 4px;
 
                     &:last-child {
                         margin-right: 0;
@@ -20,9 +31,20 @@
             }
         }
         .details-section {
+            .view-details-title {
+                font: normal normal 600 14px/20px Open Sans;
+                padding: 8px 0;
+            }
             .bus-number,
             .bus-copy {
                 padding: 16px;
+            }
+
+            .bus-copy {
+                border: 2px solid #cecece;
+                .title {
+                    font: normal normal normal 14px/20px Open Sans;
+                }
             }
         }
 
@@ -38,6 +60,9 @@
                     transform: rotate(180deg);
                     transition: transform 1s linear;
                 }
+            }
+            .map-wrapper {
+                min-height: calc(100vh - 144px);
             }
         }
     }

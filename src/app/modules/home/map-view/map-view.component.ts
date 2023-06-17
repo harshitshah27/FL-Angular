@@ -12,6 +12,7 @@ export interface BusInfo {
   name?: string;
   busNumber?: string;
   viewDetails?: boolean;
+  gMapLink: string;
   stops?: BusStopsWithRiders[];
 }
 
@@ -71,6 +72,7 @@ export class MapViewComponent implements OnInit {
         name: "B1",
         busNumber: "MH02V5655",
         viewDetails: false,
+        gMapLink: "goo.gl/maps/rFcsa1234v1",
         stops: [
           {
             stopName: "A",
@@ -89,6 +91,7 @@ export class MapViewComponent implements OnInit {
         name: "B2",
         busNumber: "MH02V5111",
         viewDetails: false,
+        gMapLink: "goo.gl/maps/rFcsa1234v1",
         stops: [
           {
             stopName: "B",
@@ -107,6 +110,7 @@ export class MapViewComponent implements OnInit {
         name: "B3",
         busNumber: "MH02V5000",
         viewDetails: false,
+        gMapLink: "goo.gl/maps/rFcsa1234v1",
         stops: [
           {
             stopName: "C",

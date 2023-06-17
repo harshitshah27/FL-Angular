@@ -3,17 +3,18 @@
         <mat-sidenav-container class="!inline">
             <mat-sidenav #sidenav mode="side" opened>
                 <div class="grey-padding bg-[#f8f8f8]">
-                    <div class="ride-info flex bg-[#E0F2EF]">
-                        <mat-icon>directions_bus</mat-icon>
-                        <div class="passenger-detail">
-                            <div class="title">{{rideObject.name}}</div>
+                    <div class="ride-info flex items-center bg-[#E0F2EF]">
+                        <mat-icon
+                            class="text-[#13AC8F] bg-[#B4F9EC] mr-2">directions_bus</mat-icon>
+                        <div class="info-box">
+                            <div class="title uppercase">{{rideObject.name}}</div>
                             <div class="description">Number of passengers:
                                 {{rideObject.ridersCount}}
                             </div>
                         </div>
                     </div>
                     <div class="bus-selection mt-4">
-                        <div class="title">Buses</div>
+                        <div class="title text-[#0A0A0A] mb-1">Buses</div>
                         <section>
                             <ul class="flex">
                                 <li *ngFor="let bus of rideObject.bus"
@@ -28,25 +29,33 @@
                     </div>
                 </div>
                 <div class="details-section">
-                    <div class="title">View Details</div>
+                    <div class="view-details-title text-[#0A0A0A]"> View Details</div>
                     <mat-tab-group color="transparent">
                         <ng-container *ngFor="let bus of rideObject.bus">
                             <mat-tab *ngIf="bus.viewDetails" label="{{bus.name}}">
-                                <div class="bus-number flex bg-[#FFF7E9]">
-                                    <mat-icon>directions_bus</mat-icon>
-                                    <div class="">
+                                <div
+                                    class="bus-number flex items-center bg-[#FFF7E9] mt-3 mb-3">
+                                    <mat-icon
+                                        class="text-[#F29900] bg-[#F8E1BA] mr-2">directions_bus</mat-icon>
+                                    <div class="info-box">
                                         <div class="description">Bus Number</div>
                                         <div class="title">MH02A1234
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bus-copy flex">
-                                    <mat-icon>directions_bus</mat-icon>
+                                <div class="bus-copy flex items-center mb-3">
+                                    <mat-icon
+                                        class="text-[#06038D] bg-[#EAE9FE] mr-2">link</mat-icon>
                                     <div class="">
-                                        <div class="description">Google Maps Link</div>
-                                        <div class="title">goo.gl/maps/rFcsa1234v1 </div>
+                                        <div class="title text-[#A7A7A7]">Google Maps Link
+                                        </div>
+                                        <a class="link-text font-bold">{{bus.gMapLink}}
+                                        </a>
                                     </div>
-                                    <mat-icon>copy</mat-icon>
+                                    <mat-icon
+                                        class="text-[#06038D] cursor-pointer">content_copy</mat-icon>
+                                    <span
+                                        class="text-[#06038D] cursor-pointer">Copy</span>
                                 </div>
                                 <div class="stops-table-container">
                                     <table class="w-full">

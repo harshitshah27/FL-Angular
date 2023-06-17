@@ -17,10 +17,16 @@
                         <div class="title text-[#0A0A0A] mb-1">Buses</div>
                         <section>
                             <ul class="flex">
+                                <li class="bg-[#FBEAEF]">
+                                    <mat-checkbox [(ngModel)]="allBusViewDetails"
+                                        (ngModelChange)="viewBusDetails(true)">
+                                        All
+                                    </mat-checkbox>
+                                </li>
                                 <li *ngFor="let bus of rideObject.bus"
                                     class="bg-[#FBEAEF]">
                                     <mat-checkbox [(ngModel)]="bus.viewDetails"
-                                        (ngModelChange)="viewBusDetails($event)">
+                                        (ngModelChange)="viewBusDetails(false)">
                                         {{bus.name}}
                                     </mat-checkbox>
                                 </li>
@@ -39,8 +45,7 @@
                                         class="text-[#F29900] bg-[#F8E1BA] mr-2">directions_bus</mat-icon>
                                     <div class="info-box">
                                         <div class="description">Bus Number</div>
-                                        <div class="title">MH02A1234
-                                        </div>
+                                        <div class="title">{{bus.busNumber}} </div>
                                     </div>
                                 </div>
                                 <div class="bus-copy flex items-center mb-3">
@@ -63,13 +68,30 @@
                                             <th class="bg-[#E7E7FC]">Stops</th>
                                             <th class="bg-[#E7E7FC]">Number of Riders</th>
                                         </tr>
-                                        <tr *ngFor="let stop of bus.stops, let i = index">
-                                            <td>
-                                                <div>{{stop.stopName}}</div>
-                                                <div>{{stop.stopLocation}}</div>
+                                        <tr
+                                            *ngFor="let stop of bus.stops, let first=first, let last=last">
+                                            <td class="first-col">
+                                                <div class="border-class relative">
+                                                    <div class="bullet absolute"></div>
+                                                    <div class="stop-name text-[#0a0a0a]">
+                                                        {{stop.stopName}}
+                                                    </div>
+                                                    <span
+                                                        class="location-text text-[#A7A7A7]">{{stop.stopLocation}}</span>
+                                                    <span *ngIf="first"
+                                                        class="italic start-point rounded-full text-[#0FB86F]">
+                                                        Starting Point</span>
+                                                    <span *ngIf="last"
+                                                        class="italic end-point rounded-full text-[#F65C90]">
+                                                        End Point</span>
+                                                </div>
+
                                             </td>
                                             <td>
-                                                <div>{{stop.ridersCount}}</div>
+                                                <div
+                                                    class="count-text w-fit text-[#F65C61] m-auto">
+                                                    {{stop.ridersCount}}
+                                                </div>
                                             </td>
                                         </tr>
                                     </table>

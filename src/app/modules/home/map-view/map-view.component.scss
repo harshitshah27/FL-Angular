@@ -46,6 +46,48 @@
                     font: normal normal normal 14px/20px Open Sans;
                 }
             }
+            .stops-table-container {
+                td {
+                    font: normal normal 600 14px/20px Open Sans;
+
+                    .start-point,
+                    .end-point {
+                        padding: 2px 8px;
+                        font: italic normal 600 10px/16px Open Sans;
+                        margin-left: 2px;
+                    }
+                    .count-text {
+                        background-color: rgba(246, 92, 144, 0.07);
+                        border-radius: 3px;
+                        padding: 8px;
+                    }
+                    .start-point {
+                        background-color: rgba(29, 225, 105, 0.07);
+                    }
+                    .end-point {
+                        background-color: rgba(246, 92, 144, 0.07);
+                    }
+                    .location-text {
+                        font: normal normal normal 12px/18px Open Sans;
+                    }
+
+                    &.first-col {
+                        padding-left: 12px;
+                        .border-class {
+                            border-left: 1px dashed red;
+                            padding-left: 12px;
+                        }
+                        .bullet {
+                            background-color: yellow;
+                            height: 12px;
+                            width: 12px;
+                            border-radius: 50%;
+                            left: -6px;
+                            top: 50%;
+                        }
+                    }
+                }
+            }
         }
 
         .map-container {

@@ -58,8 +58,8 @@ export class MapViewComponent implements OnInit {
     { id: 1, name: "ABC" },
     { id: 1, name: "ABC" },
     { id: 1, name: "ABC" },
-
   ];
+  allBusViewDetails: boolean = false;
 
   constructor() { }
 
@@ -128,8 +128,10 @@ export class MapViewComponent implements OnInit {
     this.rideObject.bus = this.busDetails;
   }
 
-  viewBusDetails(event: Event) {
-    console.log(event)
+  viewBusDetails(viewAllBusDetails: boolean) {
+    if (viewAllBusDetails) {
+      this.busDetails.forEach((bus) => bus.viewDetails = this.allBusViewDetails);
+    }
   }
 
   toggleViewAllRiders() {

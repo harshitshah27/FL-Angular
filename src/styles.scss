@@ -224,7 +224,6 @@ div::-webkit-scrollbar-thumb {
     font-family: Open Sans !important;
 }
 
-
 .mat-input-element {
     font-size: 0.75rem !important;
     font-family: Open Sans !important;
@@ -331,6 +330,9 @@ div::-webkit-scrollbar-thumb {
         .mat-checkbox-inner-container {
             height: 14px;
             width: 14px;
+        }
+        .mat-checkbox-checked .mat-checkbox-background {
+            background-color: #06038d;
         }
     }
     .details-section {

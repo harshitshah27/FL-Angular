@@ -74,17 +74,36 @@
                     &.first-col {
                         padding-left: 12px;
                         .border-class {
-                            border-left: 1px dashed red;
                             padding-left: 12px;
+                            .border-left {
+                                border-left: 1px dashed #a7a7a7;
+                                top: 0;
+                                bottom: 0;
+                                position: absolute;
+                                left: -1px;
+                            }
                         }
                         .bullet {
-                            background-color: yellow;
+                            background-color: #ea352b;
                             height: 12px;
                             width: 12px;
                             border-radius: 50%;
                             left: -6px;
                             top: 50%;
                         }
+                    }
+                }
+                tr:nth-child(2) td {
+                    .bullet {
+                        background-color: #6393f2;
+                    }
+                    .border-left {
+                        top: 50% !important;
+                    }
+                }
+                tr:last-child td {
+                    .border-left {
+                        bottom: 50% !important;
                     }
                 }
             }

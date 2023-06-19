@@ -72,20 +72,24 @@
                                             *ngFor="let stop of bus.stops, let first=first, let last=last">
                                             <td class="first-col">
                                                 <div class="border-class relative">
+                                                    <div class="border-left"></div>
                                                     <div class="bullet absolute"></div>
                                                     <div class="stop-name text-[#0a0a0a]">
                                                         {{stop.stopName}}
                                                     </div>
                                                     <span
-                                                        class="location-text text-[#A7A7A7]">{{stop.stopLocation}}</span>
+                                                        class="location-text text-[#A7A7A7]">
+                                                        {{stop.stopLocation}}
+                                                    </span>
                                                     <span *ngIf="first"
                                                         class="italic start-point rounded-full text-[#0FB86F]">
-                                                        Starting Point</span>
+                                                        Starting Point
+                                                    </span>
                                                     <span *ngIf="last"
                                                         class="italic end-point rounded-full text-[#F65C90]">
-                                                        End Point</span>
+                                                        End Point
+                                                    </span>
                                                 </div>
-
                                             </td>
                                             <td>
                                                 <div

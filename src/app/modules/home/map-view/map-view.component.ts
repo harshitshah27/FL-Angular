@@ -84,6 +84,11 @@ export class MapViewComponent implements OnInit {
             stopLocation: "aaa",
             ridersCount: 15
           },
+          {
+            stopName: "AAA",
+            stopLocation: "aaa 00",
+            ridersCount: 10
+          },
         ]
       },
       {

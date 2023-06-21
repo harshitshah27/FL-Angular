@@ -30,6 +30,7 @@ import { MapViewComponent } from './map-view/map-view.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AllRidersComponent } from './map-view/all-riders/all-riders.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { AllRidersComponent } from './map-view/all-riders/all-riders.component';
     MatNativeDateModule,
     MatDividerModule,
     MatTabsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    GoogleMapsModule
   ]
 })
 export class HomeModule { }

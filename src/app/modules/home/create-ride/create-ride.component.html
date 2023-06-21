@@ -1,5 +1,5 @@
 <div class="create-ride-wrapper bg-[#fff]">
-    <div class="header-section flex items-center justify-between">
+    <div class="header-section sticky flex items-center justify-between">
         <div *ngIf="!isPreview" class="title">Create Ride</div>
         <div *ngIf="isPreview" class="title">Preview your entries</div>
         <div class="action-buttons flex">
@@ -24,7 +24,7 @@
             </button>
         </div>
     </div>
-    <div *ngIf="!isPreview" class="form-container bg-[#DADDE1]">
+    <div *ngIf="!isPreview" class="form-container overflow-y-auto bg-[#DADDE1]">
 
         <!-- Ride Name block -->
         <div class="bg-[#fff] name block">

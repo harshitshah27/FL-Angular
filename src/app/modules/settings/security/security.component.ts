@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +16,8 @@ export class SecurityComponent implements OnInit {
   hideCurrentPassword: boolean = true;
   hideNewPassword: boolean = true;
   hideConfirmPassword: boolean = true;
-
+  progressBarVal: number = 0
+  progressBarClass: string = ""
   passwordCriteriaList: any[] = [
     {
       id: 1,
@@ -78,6 +80,9 @@ export class SecurityComponent implements OnInit {
         isFulfilled: /[!@#$%^&*(),.?\":{}|<>]/.test(value)
       },
     ];
+    const criteriaLength = this.passwordCriteriaList.filter(crietriaList => crietriaList.isFulfilled).length
+    this.progressBarVal = (criteriaLength / 5) * 100
+    this.progressBarClass = criteriaLength <= 2 ? "progress-bar-warn" : criteriaLength > 2 && criteriaLength < 5 ? "progress-bar-yellow" : "progress-bar-success"
   }
 
   clearChanges() {

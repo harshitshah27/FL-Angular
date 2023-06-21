@@ -52,12 +52,12 @@ export class SecurityComponent implements OnInit {
   }
 
   passwordOnChange = (event: any) => {
-    const value = event.target.value
+    const value = event.target.value;
     this.passwordCriteriaList = [
       {
         id: 1,
         label: "Length of characters",
-        isFulfilled: value.length > 8
+        isFulfilled: value.length >= 8
       },
       {
         id: 2,

@@ -225,9 +225,18 @@ div::-webkit-scrollbar-thumb {
     font-family: Open Sans !important;
 }
 
-.mat-input-element {
+.mat-input-element,
+.mat-hint {
     font-size: 0.75rem !important;
     font-family: Open Sans !important;
+}
+
+.mat-hint {
+    font-size: 0.6rem !important;
+}
+
+.mat-form-field-subscript-wrapper {
+    margin-top: 0;
 }
 
 .mat-form-field-appearance-outline .mat-form-field-outline-thick {

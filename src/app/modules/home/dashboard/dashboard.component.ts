@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 
 export interface RideObject {
+  rideId: number;
   name: string;
   noOfRiders: number;
   noOfBuses: number;
@@ -29,16 +30,16 @@ enum ActionType {
 }
 
 const ELEMENT_DATA: RideObject[] = [
-  { status: 1, noOfRiders: 1, name: 'Hydrogen', noOfBuses: 1.0079 },
-  { status: 2, noOfRiders: 2, name: 'Helium', noOfBuses: 4.0026 },
-  { status: 3, noOfRiders: 3, name: 'Lithium', noOfBuses: 6.941 },
-  { status: 1, noOfRiders: 4, name: 'Beryllium', noOfBuses: 9.0122 },
-  { status: 3, noOfRiders: 5, name: 'Boron', noOfBuses: 10.811 },
-  { status: 1, noOfRiders: 6, name: 'Carbon', noOfBuses: 12.0107 },
-  { status: 2, noOfRiders: 7, name: 'Nitrogen', noOfBuses: 14.0067 },
-  { status: 4, noOfRiders: 8, name: 'Oxygen', noOfBuses: 15.9994 },
-  { status: 4, noOfRiders: 9, name: 'Fluorine', noOfBuses: 18.9984 },
-  { status: 2, noOfRiders: 10, name: 'Neon', noOfBuses: 20.1797 },
+  { rideId: 1, status: 1, noOfRiders: 1, name: 'Hydrogen', noOfBuses: 1.0079 },
+  { rideId: 2, status: 2, noOfRiders: 2, name: 'Helium', noOfBuses: 4.0026 },
+  { rideId: 3, status: 3, noOfRiders: 3, name: 'Lithium', noOfBuses: 6.941 },
+  { rideId: 4, status: 1, noOfRiders: 4, name: 'Beryllium', noOfBuses: 9.0122 },
+  { rideId: 5, status: 3, noOfRiders: 5, name: 'Boron', noOfBuses: 10.811 },
+  { rideId: 6, status: 1, noOfRiders: 6, name: 'Carbon', noOfBuses: 12.0107 },
+  { rideId: 7, status: 2, noOfRiders: 7, name: 'Nitrogen', noOfBuses: 14.0067 },
+  { rideId: 8, status: 1, noOfRiders: 8, name: 'Oxygen', noOfBuses: 15.9994 },
+  { rideId: 9, status: 1, noOfRiders: 9, name: 'Fluorine', noOfBuses: 18.9984 },
+  { rideId: 10, status: 2, noOfRiders: 10, name: 'Neon', noOfBuses: 20.1797 },
 ];
 
 @Component({
@@ -171,6 +172,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       message: "Ride created successfully"
     }
     this.snackBarService.openSnackBar(config);
+  }
+
+  openRideMap(rideObj: RideObject) {
+    this.router.navigate(['/dashboard/map'], { queryParams: { id: rideObj.rideId } });
   }
 
 }

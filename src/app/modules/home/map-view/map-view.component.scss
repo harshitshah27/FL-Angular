@@ -1,0 +1,137 @@
+.map-view-container {
+    .ride-details {
+        .info-box {
+            .title {
+                font: normal normal bold 32px/42px Open Sans;
+            }
+            .description {
+                font: normal normal normal 14px/20px Open Sans;
+            }
+        }
+        .grey-padding {
+            padding-right: 24px;
+            .ride-info {
+                padding: 16px;
+            }
+            .bus-selection {
+                .title {
+                    font: normal normal 600 14px/20px Open Sans;
+                }
+                li {
+                    margin: 0 2px;
+                    padding: 2px 4px;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                    &:first-child {
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
+        .details-section {
+            .view-details-title {
+                font: normal normal 600 14px/20px Open Sans;
+                padding: 8px 0;
+            }
+            .bus-number,
+            .bus-copy {
+                padding: 16px;
+            }
+
+            .bus-copy {
+                border: 2px solid #cecece;
+                .title {
+                    font: normal normal normal 14px/20px Open Sans;
+                }
+            }
+            .stops-table-container {
+                td {
+                    font: normal normal 600 14px/20px Open Sans;
+
+                    .start-point,
+                    .end-point {
+                        padding: 2px 8px;
+                        font: italic normal 600 10px/16px Open Sans;
+                        margin-left: 2px;
+                    }
+                    .count-text {
+                        background-color: rgba(246, 92, 144, 0.07);
+                        border-radius: 3px;
+                        padding: 8px;
+                    }
+                    .start-point {
+                        background-color: rgba(29, 225, 105, 0.07);
+                    }
+                    .end-point {
+                        background-color: rgba(246, 92, 144, 0.07);
+                    }
+                    .location-text {
+                        font: normal normal normal 12px/18px Open Sans;
+                    }
+
+                    &.first-col {
+                        padding-left: 12px;
+                        .border-class {
+                            padding-left: 12px;
+                            .border-left {
+                                border-left: 1px dashed #a7a7a7;
+                                top: 0;
+                                bottom: 0;
+                                position: absolute;
+                                left: -1px;
+                            }
+                        }
+                        .bullet {
+                            background-color: #ea352b;
+                            height: 12px;
+                            width: 12px;
+                            border-radius: 50%;
+                            left: -6px;
+                            top: 50%;
+                        }
+                    }
+                }
+                tr:nth-child(2) td {
+                    .bullet {
+                        background-color: #6393f2;
+                    }
+                    .border-left {
+                        top: 50% !important;
+                    }
+                }
+                tr:last-child td {
+                    .border-left {
+                        bottom: 50% !important;
+                    }
+                }
+            }
+        }
+
+        .map-container {
+            .play-toggle-icon {
+                height: 36px;
+                width: 36px;
+                font-size: 36px;
+                transform: rotate(0deg);
+                transition: transform 1s linear;
+
+                &.clicked {
+                    transform: rotate(180deg);
+                    transition: transform 1s linear;
+                }
+            }
+            .map-wrapper {
+                min-height: calc(100vh - 144px);
+            }
+        }
+    }
+    .action-buttons {
+        top: 24px;
+        right: 24px;
+        .all-riders-btn {
+            margin-left: 20px;
+        }
+    }
+}

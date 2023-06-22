@@ -1,0 +1,41 @@
+.all-riders-container {
+    z-index: 3;
+    width: 30%;
+    box-shadow: -55px -55px 55px #06038d29;
+
+    .close-icon {
+        padding: 4px;
+    }
+
+    .label {
+        margin-top: 28px;
+        margin-bottom: 16px;
+        padding: 36px 24px;
+        font: normal normal bold 20px/27px Open Sans;
+    }
+
+    .table-container {
+        overflow-y: auto;
+        overflow-x: hidden;
+        height: calc(100vh - 144px);
+        table {
+            border-collapse: collapse;
+        }
+        th {
+            text-align: left;
+            padding: 8px 12px;
+            position: sticky;
+            top: 0;
+        }
+        td {
+            padding: 8px 12px;
+            font-size: 14px;
+            div {
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                max-width: 99%;
+            }
+        }
+    }
+}

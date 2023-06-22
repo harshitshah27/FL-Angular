@@ -1,0 +1,15 @@
+.verify-form-wrapper {
+    .header {
+        font: normal normal bold 30px Open Sans;
+    }
+    mat-form-field {
+        width: 48px;
+        height: 48px;
+        text-align: center;
+    }
+
+    .resend-code {
+        padding-top: 20px;
+        font: normal normal normal 14px/20px Open Sans;
+    }
+}

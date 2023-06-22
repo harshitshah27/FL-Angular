@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateRideComponent } from './create-ride/create-ride.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { MapViewComponent } from './map-view/map-view.component';
 
 const routes: Routes = [
   {
-    path: 'dashboard',
+    path: '',
     component: DashboardComponent
   },
   {
@@ -13,10 +14,9 @@ const routes: Routes = [
     component: CreateRideComponent
   },
   {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full'
-  }
+    path: 'map',
+    component: MapViewComponent
+  },
 ];
 
 @NgModule({

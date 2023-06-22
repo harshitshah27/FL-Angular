@@ -1,0 +1,58 @@
+.security-container {
+    .header {
+        font: normal normal 600 20px/27px Open Sans;
+    }
+    .description {
+        font-size: 16px;
+    }
+    .change-password-container {
+        .block {
+            border: 1px solid #b9b9b9;
+        }
+        .form-container {
+            width: 50%;
+            margin-top: 5%;
+            padding: 20px 50px;
+
+            .mat-form-field {
+                display: block;
+                font-size: 14px;
+            }
+
+            .font-semibold {
+                font-size: 14px;
+            }
+
+            .description {
+                font: normal normal normal 12px/18px Open Sans;
+            }
+
+            .visibility-color {
+                color: #b9b9b9 !important;
+            }
+            .primary-btn,
+            .secondary-btn {
+                font-size: 14px;
+            }
+        }
+        .instructions-container {
+            width: 48%;
+            margin-top: 13%;
+            .header {
+                padding: 36px;
+                font: normal normal normal 15px/20px Open Sans;
+            }
+            .password-criteria {
+                padding: 40px 50px;
+                font: normal normal normal 14px/20px Open Sans;
+
+                .password-criteria-checkbox {
+                    color: #d2d1d1;
+                }
+                .password-criteria-fulfilled {
+                    color: #30d590;
+                }
+            }
+        }
+    }
+}

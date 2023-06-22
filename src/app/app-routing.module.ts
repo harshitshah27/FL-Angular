@@ -3,22 +3,23 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './modules/home/home.component';
 import { LandingComponent } from './modules/landing/landing.component';
+import { SettingsComponent } from './modules/settings/settings.component';
 const routes: Routes = [
-  // {
-  //   path: 'profile',
-  //   component: ProfileComponent,
-  //   canActivate:[ MsalGuard  ]
-  // },
   {
     path: '',
     component: LandingComponent,
     loadChildren: () => import('./modules/landing/landing.module').then(m => m.LandingModule)
   },
   {
-    path: 'user',
+    path: 'dashboard',
     component: HomeComponent,
     loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
-  }
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent,
+    loadChildren: () => import('./modules/settings/settings.module').then(m => m.SettingsModule)
+  },
 ];
 
 // @NgModule({
@@ -26,13 +27,13 @@ const routes: Routes = [
 //     {
 //       initialNavigation: 'enabled'
 //     }),
-    
+
 
 //   ],
-  
+
 //   bootstrap: [AppComponent,],
 //   exports: [RouterModule],
- 
+
 // })
 
 @NgModule({

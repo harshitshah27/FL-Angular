@@ -1,78 +1,137 @@
 <div class="dashboard-wrapper">
-    <div class="title">RIDES</div>
-    <div class="filter-wrapper">
-        <div class="left-filters">
-            <mat-form-field>
-                <mat-icon matPrefix>search</mat-icon>
-                <input matInput type="search" placeholder="Search by Ride Name" [(ngModel)]="searchTerm" />
-            </mat-form-field>
-            <mat-form-field class="status-dropdown">
-                <mat-label>Status</mat-label>
-                <mat-select [formControl]="status">
-                <mat-option *ngFor="let option of statusOptionList" [value]="option.id">{{option.value}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <button mat-mini-fab color="primary" class="reset-icon">
-                <mat-icon>cached</mat-icon>
+    <div *ngIf="isCreatingRideInProgress"
+        class="ride-progress-container bg-[#fff9c7] flex justify-between">
+        <div class="ride-progress">
+            <div class="bold-text">Yay!</div>
+            <div class="info-text">
+                Your ride is getting configured now. Once completed, you'll be able to see
+                your ride on the top of the Rides table.
+            </div>
+            <div class="progress relative mt-6">
+                <mat-progress-bar class="ride-progress-bar" mode="determinate"
+                    value="{{rideProgressValue}}"></mat-progress-bar>
+                <mat-icon class="text-[#06038D] absolute progress-indicator"
+                    [style.left.%]="rideProgressValue">arrow_drop_up</mat-icon>
+                <span class="text-[#0A0A0A] absolute font-bold progress-percentage"
+                    [style.left.%]="rideProgressValue">
+                    {{rideProgressValue}}%
+                </span>
+            </div>
+        </div>
+        <img src="../../../../assets/ride-in-progress.png">
+    </div>
+    <div class="dashboard-container bg-[#fff]">
+        <div class="title">RIDES</div>
+        <div class="filter-wrapper flex justify-between">
+            <div class="left-filters flex">
+                <mat-form-field appearance="outline">
+                    <mat-icon matPrefix class="text-[#545454]">search</mat-icon>
+                    <input matInput type="search" placeholder="Search by Ride Name"
+                        (keyup)="applyFilter()" [(ngModel)]="searchTerm" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="status-dropdown">
+                    <mat-select [formControl]="status" placeholder="Status"
+                        (ngModelChange)="applyFilter()">
+                        <mat-option *ngFor="let option of statusOptionList"
+                            [value]="option.id">{{option.value}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button mat-mini-fab
+                    class="reset-icon !bg-[#06038d] !text-[#fff] !shadow-none"
+                    (click)="resetFilters()"
+                    [disabled]="(searchTerm.length==0) && (status.value == '')">
+                    <mat-icon>cached</mat-icon>
+                </button>
+            </div>
+            <button mat-flat-button
+                class="primary-btn create-ride-btn !flex items-center justify-center !bg-[#06038d] !text-[#fff]"
+                [disabled]="isCreatingRideInProgress"
+                (click)="router.navigate(['/dashboard/create-ride'])">
+                <mat-icon>add</mat-icon>
+                <span>Create Ride</span>
             </button>
         </div>
-        <button mat-flat-button color="primary" class="create-ride-btn">
-            <mat-icon>add</mat-icon>
-            Create Ride
-        </button>
+
+        <table #table mat-table [dataSource]="dataSource" class="w-full" matSort>
+
+            <!-- Arrow Column -->
+            <ng-container matColumnDef="arrow">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-icon class="text-[#0A0A0A]">chevron_right</mat-icon>
+                </td>
+            </ng-container>
+
+            <!-- Ride Name Column -->
+            <ng-container matColumnDef="rideName">
+                <th mat-header-cell *matHeaderCellDef>Ride Name</th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <!-- Number of Buses Column -->
+            <ng-container matColumnDef="noOfBuses">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Number of Buses</th>
+                <td mat-cell *matCellDef="let element"> {{element.noOfBuses}} </td>
+            </ng-container>
+
+            <!-- Number of Riders Column -->
+            <ng-container matColumnDef="noOfRiders">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Number of Riders
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.noOfRiders}} </td>
+            </ng-container>
+
+            <!-- Status column -->
+            <ng-container matColumnDef="status-dashboard">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                <td mat-cell *matCellDef=" let element" class="text-center">
+                    <span *ngIf="element.status == 1"
+                        class="w-5/6 rounded-full py-1 px-4 text-[#F29900] text-center state-{{element.status}}">
+                        {{RideStatus.PROCESSING}}
+                    </span>
+                    <span *ngIf="element.status == 2"
+                        class="w-5/6 rounded-full py-1 px-4 text-[#0FB86F] text-center state-{{element.status}}">
+                        {{RideStatus.COMPLETED}}
+                    </span>
+                    <span *ngIf="element.status == 3"
+                        class="w-5/6 rounded-full py-1 px-4 text-[#F65C90] text-center state-{{element.status}}">
+                        {{RideStatus.ARCHIEVED}}
+                    </span>
+                    <span *ngIf="element.status == 4"
+                        class="w-5/6 rounded-full py-1 px-4 text-[#4945FC] text-center state-{{element.status}}">
+                        {{RideStatus.DRAFTED}}
+                    </span>
+                </td>
+            </ng-container>
+
+            <!-- Action column -->
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-button [matMenuTriggerFor]="actionMenu" class="!px-0">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu class="mt-1 action-menu" #actionMenu="matMenu"
+                        xPosition="before">
+                        <button mat-menu-item (click)="openDialog(element, 1)">
+                            <mat-icon>content_copy</mat-icon>
+                        </button>
+                        <button mat-menu-item (click)="openDialog(element, 2)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <button mat-menu-item (click)="openDialog(element, 3)">
+                            <mat-icon>archive</mat-icon>
+                        </button>
+                    </mat-menu>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                (click)="openRideMap(row)"></tr>
+        </table>
+        <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"
+            showFirstLastButtons aria-label="Select page">
+        </mat-paginator>
     </div>
-
-    <table #table mat-table [dataSource]="dataSource" class="w-full" matSort>
-
-        <!-- Ride Name Column -->
-        <ng-container matColumnDef="rideName">
-            <th mat-header-cell *matHeaderCellDef> Ride Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-
-        <!-- Number of Buses Column -->
-        <ng-container matColumnDef="noOfBuses">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Number of Buses </th>
-            <td mat-cell *matCellDef="let element"> {{element.noOfBuses}} </td>
-        </ng-container>
-
-        <!-- Number of Riders Column -->
-        <ng-container matColumnDef="noOfRiders">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Number of Riders </th>
-            <td mat-cell *matCellDef="let element"> {{element.noOfRiders}} </td>
-        </ng-container>
-
-        <!-- Details Column -->
-        <ng-container matColumnDef="details">
-            <th mat-header-cell *matHeaderCellDef> Details </th>
-            <td mat-cell *matCellDef="let element"> {{element.details}} </td>
-        </ng-container>
-
-        <!-- Status column -->
-        <ng-container  matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Status</th>
-            <td mat-cell *matCellDef="let element">
-                <mat-basic-chip [selectable]="false">Completed</mat-basic-chip>
-            </td>
-        </ng-container>
-
-        <!-- Action column -->
-        <ng-container  matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef> Action </th>
-            <td mat-cell *matCellDef="let element">
-                <button mat-button (click)="openDialog()">
-                    <mat-icon>more_vert</mat-icon>
-                </button>
-            </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-    <mat-paginator [length]="20"
-              [pageSize]="10"
-              [pageSizeOptions]="[5, 10, 25, 100]"
-              [showFirstLastButtons] = true
-              aria-label="Select page">
-</mat-paginator>
 </div>

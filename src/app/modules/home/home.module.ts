@@ -16,13 +16,30 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSortModule } from '@angular/material/sort';
-
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MatDividerModule } from '@angular/material/divider';
+import { FileDragNDropDirective } from './create-ride/file-drag-n-drop.directive';
+import { MapViewComponent } from './map-view/map-view.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { AllRidersComponent } from './map-view/all-riders/all-riders.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [
     HomeComponent,
     DashboardComponent,
-    CreateRideComponent
+    CreateRideComponent,
+    FileDragNDropDirective,
+    MapViewComponent,
+    AllRidersComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +54,19 @@ import { MatSortModule } from '@angular/material/sort';
     MatProgressBarModule,
     MatDialogModule,
     MatChipsModule,
-    MatSortModule
+    MatSortModule,
+    MatAutocompleteModule,
+    MatSlideToggleModule,
+    MatRadioModule,
+    MatCardModule,
+    MatGridListModule,
+    DragDropModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatDividerModule,
+    MatTabsModule,
+    MatCheckboxModule,
+    GoogleMapsModule
   ]
 })
 export class HomeModule { }

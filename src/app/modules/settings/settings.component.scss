@@ -1,0 +1,50 @@
+.content-container {
+    padding: 32px 40px;
+    margin-left: 52px;
+
+    .header {
+        font-size: 25px;
+        font-weight: bold;
+        font: normal normal bold 25px/34px Open Sans;
+        margin-bottom: 32px;
+    }
+
+    .settings-wrapper {
+        display: flex;
+
+        .left-menu {
+            width: 25%;
+            padding: 24px 60px;
+            .options-menu {
+                border-right: 2px solid lightgrey;
+                margin-top: 45px;
+                div {
+                    margin-top: 5px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 40px;
+                    padding-right: 15px;
+                    &.selected {
+                        margin-right: -2px;
+                        border-right: 3px solid #06038d;
+                    }
+                }
+                button {
+                    box-sizing: content-box;
+                    &.selected {
+                        background: #eeeeff 0% 0% no-repeat padding-box;
+                        border-radius: 28px;
+                        opacity: 1;
+                        color: #06038d;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+        .right-content {
+            width: 75%;
+            padding: 48px;
+        }
+    }
+}

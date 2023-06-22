@@ -1,19 +1,509 @@
-<div class="create-ride-wrapper">
-    <div class="header-section">
-        <div class="title">Create Ride</div>
-        <div class="action-buttons">
-            <button mat-button class="btn save-draft-btn">
+<div class="create-ride-wrapper bg-[#fff]">
+    <div class="header-section sticky flex items-center justify-between">
+        <div *ngIf="!isPreview" class="title">Create Ride</div>
+        <div *ngIf="isPreview" class="title">Preview your entries</div>
+        <div class="action-buttons flex">
+            <button mat-button class="primary-btn" (click)="saveAsDraftAction()">
                 Save as draft
             </button>
-            <button mat-button class="btn cancel-btn">
+            <button *ngIf="!isPreview" mat-button class="secondary-btn"
+                (click)="router.navigate(['/dashboard'])">
                 Cancel
             </button>
-            <button mat-button class="btn confirm-btn">
+            <button *ngIf="!isPreview" mat-button class="primary-btn"
+                (click)="showPreview()">
                 Confirm
+            </button>
+            <button *ngIf="isPreview" mat-button class="secondary-btn"
+                (click)="isPreview = !isPreview">
+                Back
+            </button>
+            <button *ngIf="isPreview" mat-button class="primary-btn"
+                (click)="createNewRide()">
+                Create your Ride
             </button>
         </div>
     </div>
-    <div class="form-container">
-        
+    <div *ngIf="!isPreview" class="form-container overflow-y-auto bg-[#DADDE1]">
+
+        <!-- Ride Name block -->
+        <div class="bg-[#fff] name block">
+            <div class="title">Name</div>
+            <div class="description">Name your ride</div>
+            <mat-form-field appearance="outline" class="w-full">
+                <input matInput #rideName type="text" [(ngModel)]="dataObject.name"
+                    placeholder="For example: RideMumbai1_Pune1" maxlength="64" />
+                <mat-hint align="end">{{rideName.value?.length || 0}}/64</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <!-- Pick up Details block -->
+        <div class="bg-[#fff] pick-up-details block">
+            <div class="title">
+                Pick up Details
+                <mat-label class="mr-2 ml-4 round-trip">Round Trip:</mat-label>
+                <mat-slide-toggle
+                    (change)="togglePickupRoundTripDetails($event)"></mat-slide-toggle>
+            </div>
+            <div class="description">
+                You can provide Start Point or Destination
+                or both as per your requirement.
+            </div>
+            <div class="input-options flex">
+                <div class="field-wrapper location-field">
+                    <div class="label">Central Start Point</div>
+                    <mat-form-field appearance="outline">
+                        <input type="text" aria-label="Start point" matInput
+                            [formControl]="pickupControl" [matAutocomplete]="auto"
+                            placeholder="Start entering your pick up point"
+                            [(ngModel)]="dataObject.startPoint">
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of options" [value]="option">
+                                {{option}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+                <div class="field-wrapper location-field">
+                    <div class="label">Destination</div>
+                    <mat-form-field appearance="outline">
+                        <input type="text" aria-label="Destination" matInput
+                            [formControl]="destControl" [matAutocomplete]="auto"
+                            placeholder="Start entering your destination"
+                            [(ngModel)]="dataObject.destinationPoint">
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of options" [value]="option">
+                                {{option}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+                <div class="field-wrapper date-field">
+                    <div class="label">Schedule</div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>DD/MM/YYYY</mat-label>
+                        <input matInput [matDatepicker]="picker"
+                            [(ngModel)]="dataObject.selectedDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="field-wrapper time-field">
+                    <div class="label"></div>
+                    <mat-form-field appearance="outline">
+                        <input matInput type="time" placeholder="Select time"
+                            [(ngModel)]="dataObject.selectedTime">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div *ngIf="pickupRoundtripToggleValue" class="round-trip-input-options flex">
+                <div class="field-wrapper location-field">
+                    <div class="label">Central Start Point</div>
+                    <mat-form-field appearance="outline">
+                        <input type="text" aria-label="Start point" matInput
+                            [formControl]="roundTripPickupControl"
+                            [matAutocomplete]="auto"
+                            [(ngModel)]="dataObject.roundTripStartPoint"
+                            placeholder="Start entering your pick up point">
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of options" [value]="option">
+                                {{option}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+                <div class="field-wrapper location-field">
+                    <div class="label">Destination</div>
+                    <mat-form-field appearance="outline">
+                        <input type="text" aria-label="Destination" matInput
+                            [formControl]="roundTripDestControl" [matAutocomplete]="auto"
+                            [(ngModel)]="dataObject.roundTripDestinationPoint"
+                            placeholder="Start entering your destination">
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of options" [value]="option">
+                                {{option}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+                <div class="field-wrapper date-field">
+                    <div class="label">Schedule</div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>DD/MM/YYYY</mat-label>
+                        <input matInput [matDatepicker]="picker"
+                            [(ngModel)]="dataObject.roundTripSelectedDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="field-wrapper time-field">
+                    <div class="label"></div>
+                    <mat-form-field appearance="outline">
+                        <input matInput type="time" placeholder="Select time"
+                            [(ngModel)]="dataObject.roundTripSelectedTime">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Riders block -->
+        <div class="bg-[#fff] add-riders block">
+            <div class="title">Add Riders</div>
+            <div class="description">
+                Please select your option for adding your Riders. In
+                one on one approach, you can manually fill out the form and in upload your
+                file approach, you'll see the editable form generated after uploading
+            </div>
+            <div class="add-selection">
+                <mat-radio-group [formControl]="radioSelection"
+                    (change)="onRadioChange()">
+                    <div class="radio-options flex">
+                        <div class="option mr-4"
+                            [ngClass]="{'selected': radioSelection.value == 1}">
+                            <mat-radio-button value="1" [color]="radioColor">One by one
+                            </mat-radio-button>
+                            <div class="info-text">Choose this option for entering your
+                                rider's description one by one manually</div>
+                        </div>
+                        <div class="option"
+                            [ngClass]="{'selected': radioSelection.value == 2}">
+                            <mat-radio-button value="2" [color]="radioColor">Upload your
+                                file</mat-radio-button>
+                            <div class="info-text">Choose this otpion for uploading an
+                                excel file with all the
+                                information needed for your riders. Data can be
+                                edited once upload</div>
+                        </div>
+                    </div>
+                </mat-radio-group>
+            </div>
+            <ng-container *ngIf="radioSelection.value == 1 || showExcelTable">
+                <div class="table-container">
+                    <div class="table-options flex items-center justify-between">
+                        <div class="label"
+                            *ngIf="radioSelection.value == 2 && showExcelTable">
+                            Values generated from upload.
+                            <button mat-button
+                                class="btn btn-sm bg-gray-300 text-[#6C75D6] edit-btn"
+                                (click)="editExcelTable = true" *ngIf="!editExcelTable">
+                                <mat-icon>edit_note</mat-icon>
+                                Edit
+                            </button>
+                        </div>
+                        <div class="label" *ngIf="radioSelection.value == 1">
+                            Start entering your values for the Riders
+                        </div>
+                        <div class="right-options">
+                            <button mat-button class="secondary-btn"
+                                *ngIf="radioSelection.value == 2 && showExcelTable"
+                                (click)="clearAndReupload()">
+                                Clear and reupload
+                            </button>
+                            <button mat-button class="secondary-btn"
+                                *ngIf="radioSelection.value == 1">
+                                Clear
+                            </button>
+                        </div>
+                    </div>
+                    <table #table mat-table [dataSource]="dataSource" class="w-full"
+                        class="create-ride-table mt-3">
+                        <!-- First Name Column -->
+                        <ng-container matColumnDef="firstname">
+                            <th mat-header-cell *matHeaderCellDef
+                                class="!p-0 bg-[#f4f4fb] text-[#000E2A] !text-center">
+                                First Name</th>
+                            <td mat-cell *matCellDef="let element"
+                                class="!p-0 !text-center">
+                                <input matInput type="text" placeholder="Enter First Name"
+                                    [(ngModel)]="element.firstname"
+                                    [readonly]="radioSelection.value == 2 && !editExcelTable" />
+                            </td>
+                        </ng-container>
+
+                        <!-- Last Name Column -->
+                        <ng-container matColumnDef="lastname">
+                            <th mat-header-cell *matHeaderCellDef
+                                class="bg-[#f4f4fb] text-[#000E2A] !text-center">Last Name
+                            </th>
+                            <td mat-cell *matCellDef="let element" class="!text-center">
+                                <input matInput type="text" placeholder="Enter Last Name"
+                                    [(ngModel)]="element.lastname"
+                                    [readonly]="radioSelection.value == 2 && !editExcelTable" />
+                            </td>
+                        </ng-container>
+
+                        <!-- Street Address Column -->
+                        <ng-container matColumnDef="streetaddress">
+                            <th mat-header-cell *matHeaderCellDef
+                                class="bg-[#f4f4fb] text-[#000E2A] !text-center">Street
+                                Address
+                            </th>
+                            <td mat-cell *matCellDef="let element" class="!text-center">
+                                <input matInput type="text"
+                                    placeholder="Enter Street Address"
+                                    [(ngModel)]="element.streetaddress"
+                                    [readonly]="radioSelection.value == 2 && !editExcelTable" />
+                            </td>
+                        </ng-container>
+
+                        <!-- City Column -->
+                        <ng-container matColumnDef="city">
+                            <th mat-header-cell *matHeaderCellDef
+                                class="bg-[#f4f4fb] text-[#000E2A] !text-center">City</th>
+                            <td mat-cell *matCellDef="let element" class="!text-center">
+                                <input matInput type="text" placeholder="Enter City"
+                                    [(ngModel)]="element.city"
+                                    [readonly]="radioSelection.value == 2 && !editExcelTable" />
+                            </td>
+                        </ng-container>
+
+                        <!-- State column -->
+                        <ng-container matColumnDef="state">
+                            <th mat-header-cell *matHeaderCellDef
+                                class="bg-[#f4f4fb] text-[#000E2A] !text-center">State
+                            </th>
+                            <td mat-cell *matCellDef="let element" class="!text-center">
+                                <input matInput type="text" placeholder="Enter State"
+                                    [(ngModel)]="element.state"
+                                    [readonly]="radioSelection.value == 2 && !editExcelTable" />
+                            </td>
+                        </ng-container>
+
+                        <!-- Zip column -->
+                        <ng-container matColumnDef="zip">
+                            <th mat-header-cell *matHeaderCellDef
+                                class="bg-[#f4f4fb] text-[#000E2A] !text-center">Zip</th>
+                            <td mat-cell *matCellDef="let element"
+                                class="!p-0 !text-center">
+                                <input matInput type="text" placeholder="Enter Zip"
+                                    [(ngModel)]="element.zip"
+                                    [readonly]="radioSelection.value == 2 && !editExcelTable" />
+                            </td>
+                        </ng-container>
+
+                        <!-- Latitude column -->
+                        <ng-container matColumnDef="latitude">
+                            <th mat-header-cell *matHeaderCellDef
+                                class="bg-[#f4f4fb] text-[#000E2A] !text-center">Latitude
+                                <span
+                                    class="optional-chip rounded-full inline bg-[#f2f8fe]">Optional</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element"
+                                class="!p-0 !text-center">
+                                <input matInput type="text" placeholder="Eg : 47.23420"
+                                    [(ngModel)]="element.latitude"
+                                    [readonly]="radioSelection.value == 2 && !editExcelTable" />
+                            </td>
+                        </ng-container>
+
+                        <!-- Longitude column -->
+                        <ng-container matColumnDef="longitude">
+                            <th mat-header-cell *matHeaderCellDef
+                                class="bg-[#f4f4fb] text-[#000E2A] !p-0 !text-center">
+                                Longitude <span
+                                    class="optional-chip rounded-full inline bg-[#f2f8fe]">Optional</span>
+                            </th>
+                            <td mat-cell *matCellDef="let element"
+                                class="!p-0 !text-center">
+                                <input matInput type="text" placeholder="Eg : 47.23420"
+                                    [(ngModel)]="element.longitude"
+                                    [readonly]="radioSelection.value == 2 && !editExcelTable">
+                            </td>
+                        </ng-container>
+
+                        <!-- Action column -->
+                        <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef
+                                class="bg-[#f4f4fb] !text-center"></th>
+                            <td mat-cell *matCellDef="let element; let i = index"
+                                class="!p-0 !text-center">
+                                <button mat-button class="btn"
+                                    (click)="removeExcelUploadedRow(i)"
+                                    [disabled]="!editExcelTable">
+                                    <mat-icon>cancel</mat-icon>
+                                </button>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"
+                        showFirstLastButtons aria-label="Select page">
+                    </mat-paginator>
+                </div>
+                <button mat-button class="btn another-rider-btn bg-[#EFEFF0]"
+                    (click)="addNewRider()">
+                    Add another Rider
+                </button>
+            </ng-container>
+            <ng-container *ngIf="radioSelection.value == 2 && !showExcelTable">
+                <div class="upload-options flex items-center justify-between">
+                    <div class="label">
+                        Upload
+                        <div class="description">
+                            Upload your riders. Supported file formats are xls, xlsx and
+                            csv. You can always download the sample file.
+                        </div>
+                    </div>
+                    <div class="right-options flex">
+                        <button matTooltip="Info about the action">
+                            <mat-icon class="text-[#AFAFAF]">info</mat-icon>
+                        </button>
+                        <a href="./../../../../assets/sample-file/Upload Riders Details.xlsx"
+                            download="Upload Rider Details">
+                            <button mat-button class=" btn sample-file-btn bg-[#EFEFF0]">
+                                <mat-icon>save_alt</mat-icon>
+                                Sample file
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                <div class="drag-drop-container" fileDragDrop
+                    (filesChangeEmiter)="onFileChange($event)">
+                    <div class="flex items-center justify-center w-full">
+                        <label for="dropzone-file"
+                            class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                            <div
+                                class="flex flex-col items-center justify-center pt-5 pb-6">
+                                <svg aria-hidden="true"
+                                    class="w-10 h-10 mb-3 text-gray-400" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
+                                    </path>
+                                </svg>
+                                <p class="mb-3 text-sm text-gray-500 dark:text-gray-400">
+                                    <span class="font-semibold">Drag and Drop files
+                                        here</span>
+                                </p>
+                                <p class="mb-3">or</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">
+                                    <input type="file" name="file" class="hidden"
+                                        id="dropzone-file" #fileInput
+                                        (change)="onFileInputChange($event)"
+                                        accept=".xlsx, .csv, .xls">
+                                    <label for="file"><span class="browse-btn bg-gray-300"
+                                            (click)="selectFile()">Browse</span></label>
+                                </p>
+                                <p *ngIf="uploadedFile.name" class="!mt-5">
+                                    <label>
+                                        <span
+                                            class="uploaded-file-btn bg-gray-300">{{uploadedFile.name}}</span>
+                                    </label>
+                                </p>
+                                <p *ngIf="!isUploadedFileValid"
+                                    class="!mt-5 text-red-600">
+                                    <i>
+                                        Please upload a valid file with valid headers
+                                    </i>
+                                </p>
+                            </div>
+
+                        </label>
+                    </div>
+                </div>
+                <div class="upload-btn text-center"><button mat-button
+                        class="btn bg-[#06038D] text-[#fff]"
+                        [disabled]="!isUploadedFileValid"
+                        (click)="showExcelTable = true">Upload</button></div>
+            </ng-container>
+        </div>
+
+        <!-- Bus Details block -->
+        <div class="bg-[#fff] bus-details block">
+            <div class="title">Bus Details</div>
+            <div class="description">Please enter the number of buses you want
+                in this ride and the capacity. Capacity
+                will be applicable for all the buses in this ride</div>
+            <div class="input-options">
+                <mat-form-field appearance="outline">
+                    <input matInput type="number" min="0"
+                        placeholder="Enter the number of buses"
+                        [(ngModel)]="dataObject.busCount" />
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <input matInput type="number" min="0" placeholder="Enter the capacity"
+                        [(ngModel)]="dataObject.busCapacity" />
+                </mat-form-field>
+            </div>
+            <mat-slide-toggle (change)="onToggleChange($event)">
+                Advanced Settings
+            </mat-slide-toggle>
+            <div class="optional-chip rounded-full inline bg-[#f2f8fe]">Optional</div>
+            <div class="input-options" *ngIf="dataObject.busAdvanceDetails">
+                <mat-form-field appearance="outline">
+                    <input matInput type="number" min="0" placeholder="Maximum stops"
+                        [(ngModel)]="dataObject.maxStops" />
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <input matInput type="text" placeholder="Optimize"
+                        [(ngModel)]="dataObject.optimiseText" />
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="isPreview" class="preview-details">
+        <div class="label">Ride Name and Pick up details</div>
+        <table class="w-full mt-2">
+            <colgroup>
+                <col style="width: 33.3333%" />
+                <col style="width: 33.3333%" />
+                <col style="width: 33.3333%" />
+            </colgroup>
+            <tr>
+                <th>Ride Name</th>
+                <th>Starting Point</th>
+                <th>Destination</th>
+            </tr>
+            <tr>
+                <td>{{dataObject.name}}</td>
+                <td>{{dataObject.startPoint}}</td>
+                <td>{{dataObject.destinationPoint}}</td>
+            </tr>
+        </table>
+        <mat-divider class="!mt-2 !mb-6"></mat-divider>
+        <div class="label">Riders Details and Bus Details</div>
+        <table class="w-full mt-2">
+            <colgroup>
+                <col style="width: 33.3333%" />
+                <col style="width: 33.3333%" />
+                <col style="width: 33.3333%" />
+            </colgroup>
+            <tr>
+                <th>Riders Count</th>
+                <th>Number of Buses</th>
+                <th>Minimum Capacity</th>
+            </tr>
+            <tr>
+                <td>{{dataSource.data.length}}</td>
+                <td>{{dataObject.busCount}}</td>
+                <td>{{dataObject.busCapacity}}</td>
+            </tr>
+        </table>
+        <mat-divider class="!mt-2 !mb-6"></mat-divider>
+        <div class="label">Advanced Settings</div>
+        <table class="w-full mt-2">
+            <colgroup>
+                <col style="width: 33.3333%" />
+                <col style="width: 33.3333%" />
+                <col style="width: 33.3333%" />
+            </colgroup>
+            <tr>
+                <th>Maximum Stops</th>
+                <th>Optimize</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>{{dataObject.maxStops}}</td>
+                <td>{{dataObject.optimiseText}}</td>
+                <td></td>
+            </tr>
+        </table>
+        <mat-divider class="!mt-2 !mb-6"></mat-divider>
     </div>
 </div>

@@ -1,21 +1,18 @@
 header {
-  border-bottom: 2px solid #eee;
-  z-index: 1;
+    border-bottom: 1px solid #e7e7e9;
+    z-index: 2;
+    height: 80px;
 
-  .menu-item-title {
-    width: 8.5rem;
-    font-size: 14px;
-    line-height: 20px;
-    color: #787878;
-  }
+    .baderek-logo {
+        height: 80px;
+    }
 }
 
-
 @media only screen and (width < 700px) {
-  .container {
-    justify-content: flex-end;
-  }
-  .left-content {
-    display: none;
-  }
+    .container {
+        justify-content: flex-end;
+    }
+    .left-content {
+        display: none;
+    }
 }

@@ -1,40 +1,125 @@
 .dashboard-wrapper {
-
-    .title {
-        font-size: 20px;
-        padding: 32px;
-    }
-
-    .filter-wrapper {
-        padding: 0 32px;
-        display: flex;
-        justify-content: space-between;
+    .ride-progress-container {
+        padding: 24px 48px;
         margin-bottom: 32px;
+        border-radius: 32px;
 
-        .left-filters {
-            .status-dropdown {
-                margin: 0 15px;
+        .ride-progress {
+            .bold-text {
+                font: normal normal 600 20px/27px Open Sans;
             }
-    
-            .reset-icon {
-                border-radius: 8px;
-                box-shadow: none;
+            .info-text {
+                font: normal normal 600 12px/16px Open Sans;
+            }
+            .ride-progress-bar {
+                height: 8px;
+                border-radius: 4px;
+            }
+            .progress-indicator {
+                margin: -8px;
+                margin-left: -12px;
+            }
+            .progress-percentage {
+                font-size: 10px;
+                margin-top: 5px;
+                margin-left: -8px;
             }
         }
 
-        .create-ride-btn {
-            
+        img {
+            height: 100px;
+            width: 100px;
         }
     }
-
-    .mat-table {
-        .mat-header-cell {
-            font-weight: bold;
-            font-size: 13px;
+    .dashboard-container {
+        .title {
+            padding: 32px;
+            font: normal normal 600 20px/27px Open Sans;
+            letter-spacing: -1px;
         }
-        .mat-basic-chip {
-            pointer-events: none;
+
+        .filter-wrapper {
+            padding: 0 32px;
+            margin-bottom: 32px;
+
+            .left-filters {
+                width: 80%;
+                .mat-form-field {
+                    width: 40%;
+                    max-width: 320px;
+                }
+
+                .status-dropdown {
+                    margin: 0 15px;
+                    max-width: 200px;
+                }
+
+                .reset-icon {
+                    border-radius: 8px;
+                    height: 48px;
+                    width: 48px;
+                    font-size: 24px;
+                    &.mat-button-disabled {
+                        opacity: 0.4;
+                    }
+                }
+            }
+
+            .create-ride-btn {
+                max-width: 154px;
+                height: 48px;
+                margin-top: 4px;
+            }
+        }
+
+        .mat-table {
+            .mat-row {
+                &:hover {
+                    background-color: #eeeefe;
+                    cursor: pointer;
+                }
+            }
+
+            .mat-header-cell {
+                color: #000e2a;
+                font: normal normal 600 15px/24px Open Sans;
+            }
+            .mat-cell {
+                color: #0a0a0a;
+                font: normal normal normal 12px/20px Open Sans;
+            }
+            .mat-column-status-dashboard {
+                .state-1 {
+                    background-color: rgba(242, 153, 0, 0.07);
+                    max-width: 130px;
+                }
+                .state-2 {
+                    max-width: 130px;
+                    background-color: rgba(29, 225, 105, 0.07);
+                }
+                .state-3 {
+                    background-color: rgba(246, 92, 144, 0.07);
+                    max-width: 130px;
+                }
+                .state-4 {
+                    background-color: rgba(73, 69, 252, 0.07);
+                    max-width: 130px;
+                }
+            }
+            .mat-column-action {
+                min-width: 64px !important;
+                max-width: 64px !important;
+                text-align: center;
+            }
         }
     }
+}
 
+@media only screen and (width < 750px) {
+    .create-ride-btn {
+        padding-left: 0;
+        padding-right: 0;
+        white-space: normal;
+        line-height: 28px;
+    }
 }

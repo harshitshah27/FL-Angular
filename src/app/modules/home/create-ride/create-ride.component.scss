@@ -1,29 +1,207 @@
 .create-ride-wrapper {
-
     .header-section {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         padding: 32px;
         .title {
-            font-weight: bold;
+            font: normal normal bold 30px/41px Open Sans;
         }
+
         .action-buttons {
             .mat-button {
-                margin: 0 8px;
-                background-color: #06038D;
-                border-radius: 5px;
-                color: #fff;
-                font-weight: normal;
-                height: 48px;
+                font-size: 14px;
+                min-width: auto;
             }
-            .cancel-btn {
-                background-color: #EFEFF0;
-                color: #000;
+            .secondary-btn {
+                margin: 0 8px;
             }
         }
     }
+
     .form-container {
-        background-color: #DADDE1;
+        padding: 32px 40px;
+        height: 600px;
+        .block {
+            margin-bottom: 24px;
+            padding: 40px 60px;
+
+            .title {
+                font: normal normal normal 20px/26px Open Sans;
+                color: #111111;
+            }
+
+            .description {
+                font: normal normal normal 12px/18px Open Sans;
+                color: #afafaf;
+                margin: 8px 0 4px;
+            }
+
+            .mat-form-field {
+                font-size: 14px;
+            }
+        }
+
+        .pick-up-details {
+            .round-trip {
+                font: normal normal normal 16px/22px Open Sans;
+            }
+            .round-trip-input-options,
+            .input-options {
+                margin-top: 8px;
+                .field-wrapper {
+                    margin-right: 16px;
+                    .mat-form-field {
+                        width: 100%;
+                    }
+                    .label {
+                        font-size: 14px;
+                    }
+                    &.location-field {
+                        width: 35%;
+                        max-width: 500px;
+                    }
+                    &.date-field,
+                    &.time-field {
+                        width: 15%;
+                        max-width: 200px;
+                    }
+                    &.time-field .mat-form-field {
+                        margin-top: 21px;
+                    }
+                }
+            }
+        }
+
+        .add-riders {
+            .add-selection {
+                margin: 16px 0;
+                .radio-options {
+                    .option {
+                        border: 2px solid rgba($color: #000000, $alpha: 0.3);
+                        padding: 8px;
+                        width: 48%;
+                        max-width: 600px;
+                        background-color: #f4f4fb;
+                        border-radius: 8px;
+
+                        .mat-raio-button {
+                            font-weight: bold;
+                        }
+
+                        &.selected {
+                            background-color: #f2f8fe;
+                            border-color: #3f51b5;
+                        }
+
+                        .info-text {
+                            margin-left: 28px;
+                            font-size: 12px;
+                            color: #afafaf;
+                        }
+                    }
+                }
+            }
+
+            .table-container {
+                .create-ride-table {
+                    border: 1px solid #ccc;
+                }
+                .optional-chip {
+                    padding: 1px 6px;
+                    font-size: 12px;
+                }
+            }
+
+            .upload-options,
+            .table-options {
+                font: normal normal normal 14px/18px Open Sans;
+
+                .label {
+                    font: normal normal normal 16px/20px Open Sans;
+                }
+
+                .edit-btn {
+                    padding: 0 4px;
+                    line-height: 30px;
+                    height: 30px;
+                }
+            }
+
+            .drag-drop-container {
+                .browse-btn {
+                    color: black;
+                    padding: 10px;
+                    border-radius: 5px;
+                }
+                .uploaded-file-btn {
+                    color: black;
+                    padding: 8px;
+                    border-radius: 5px;
+                }
+            }
+
+            .upload-btn {
+                margin-top: 12px;
+
+                button {
+                    height: 36px;
+                }
+            }
+
+            .another-rider-btn {
+                height: 48px;
+                font-weight: normal;
+            }
+        }
+
+        .bus-details {
+            .input-options {
+                .mat-form-field {
+                    margin-right: 16px;
+                }
+            }
+
+            .optional-chip {
+                padding: 1px 6px;
+                font-size: 12px;
+                margin-left: 12px;
+            }
+        }
+    }
+
+    .preview-details {
+        padding: 32px 40px;
+
+        .label {
+            font: normal normal 600 20px/26px Open Sans;
+            color: #545454;
+        }
+
+        table {
+            tr {
+                text-align: left;
+            }
+            th {
+                background-color: #f4f4fb;
+                font: normal normal 600 14px/20px Open Sans;
+                color: #0a0a0a;
+                padding: 12px;
+            }
+            td {
+                padding: 12px;
+                font: normal normal normal 12px/18px Open Sans;
+                color: #545454;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1250px) {
+    .pick-up-details {
+        .time-field {
+            width: 10% !important;
+            min-width: 80px;
+        }
+        .date-field {
+            min-width: 140px;
+        }
     }
 }

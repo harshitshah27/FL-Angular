@@ -1,22 +1,16 @@
-<app-header></app-header>
-<div class="content">
-    <div class="sidenav-container fixed h-full">
-        <app-navigation-bar></app-navigation-bar>
-    </div>
-    <div class="content-container w-full">
-        <div class="header">DASHBOARD</div>
-        <div class="ride-progress">
-            <div class="left-progress">
-                <div class="bold-text">Yay!</div>
-                <div class="info-text">Your ride is getting configured now. Once completed, you'll be able to see your ride on the top of the Rides table.</div>
-                <mat-progress-bar class="mt-6" mode="determinate" value="40"></mat-progress-bar>
+<div class="content-container w-full bg-[#f8f8f8] relative">
+    <div class="header flex">
+        <div class="main-header">{{mainHeaderText}}</div>
+        <div *ngIf="showBreadCrumb" class="breadcrumb flex ml-6">
+            <div class="label flex items-center"
+                *ngFor="let item of routeUrlSegments, let last=last">
+                <a *ngIf="!last" href="{{item.hrefLink}}">{{item.displayText}}</a>
+                <div *ngIf="last">{{item.displayText}}</div>
+                <mat-icon>arrow_right</mat-icon>
             </div>
-            <img src="">
-        </div>
-        <div class="page-wrapper">
-            <router-outlet></router-outlet>
         </div>
     </div>
-    
+    <div class="page-wrapper">
+        <router-outlet></router-outlet>
+    </div>
 </div>
-<app-footer></app-footer>

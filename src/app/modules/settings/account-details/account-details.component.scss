@@ -1,0 +1,23 @@
+.account-details-container {
+    width: 50%;
+    .primary-btn,
+    .secondary-btn {
+        font-size: 14px;
+    }
+    .image-options {
+        .profile-img {
+            height: 130px;
+            width: 130px;
+            font-size: 48px;
+        }
+        .action-buttons {
+            max-width: 150px;
+        }
+    }
+    .mat-form-field {
+        display: block;
+        min-width: 241px;
+        width: 100%;
+        font-size: 14px;
+    }
+}

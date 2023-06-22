@@ -1,15 +1,15 @@
-<!-- <div class="font-body h-full"> -->
-<!-- <app-layout *ngIf="isLoggedIn$ | async; else notAuthorized"> -->
-  <!-- <app-layout>
+<ng-container *ngIf="!isLoggedIn">
   <router-outlet></router-outlet>
-</app-layout> -->
-
-<!-- <ng-template #notAuthorized>
-  <router-outlet></router-outlet>
-</ng-template>
-<ngx-spinner bdColor = "rgba(0,0,0,0.1)" size = "medium" color = "#512da8" type = "ball-spin" [fullScreen] = "true">
-  <p style="color: #512da8" > Loading... </p>
-</ngx-spinner>
-</div> -->
-
-<router-outlet></router-outlet>
+</ng-container>
+<ng-container *ngIf="isLoggedIn">
+  <app-header></app-header>
+  <div class="content">
+    <div class="sidenav-container fixed h-full">
+      <app-navigation-bar></app-navigation-bar>
+    </div>
+    <div class="right-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</ng-container>

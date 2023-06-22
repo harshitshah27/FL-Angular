@@ -1,53 +1,20 @@
-.content {
-    display: flex;
+.content-container {
+    padding: 32px 40px;
+    margin-left: 52px;
 
-    .sidenav-container {
-        width: 110px;
-        border-right: 2px solid #eee;
-    }
+    .header {
+        font-size: 25px;
+        font: normal normal bold 25px/34px Open Sans;
+        margin-bottom: 32px;
 
-    .content-container {
-        background-color: #F8F8F8;
-        padding: 32px 40px;
-        margin-left: 110px;
-
-        .header {
-            font-size: 25px;
-            font-weight: bold;
-            font: normal normal bold 25px/34px Open Sans;
-            margin-bottom: 32px;
-        }
-
-        .ride-progress {
-            background-color: #FFF9C7;
-            padding: 24px 48px;
-            margin-bottom: 32px;
-            border-radius: 32px;
-            display: flex;
-            justify-content: space-between;
-
-            .left-progress {
-                .bold-text {
-                    font-weight: bold;
-                    font-size: 20px;
-                }
-                .info-text {
-                    font-size: 12px;
-                }
-                mat-progress-bar {
-                    height: 8px;
-                    border-radius: 4px;
+        .breadcrumb {
+            font: normal normal normal 16px/22px Open Sans;
+            .label:last-child {
+                color: #06038d;
+                .mat-icon {
+                    display: none;
                 }
             }
-
-            img {
-                height: 100px;
-                width: 100px;
-            }
-        }
-
-        .page-wrapper {
-            background-color: #fff;
         }
     }
 }

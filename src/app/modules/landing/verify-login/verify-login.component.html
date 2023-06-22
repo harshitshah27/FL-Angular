@@ -1,1 +1,58 @@
-<p>verify-login works!</p>
+<div class="verify-form-wrapper">
+  <div class="header text-center">Verify</div>
+  <div class="mt-2 text-center w-full">
+    <h6>
+      Please enter the code we sent on your Email ID <br />
+      muk******09@gmail.com
+    </h6>
+  </div>
+  <form (submit)="verifyCode()" #verifyCodeForm="ngForm">
+    <mat-grid-list cols="6" style="width: 100%">
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <input matInput type="text" maxlength="1" />
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <input matInput type="text" maxlength="1" />
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <input matInput type="text" maxlength="1" />
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <input matInput type="text" maxlength="1" />
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <input matInput type="text" maxlength="1" />
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <input matInput type="text" maxlength="1" />
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list cols="5">
+      <mat-grid-tile>
+        <button mat-button class="btn primary-btn" type="submit"
+          [disabled]="verifyCodeForm.invalid">
+          Verify
+        </button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-button class="btn secondary-btn !ml-2" type="button">Back</button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+
+  <div class="resend-code text-left">
+    Haven't received your code yet ? <a href="#" class="text-[#06038d]">Resend Code</a>
+  </div>
+</div>

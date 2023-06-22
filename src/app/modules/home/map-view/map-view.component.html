@@ -112,7 +112,13 @@
                             [ngClass]="{'clicked':sidenav.opened}">play_arrow</mat-icon>
                     </button>
                     <div class="map-wrapper w-full">
-                        <google-map></google-map>
+                        <google-map [height]="'100%'" [width]="'100%'"
+                            [options]="mapOptions">
+                            <map-marker *ngFor="let marker of markers"
+                                [position]="marker.position"
+                                [title]="marker.title"></map-marker>
+                            <!-- <map-marker [position]="marker.position"></map-marker> -->
+                        </google-map>
                     </div>
                 </div>
 
